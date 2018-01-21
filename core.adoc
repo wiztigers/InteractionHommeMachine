@@ -1,7 +1,10 @@
-= Interfaces Homme-Machine - Support de cours
+= Interfaces Homme-Machine : Support de cours
 Régis WITZ <rwitz@unistra.fr>
 :doctype: book
 :toc: left
 :toc-title: Table des Matières
 :toclevels: 2
+
+
+include::chapters/intro.adoc[]
 

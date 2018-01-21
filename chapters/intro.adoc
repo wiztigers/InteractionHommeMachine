@@ -1,0 +1,128 @@
+
+== La vision
+
+Les indications apportées par les interfaces informatiques sont de nature essentiellement visuelle. Or, la vision humaine est imparfaite et facilement abusée : nous voyons parfois des choses qui n'existent pas, ou manquons à remarquer ce qui est devant nos yeux.
+
+Ces imperfections de la vision humaine peuvent être exploitées à des fins récréatives, comme avec les illusions d'optique.
+Cependant, certaines dispositions d'objets affichées sur un écran peuvent être très désagréables suivant les situations.
+
+image::resources/illusion_akiyoshi9.png[caption="Exemple d'illusion d'optique :", title="© Akiyoshi Kitaoka, « Trick eyes ».", link=http://ophtasurf.free.fr/illusions_extraordinaires2.htm]
+
+image::resources/triangle_de_curry.jpg[caption="Exemple d'illusion mathématique :", title="Triangle de Curry"]
+
+
+
+=== Caractéristiques
+
+Son *champ de vision* est d'environ 180° ; cela signifie par exemple qu'outre son écran, un utilisateur perçoit aussi (quoique moins bien) sur les cotés.
+On en déduit aussi que l'utilisateur ne perçoit pas ce qui est derrière lui.
+Cela peut avoir son importance suivant l'*environnement* dans lequel se trouve l'interface : outre la réalité virtuelle, cela concerne par exemple les interfaces qui sont dans la rue (distributeurs, ...) ou dont la nature est dépendante du lieu ou elles se trouvent (machines outils, ...).
+
+Son *acuité* donne la *taille minimale* des objets observables.
+En particulier, un seul pixel peut être très facilement vu.
+L'utilisateur d'une interface percevra souvent des artefacts graphiques ou des décalages d'objets les uns par rapport aux autres.
+
+Sa sensibilité aux *couleurs* : la théorie des couleurs est complexe et parfois subjective.
+Sans entrer dans les détails pour l'instant, on retiendra que chaque couleur est porteuse d'une sémantique subjective, et que la perception de chaque couleur est influencée par les couleurs qui l'environnent.
+
+Sa perception de la *profondeur*, grâce à la *vision stéréoscopique* : nous avons deux yeux qui voient chacun une image légèrement différente ; notre cerveau déduit la notion de profondeur de ces deux images.
+Cependant, d'autres *informations secondaires* peuvent aussi donner une impression de profondeur : on peut citer par exemple la taille des objets les uns par rapport aux autres, les ombres, la luminosité, ...
+Ce sont ces informations qui nous permettent de « percevoir » la profondeur d'une scène en trois dimensions affichée sur un écran, par nature en deux dimensions seulement.
+
+Sa sensibilité aux *mouvements*.
+Dans une interface graphique, le mouvement peut être utilisé au bénéfice de l'utilisateur, par exemple pour attirer son attention sur un objet *clignotant*, ou lui indiquer l'avancement d'une tâche grâce à une barre de *progression*.
+Cependant, trop d'éléments en mouvement à l'écran le font souvent au détriment de la compréhension de l'utilisateur.
+
+Sa capacité à *reconnaître* et à *différencier*, grâce à la *vision active*, apte entre autres à isoler un élément particulier reconnaissable par une ou plusieurs *caractéristiques différentes* de celles des éléments environnants.
+
+image::resources/panda_cubs_inchengdu.png[caption="Votre vision active vous permet de détecter ces pandas dans leur milieu naturel ", title="(Panda cubs in Chengdu, inchengdu, CC BY 2.0)", link=https://www.flickr.com/photos/inchengdu/13665855435]
+
+
+=== Boucle perception - action
+
+Notre vue, notre toucher et notre proprioception sont en interaction constante.
+Par exemple, pour saisir un objet, notre vue nous permet d'amorcer notre mouvement, de corriger la trajectoire de notre main, et de réajuster spécifiquement nos mouvements, tandis que notre toucher nous sert à confirmer que notre geste est correctement exécuté, ainsi qu'à affermir notre prise.
+
+
+
+=== Interaction à deux mains
+
+De manière générale, notre main dominante exécute l'*action*, tandis que notre main non-dominante nous permet de situer le *contexte* de cette action.
+Cette collaboration entre nos deux mains nous permet d'entreprendre des manipulations complexes.
+
+Cependant, cette interaction entre les deux mains de l'utilisateur reste relativement peu exploitée dans le domaine des IHM. Citons comme exceptions certaines applications de réalité virtuelle et certains contrôleurs à reconnaissance de mouvements majoritairement utilisés dans le domaine des jeux vidéos.
+
+
+
+=== Loi de Fitts
+
+Les périphériques d'entrée sont nombreux : parmi eux, on peut citer la souris, l'écran tactile, ou encore le couple tablette et stylet.
+Ces trois exemples sont autant de *périphériques de pointage*, qui chacun offrent des sensations différentes, et sont donc réservés à des usages différents.
+De plus, une IHM ne se concevra pas de la même manière suivant le périphérique d'entrée qu'elle utilise.
+
+La loi de Fitts, publiée par Paul Fitts en 1954, est une manière d'estimer l'efficacité de l'utilisateur pour atteindre un élément particulier d'une interface graphique ; en d'autres termes, la rapidité avec laquelle il sera capable d'agir sur un élément précis de cette interface.
+
+Cette rapidité est fonction de la distance séparant le centre de l'élément cible de son point de départ, mais aussi de la taille de l'élément cible.
+
+
+
+
+
+== La mémoire
+
+Tout utilisateur d'IHM utilise sa mémoire pour *apprendre* à se servir de cette interface, mais aussi pour *exécuter une action* à l'aide de cette interface.
+
+On peut en fait distinguer trois types de mémoires :
+
+* La *mémoire sensorielle*, capable de retenir fidèlement mais très, très brièvement (souvent moins d'une seconde) les informations prodiguées par les différents sens.
+  Seules les *informations significatives* pour l'utilisateur ont une chance d'être retenues. +
+  Cette https://www.youtube.com/watch?v=ubNF9QNEQLA[vidéo externe] peut vous donner une idée de la quantité importante d'informations que la vision perçoit mais que la mémoire sensorielle oublie très rapidement.
+* La *mémoire à court terme*, capable de retenir environ 7 éléments mémoriels (on parle en général d'une capacité de *7 « mnèmes »*) pendant une durée maximale de quelques dizaines de secondes au maximum.
+  Cette mémoire sert majoritairement à l'utilisateur d'une interface pour effectuer son action courante.
+  La mémoire à court terme est de très faible capacité, et est très volatile.
+  Une IHM ne devrait donc pas obliger son utilisateur à retenir trop d'informations (comme l'état actuel du système, ou les opérations effectuées auparavant) afin d'exécuter correctement une action. +
+  La limite de 7 mnèmes donne aussi une idée du nombre maximal d'éléments que devrait proposer un menu, par exemple.
+* La *mémoire à long terme* permet en théorie de retenir un nombre infini de mnèmes, pour une durée infinie.
+  À noter que la répétition d'une action ou d'une information permet une meilleure mémorisation.
+  Cela a son importance pour la formation d'un utilisateur à une interface, ainsi que pour sa rapidité d'adoption.
+
+
+
+
+
+== Résolution de buts
+
+=== Algorithmie
+
+L'informatique enseigne que tout problème peut être décomposé en sous-problèmes ; ces sous-problèmes pouvant à leur tour être décomposés, jusqu'à atteindre une série de problèmes triviaux à résoudre.
+La résolution dans l'ordre de tous ces problèmes triviaux permet d'atteindre le but final.
+
+=== Théorie de l'action
+
+image::resources/ThéorieDeLAction.png[caption="Théorie de l'action ", title="(Don Norman, 1986)"]
+
+La théorie de l'action de Don Norman énonce que tout utilisateur franchit les étapes suivantes lorsqu'il manipule une interface dans un but précis :
+
+. L'utilisateur traduit son but en formulant son *intention*, ...
+. ... puis il *spécifie* actions à entreprendre pour satisfaire son intention, ...
+. ... enfin, il *exécute* cette série d'actions.
+. La machine *interprète* les données en entrée de l'utilisateur, puis matérialise son *retour* sous forme de données en sortie.
+. L'utilisateur *perçoit* la sortie de la machine, ...
+. ... il *interprète* ces sorties qu'il a réussi à percevoir sous forme de résultat, ...
+. ... enfin, il *évalue* les résultats qu'il a interprété en regard de son but initial, pour savoir si celui-ci est atteint.
+
+
+
+=== Réalité
+
+La théorie ne donne qu'une vision partielle de la manière dont un humain tente d'accomplir ses buts à l'aide d'une IHM.
+
+En pratique, il est nécessaire de garder en tête que :
+
+* l'humain s'adapte de manière constante à son contexte,
+* il tente souvent de résoudre ses problèmes de manière incrémentale, sans forcément planifier ses actions,
+* le comportement des utilisateurs est très variable, surtout si la situation qu'ils subissent est inhabituelle pour eux.
+
+En conséquence, il peut y avoir autant, voir davantage, de méthodes de résolution d'un même problème que d'utilisateurs.
+
+
