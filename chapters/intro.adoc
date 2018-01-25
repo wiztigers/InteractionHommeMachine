@@ -6,9 +6,9 @@ Les indications apportées par les interfaces informatiques sont de nature essen
 Ces imperfections de la vision humaine peuvent être exploitées à des fins récréatives, comme avec les illusions d'optique.
 Cependant, certaines dispositions d'objets affichées sur un écran peuvent être très désagréables suivant les situations.
 
-image::resources/illusion_akiyoshi9.png[caption="Exemple d'illusion d'optique :", title="© Akiyoshi Kitaoka, « Trick eyes ».", link=http://ophtasurf.free.fr/illusions_extraordinaires2.htm]
+image::resources/intro/illusion_akiyoshi9.png[caption="Exemple d'illusion d'optique :", title="© Akiyoshi Kitaoka, « Trick eyes ».", link=http://ophtasurf.free.fr/illusions_extraordinaires2.htm]
 
-image::resources/triangle_de_curry.jpg[caption="Exemple d'illusion mathématique :", title="Triangle de Curry"]
+image::resources/intro/triangle_de_curry.jpg[caption="Exemple d'illusion mathématique :", title="Triangle de Curry"]
 
 
 
@@ -35,7 +35,7 @@ Cependant, trop d'éléments en mouvement à l'écran le font souvent au détrim
 
 Sa capacité à *reconnaître* et à *différencier*, grâce à la *vision active*, apte entre autres à isoler un élément particulier reconnaissable par une ou plusieurs *caractéristiques différentes* de celles des éléments environnants.
 
-image::resources/panda_cubs_inchengdu.png[caption="Votre vision active vous permet de détecter ces pandas dans leur milieu naturel ", title="(Panda cubs in Chengdu, inchengdu, CC BY 2.0)", link=https://www.flickr.com/photos/inchengdu/13665855435]
+image::resources/intro/panda_cubs_inchengdu.png[caption="Votre vision active vous permet de détecter ces pandas dans leur milieu naturel ", title="(Panda cubs in Chengdu, inchengdu, CC BY 2.0)", link=https://www.flickr.com/photos/inchengdu/13665855435]
 
 
 === Boucle perception - action
@@ -99,7 +99,7 @@ La résolution dans l'ordre de tous ces problèmes triviaux permet d'atteindre l
 
 === Théorie de l'action
 
-image::resources/ThéorieDeLAction.png[caption="Théorie de l'action ", title="(Don Norman, 1986)"]
+image::resources/intro/ThéorieDeLAction.png[caption="Théorie de l'action ", title="(Don Norman, 1986)"]
 
 La théorie de l'action de Don Norman énonce que tout utilisateur franchit les étapes suivantes lorsqu'il manipule une interface dans un but précis :
 
