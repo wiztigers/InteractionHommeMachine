@@ -12,3 +12,5 @@ include::chapters/periphs.adoc[]
 
 include::chapters/categories.adoc[]
 
+include::chapters/implementation.adoc[]
+

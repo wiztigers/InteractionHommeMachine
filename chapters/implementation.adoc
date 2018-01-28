@@ -1,0 +1,132 @@
+
+== Implémentation
+
+Historiquement, dans les années 70-80, les interfaces graphiques étaient caractérisées par le fait d'être utilisées par un utilisateur averti ou « expert », qui était souvent le seul à utiliser un ordinateur donné.
+De plus, les performances étaient faibles et les entrées/sorties peu nombreuses, surtout comparées aux caractéristiques de l'informatique d'aujourd'hui.
+Tout cela se traduisait par des IHM relativement pauvres.
+Donc, il y avait peu de code dédié spécifiquement à l'IHM dans les applications de l'époque.
+
+Au tournant des années 90, les choses ont commencé à changer.
+L'informatique s'est tourné toujours plus vers le grand public.
+Les interfaces graphiques ont suivi, et sont devenues toujours plus simples d'accès.
+Elles ont aussi profité de machines toujours plus puissantes, qui permettaient des affichages plus colorés, détaillés et complexes, et des utilisations diversifiées.
+De plus, la volonté actuelle des concepteurs d'IHM est de les rendre toujours plus intuitives, mais aussi toujours plus riches.
+
+En conséquence, la proportion du code spécifique à l'IHM dans le code des applications est en général plus grande que par le passé.
+Au delà de ce fait, le temps accordé au design, à la conception de l'interaction homme-machine est lui aussi toujours plus important.
+
+Ce chapitre détaille les différentes manières d'implémenter une IHM aujourd'hui.
+
+
+=== Machine à états
+
+Toutes les fonctionnalités de l'interface sont décomposées en tâches élémentaires.
+Chacune de ces tâches correspond à l'implémentation d'un *automate à états finis*.
+Cet automate est enrichi d'actions associées :
+
+* aux *états* : l'action est exécutée lorsque l'état considéré devient l'état courant ;
+* aux *transitions* : l'action est exécutée lorsque la transition considérée est empruntée.
+
+==== Exemple
+
+Voici un exemple de logique d'implémentation d'une tâche élémentaire : dessiner une ligne, dans un logiciel de dessin par exemple.
+
+* partant d'un état initial de l'application,
+* lorsque le bouton gauche de la souris est enfoncé, on mémorise la position actuelle _P1_ de la souris et on passe dans l'état _Dessiner une ligne_.
+* si la souris est déplacée, on efface la ligne précédemment dessinée (si elle existe), on mémorise la position actuelle _P2_ de la souris, et on redessine une ligne allant de _P1_ à _P2_.
+* lorsque le bouton gauche de la souris est relâché, on valide la dernière ligne dessinée.
+
+Le schéma d'implémentation de la machine à états finis correspondante est ici représentée en utilisant le formalisme UML (diagramme d'activités).
+
+image::resources/implementation/machineàétats.png[caption="Exemple de machine à états : ", title="Dessiner une ligne"]
+
+==== Avantages
+
+* Implémenter un automate est aisé et réaliste pour des *systèmes simples*.
+* Cette possibilité offre une *flexibilité* inégalée qui peut être indispensable dans certains cas, notamment en terme de configuration des actions à exécuter.
+
+==== Inconvénients
+
+* Tout implémenter soi-même est à éviter absolument si le système est *complexe*.
+* Comment représenter et maîtriser l'état global du système ?
+
+
+
+=== Programmation événementielle
+
+Ce paradigme de programmation est caractérisé par sa non-linéarité.
+Pour chaque objet _O_ de l'interface : si l’événement _E_ se produit sur l’objet _O_, alors le traitement _T_ est exécuté.
+
+==== Exemple
+
+La plupart des librairies graphiques se basent sur de la programmation événementielle.
+Les exemples sont nombreux: Qt, swing, node.js, ... 
+
+==== Avantages
+
+* L'aspect « local » de l'implémentation de chaque traitement fait que les composants sont souvent bien *isolés*, et favorise la *modularité*.
+* Une fois ses principaux principes acquis, la programmation événementielle est relativement *simple* d'utilisation et *adaptée* au domaine des IHM.
+
+==== Inconvénients
+
+* La programmation événementielle n'est pas forcément simple à se représenter pour un développeur.
+* C'est à chaque traitement implémenté de vérifier lui-même si il doit s'interrompre et, si c'est le cas, de le faire proprement. Implémenter une tâche de longue durée sans prendre cette précaution élémentaire est la cause la plus courante de « freeze » de l'IHM.
+
+
+
+=== Fichiers de description
+
+Plutôt que d'implémenter directement une interface graphique en utilisant un langage de programmation, il est possible d'utiliser un *langage de balisage* d'interface graphique (ou _User Interface Markup Language_).
+
+Les fichiers créés sont alors destinés :
+
+* soit à être compilés, éventuellement en passant par une étape de traduction en un langage de programmation plus générique ;
+* soit à être interprétés par un _runtime_.
+
+==== Exemples
+
+* QML, qui fait partie du projet Qt ;
+* XUL, supporté par la fondation Mozilla ;
+* UIML, le précurseur, forme un standard ouvert ;
+* XAML, supporté par Microsoft.
+
+==== Avantages
+
+* La plupart de ces langages de description formant un sous-ensemble d'XML, il est possible de créer des interfaces grâce à eux sans avoir de compétence avancée en programmation.
+* Conséquence directe, cette solution peut former une base commune pour le designer et le développeur pour communiquer et se comprendre.
+
+==== Inconvénients
+
+* L'interprétation de ces fichiers par leur runtime induit forcément une certaine latence qui peut, dans le pire des cas, dégrader la réactivité de l'IHM ainsi créée.
+
+
+
+=== Constucteur d'interface graphique
+
+Il est enfin possible d'utiliser un *constructeur (builder) d'interface graphique*.
+Il s'agit d'un logiciel WYSIWYG de création d'interface graphique.
+
+==== Exemple
+
+* Glade, qui sert à créer des interfaces GTK+ :
+
+image::resources/implementation/Glade_3_screenshot.png[caption="Glade 3.6.7 ", title="", link=https://glade.gnome.org]
+
+* Qt Creator, qui fait partie de Qt :
+
+image::resources/implementation/Qt_Creator_3.1.1_editing_a_sample_UI_file_from_Qt_5.3_using_Designer.png[caption="Qt Designer (Qt Creator 3.1.1, Qt 5.3) ", title="", link=https://en.wikipedia.org/wiki/Qt_Creator]
+
+* La plupart des Environnements de Développement Intégrés (_IDE_) intègrent un constructeur d'interface graphique.
+
+==== Avantages
+
+* Ces technologies étant *WYSIWIG* (_What You See Is What You Get_), elles permettent de voir rapidement (voire de tester) le résultat d'un ou plusieurs changements dans le design de l'IHM.
+  Cela est particulièrement intéressant pendant les phases de conception, ou un *prototype* est particulièrement utile.
+* La quantité de code à réaliser est réduite.
+
+==== Inconvénients
+
+* En fait de WYSIWIG, il est plus explicite de parler de *WYSIOWYG* (_What You See Is Only What You Get_).
+  En d'autres termes, l'utilisation de constructeur d'interface graphique peut donner un faux sentiment de sécurité ou de compétence, et faire négliger la quantité de code métier à implémenter pour rendre l'IHM fonctionnelle.
+* Si le constructeur produit du code source, ce code doit être maintenu par l'équipe de développement.
+  Or, il est souvent malaisé d'analyser et de corriger du code généré par un algorithme ...
