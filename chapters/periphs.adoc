@@ -18,6 +18,7 @@ Un des périphériques d'entrée les plus utilisés, l'écran tactile (qu'il soi
 Tous ces périphériques d'entrée offrent chacun des sensations différentes, et sont donc réservés à des *usages différents*.
 
 Il est possible de classer les périphériques d'entrée de différentes manières :
+
 * ceux à *coordonnées absolues* (x,y) comme la tablette ou l'écran tactile donnent la position pointée ;
   d'un autre coté, ceux à *coordonnées relatives* (dx,dy) comme la souris ou le touchpad donnent le déplacement depuis la dernière position connue.
 * les périphériques d'entrées peuvent être *directs* (par exemple l'écran tactile) ou *indirects* (comme le touchpad).
