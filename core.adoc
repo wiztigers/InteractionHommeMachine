@@ -10,3 +10,5 @@ include::chapters/intro.adoc[]
 
 include::chapters/periphs.adoc[]
 
+include::chapters/categories.adoc[]
+

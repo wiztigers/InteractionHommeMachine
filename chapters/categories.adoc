@@ -1,0 +1,186 @@
+
+[[chapter_gui_styles]]
+== Styles d'interfaces
+
+Ce chapitre détaille les principaux styles de communication entre l'homme et la machine.
+En d'autres termes, les principales manières de construire et d'utiliser une IHM.
+
+À noter que le style réel d'une interface peut être difficile à reconnaitre, car celle-ci fait un effort pour « dissimuler », avec plus ou moins de bonheur, ses mécanismes internes sous une couche d'ergonomie.
+Par exemple, les assistants vocaux peuvent sembler bien plus riches et complexes qu'un terminal, alors qu'ils communiquent au fond tous les deux de la même manière.
+De même, les formulaires web sont souvent éclatés en différentes pages, ou pré-remplis avec les informations concernant l'utilisateur que le site a glané au cours de sa navigation.
+
+De plus, rares sont les interfaces qui n'utilisent qu'une seule de ces modes de communication.
+Rappelons que tous les moyens sont bons pour mieux faire se comprendre l'homme et la machine.
+En conséquence, la plupart des IHM sont hybrides, laissant à l'utilisateur plusieurs moyens de s'exprimer, ou utilisant un certain style pour certaines des fonctionnalités proposées, et un autre style pour d'autres.
+
+=== Style conversationnel
+
+Cette catégorie d'interface graphique regroupe elle même trois sous-catégories : les interactions de type « <<style_console,console>> », celles de type « <<style_form,formulaire>> » et enfin les interfaces de <<style_browser,navigation>>.
+
+[[style_console]]
+==== Console
+
+Il s'agit là de la plus ancienne manière pour l'homme de communiquer « graphiquement » avec la machine.
+La séquence d'interaction est toujours la même :
+
+. l'utilisateur entre une commande
+. l'utilisateur valide sa commande
+. la commande est exécutée
+. les résultats de la commande sont présentés à l'utlisateur
+
+La commande entrée par l'utilisateur doit évidemment être *exprimée dans un langage* et avec une *syntaxe* compris et attendus par l'ordinateur.
+Ce « langage console » est souvent *assez éloigné du langage naturel* de l'utilisateur.
+
+[[style_console_examples]]
+===== Exemples
+
+* Comme son nom l'indique, les interfaces de type *terminal*, les consoles de commandes entrent dans cette catégorie.
+* Les *assistants personnels* fonctionnent aussi comme des consoles.
+  Leur objectif est en effet d'*émuler une conversation* avec l'utilisateur : celui-ci formule ses commandes oralement, et sa machine (ie. son téléphone) présente ses réponses à l'écran, souvent en formulant ses réponses grâce à une synthèse vocale.
+  Cependant, bien que la manière dont l'utilisateur doit formuler ses « demandes » à son assistant personnel se rapproche fortement du langage naturel, celle-ci doit quand même respecter une syntaxe précise à base de mot clefs.
+  De plus, les assistants personnels actuels ne comprennent qu'un nombre de langage limité -voire parlent uniquement anglais. S'ajoute donc dans certains cas la barrière de la langue.
+
+[[style_console_pros]]
+===== Avantages
+
+* Pour l'utilisateur qui en maitrise la syntaxe, ce type d'interface est très puissant car elle lui permet de s'exprimer de manière très *rapide et concise*.
+* Une interface console est *évolutive* : sa syntaxe peut être enrichie de méta-mots (scripts), de synonymes (_alias_), de conditions, ...
+* Bien qu'on sorte du domaine de l'interface homme-machine pur, ce type d'interface est aussi adapté à l'interaction entre programmes (« interaction machine-machine »), en raison justement de sa rigueur et de sa syntaxe clairement définie.
+
+[[style_console_cons]]
+===== Inconvénients
+
+* La syntaxe attendue par une console constitue une *barrière d'entrée*.
+  En effet, plus celle-ci s'éloigne des habitudes de l'utilisateur, plus son temps d'apprentissage est important.
+* Malgré la manière dont on peut l'enrichir (voir <<style_console_pros,avantages>>), la *syntaxe* reste quand même *stricte*.
+  En particulier, toute difficulté qu'aurait l'utilisateur à traduire ses intentions dans le langage console constitue la _distance d'exécution_ décrite par Norman dans sa <<seven_stages_of_action,théorie de l'action>>, et est une cause potentielle de problème durant l'utilisation d'une interface console.
+* Il est souvent difficile pour l'utilisateur d'accomplir *plusieurs tâches en parallèle* avec une interface console.
+
+[[style_form]]
+==== Formulaire
+
+Il s'agit là de tous les formulaires ou menus.
+La liste de commandes que peut exécuter une interface à base de formulaires est *explicite*.
+
+Pour executer une action grâce à un formulaire, l'utilisateur en remplit les *champs* indispensable, puis valide sa saisie.
+
+[[style_form_examples]]
+===== Exemples
+
+* Les formulaires sont très présents sur les sites *web*.
+  Par exemple, lorsque l'utilisateur décide de créer un compte, de commenter un article, de communiquer ses informations et ainsi de suite, il remplit quasiment systématiquement un formulaire.
+* Les *applications de gestion* sont souvent à base de formulaires.
+* L'interface du *minitel* était entièrement à base de formulaires.
+
+[[style_form_pros]]
+===== Avantages
+
+* Les actions de l'utilisateur sont fortement *guidées* : les champs sont libellés et expliqués pour qu'ils offrent une sémantique forte, certains champs pour lesquels seules certaines valeurs sont acceptables contraignent l'utilisateur via des menus à choix limités, certains champs peuvent être pré-remplis avec une valeur par défaut, et ainsi de suite.
+  Tout cela fait que, si l'utilisateur est suffisament formé et dispose des informations requises, il lui est difficile de mal remplir un formulaire.
+* La valeur des champs d'un formulaire est souvent *non imposée*, est reste *modifiable jusqu'à la validation* par l'utilisateur.
+  Celui-ci a donc le temps de changer d'avis ou de rassembler les informations dont il a besoin.
+* Un formulaire a une *forme plus graphique* qu'une console, par exemple.
+  Entre autres, cela offre différents moyens supplémentaires d'orienter l'utilisateur et de guider sa saisie, par exemple par l'utilisation judicieuse des couleurs et des polices de caractères, ou par un placement logique des différents champs à l'écran.
+
+[[style_form_cons]]
+===== Inconvénients
+
+* Un formulaire donné permet d'accomplir une *tâche prédéfinie*, ce qui offre *peu d'évolutivité*.
+  Faire évoluer un formulaire n'est parfois pas une bonne idée : en effet, l'utilisateur étant habitué à un certain formalisme (ordre de saisie, position des champs à l'écran, ...) peut se sentir perdu et frustré, voire entrer involontairement des valeurs eronnées.
+* Un formulaire permet rarement la *parallélisation* de plusieurs tâche.
+  S'il le permet, cela se fait souvent au détriment de sa simplicité de compréhension.
+
+[[style_browser]]
+==== Navigateur
+
+Ce style d'interface est caractérisé par la capacité de l'utilisateur à naviguer entre différents *nœuds*, caractérisés par leur identifiant ou *adresse* hypertexte.
+Lorsque l'utilisateur y accède, chaque nœud offre son contenu, qui peut être une donnée ou un traitement.
+Tous les nœuds sont *reliés entre eux* directement ou indirectement.
+De plus, l'utilisateur conserve toujours la possibilité de *revenir en arrière* dans sa navigation.
+
+[[style_browser_examples]]
+===== Exemples
+
+* Les *navigateurs internet*, évidement.
+  Inutile d'en dresser une liste ici : vous en utilisez probablement un actuellement.
+* Les *explorateurs de fichiers* offrent aussi une interface à base de navigation de nœud à nœud (fichier, dossier, ...). Nautilus pour Gnome, Konqueror pour KDE, File explorer pour Windows sont quelques uns des nombreux exemples.
+
+
+
+[[style_direct_manipulation]]
+=== Style par manipulation directe
+
+Un des fondateurs et défenseur des IHM par manipulation directe est Ben Shneiderman (_The future of interactive systems and the emergence of direct manipulation_, _Behaviour & Information Technology_, 1982).
+
+L'idée sous-jacente à ce style d'interface est que les objets informatiques peuvent manipulés de manière similaire à des objets physiques, et que l'utilisateur peut faire des actions sur eux à l'aide de son périphérique d'entrée.
+
+Dans sa forme la plus « pure », une IHM par manipulation directe respecte quatre grands principes :
+
+. Les objets d'intérêt sont *disponibles en permanence*.
+. L'utilisateur *agit directement* sur ces objets d'intérêt, plutôt que d'utiliser une syntaxe complexe ou un enchaînement d'actions.
+. [[style_direct_manipulation_third_principle]] Chaque action de l'utilisateur sur un objet d'intérêt est :
+** *incrémentale*,
+** *réversible*,
+** aux *résultats immédiatement visibles*.
+. Une telle interface est *structurée en couches*.
+
+[[style_direct_manipulation_examples]]
+==== Exemples
+
+* Le paradigme actuel de la plupart des logiciels et des systèmes d'exploitation, *WIMP* (_Windows_, _Icons_, _Menus_, _Pointers_), est une application directe (bien que plus ou moins heureuse, voir <<style_direct_manipulation_cons,Inconvénients>>) des principes de la manipulation directe.
+* Les interfaces graphiques permettant d'éditer des données et de les visualiser telles qu'elles seront éditées (appliquant le principe *WYSIWYG*, pour _What You See Is What You Get_) permettent aussi souvent de les manipuler directement.
+
+[[style_direct_manipulation_pros]]
+==== Avantages
+
+* Ce style d'interface est *intuitif*.
+  Cet avantage découle à la fois de ses qualités intrinsèques, mais aussi en raison du fait que l'écrasante majorité des interfaces graphiques utilise ce style depuis les années 70.
+* Les tâches que peut accomplir l'utilisateur avec ce style d'interface sont *non-prédéfinies*.
+  Une nouvelle tâche donne simplement lieu à un nouvel objet, ou à une nouvelle façon d'intéragir avec un objet existant.
+* Combiné avec un système multi-fenêtres, ce style assure la *parallélisation* des tâches.
+  L'utilisateur peut travailler en même temps dans deux fenêtres différentes.
+* Ce style offre des *entrées et sorties riches* : déplacement d'icones, redimensionnement, _drag and drop_, ...
+
+[[style_direct_manipulation_cons]]
+==== Inconvénients
+
+* Cette manière d'intéragir avec la machine étant avant tout pensée pour que l'utilisateur manipule directement et lui-même les objets, l'*automatisation* d'une interface par manipulation directe est difficile.
+* Certaines tâches sont par nature complexes.
+  Se pose donc la question de la manière de « résumer » ces tâches complexes en un seul objet, ou en une seule action sur un objet.
+  Répondre de manière satisfaisante à cette question est bien souvent impossible.
+  Cela a en particulier pour conséquence que le <<style_direct_manipulation_third_principle,troisième principe>> est bien souvent mal appliqué, la tâche complexe étant souvent déléguée à une fenêtre dédiée avec laquelle l'utilisateur va passer beaucoup de temps à intéragir.
+  Il est donc plus adapté, pour la plupart des systèmes <<style_direct_manipulation_examples,_WIMP_>>, d'utiliser le qualificatif de « manipulation indirecte » ...
+
+
+
+[[style_gestures]]
+=== Style par reconnaissance de traces
+
+Cette catégorie d'IHM est rendue possible par le fait de détecter certaines données particulières issues d'un périphérique d'entrée considéré.
+Ces données sont ensuite comparées à un *vocabulaire* afin de leur donner une *sémantique* précise.
+Cette sémantique est ensuite traduite en opération(s) à effectuer par l'application.
+
+[[style_gestures_examples]]
+==== Exemples
+
+* La plupart des smartphones et des tablettes permettent, au moins dans une certaine mesure, des interactions dans ce style.
+  Les capacités de l'écran tactile (sensibilité ? support du multitouch ?) ainsi que la nature des applications tournant sur ces supports sont cependant très variés, rendant difficile la définition du « vocabulaire tactile » exact supporté par un smartphone donné.
+* Les capteur (caméras) à reconnaissance de mouvements permettent eux aussi de concevoir de telles interfaces.
+
+[[style_gestures_pros]]
+==== Avantages
+
+* Ce style d'interface est *intuitif*.
+  Cet avantage découle à la fois de ses qualités intrinsèques, mais aussi grâce à la généralisation des smartphones dans la population depuis la fin des années 2000.
+  Cela fait que les utilisateurs maitrisent pour la plupart un minimum de « mots » d'interaction avec un écran tactile.
+* Ce style d'interface est, peut-on dire, « dans l'air du temps », ou à la mode.
+  Cette caractéristique n'est pas à négliger, car elle rend plus facile la possibiliter de susciter l'adhésion des utilisateurs à une IHM.
+
+[[style_gestures_cons]]
+==== Inconvénients
+
+* Une telle interface nécessite un *périphérique d'entrée spécifique*.
+  Rien ne sert de concevoir une IHM très intuitive par reconnaissance de traces si la machine cible ne permet pas ce type d'interaction (voir le chapitre sur l'<<chapter_adaptive_design,_Adaptive design_>> pour quelques pistes de solution).
+* Même si elle est intuitive, une telle interface attend quand même un vocabulaire précis, une syntaxe à apprendre qui constitue néanmoins une *barrière d'entrée* que l'utilisateur doit franchir avant de pouvoir utiliser l'interface.
+* S'il simple pour l'utilisateur d'accomplir une action avec un simple geste, se pose la question de comment *annuler* cette action.
+* Le style par reconnaissance de traces souffre du même inconvénient que le style par <<style_direct_manipulation_cons,manipulation directe>> : comment traduire des actions complexes par un simple geste ?
