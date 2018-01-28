@@ -8,3 +8,5 @@ Régis WITZ <rwitz@unistra.fr>
 
 include::chapters/intro.adoc[]
 
+include::chapters/periphs.adoc[]
+

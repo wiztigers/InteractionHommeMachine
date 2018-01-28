@@ -54,18 +54,6 @@ Cependant, cette interaction entre les deux mains de l'utilisateur reste relativ
 
 
 
-=== Loi de Fitts
-
-Les périphériques d'entrée sont nombreux : parmi eux, on peut citer la souris, l'écran tactile, ou encore le couple tablette et stylet.
-Ces trois exemples sont autant de *périphériques de pointage*, qui chacun offrent des sensations différentes, et sont donc réservés à des usages différents.
-De plus, une IHM ne se concevra pas de la même manière suivant le périphérique d'entrée qu'elle utilise.
-
-La loi de Fitts, publiée par Paul Fitts en 1954, est une manière d'estimer l'efficacité de l'utilisateur pour atteindre un élément particulier d'une interface graphique ; en d'autres termes, la rapidité avec laquelle il sera capable d'agir sur un élément précis de cette interface.
-
-Cette rapidité est fonction de la distance séparant le centre de l'élément cible de son point de départ, mais aussi de la taille de l'élément cible.
-
-
-
 
 
 == La mémoire
@@ -97,6 +85,7 @@ On peut en fait distinguer trois types de mémoires :
 L'informatique enseigne que tout problème peut être décomposé en sous-problèmes ; ces sous-problèmes pouvant à leur tour être décomposés, jusqu'à atteindre une série de problèmes triviaux à résoudre.
 La résolution dans l'ordre de tous ces problèmes triviaux permet d'atteindre le but final.
 
+[[seven_stages_of_action]]
 === Théorie de l'action
 
 image::resources/intro/ThéorieDeLAction.png[caption="Théorie de l'action ", title="(Don Norman, 1986)"]

@@ -1,0 +1,37 @@
+== Périphériques
+
+Les périphériques de sortie, et surtout les périphériques d'entrée, déterminent la manière dont l'utilisateur interagit avec une machine donnée.
+En conséquence, ces périphériques fixent les contraintes, donc conditionnent fortement, la conception des interfaces graphiques.
+
+=== Écrans
+
+Le type de périphérique de sortie prévalent dans le domaine des IHM est bien évidemment l'*écran*.
+Les écrans sont aujourd'hui de plusieurs types : écrans LED, LCD, vieux écrans CRT, écrans amoled, retina, etc.
+
+Leurs caractéristiques principales sont leur *résolution*, la *définition* de l'image qu'ils offrent, leur *persistance* ou rémanence, et leur vitesse de *rafraîchissement*.
+
+=== Périphériques d'entrée
+
+Le nombre de *périphériques d'entrée* disponible aujourd'hui est impressionnant : clavier, souris, molette, trackball, tablette (graphique), touchpad, joystick, joypad, ... difficile d'être exhaustif.
+Un des périphériques d'entrée les plus utilisés, l'écran tactile (qu'il soit capacitif ou résistif), est à la fois un périphérique d'entrée et de sortie.
+
+Tous ces périphériques d'entrée offrent chacun des sensations différentes, et sont donc réservés à des *usages différents*.
+
+Il est possible de classer les périphériques d'entrée de différentes manières :
+* ceux à *coordonnées absolues* (x,y) comme la tablette ou l'écran tactile donnent la position pointée ;
+  d'un autre coté, ceux à *coordonnées relatives* (dx,dy) comme la souris ou le touchpad donnent le déplacement depuis la dernière position connue.
+* les périphériques d'entrées peuvent être *directs* (par exemple l'écran tactile) ou *indirects* (comme le touchpad).
+* leur *mode d'entrée* :
+** en mode *requête* : l'attente est bloquante.
+** en mode *échantillonage* : la réponse est immédiate
+** en mode événementielle : file d'attente
+
+Une notion utile est aussi la notion d'*écho*.
+Il s'agit de la représentation graphique des actions de l'utilisateur.
+Par exemple lorque l'utilisateur utilise une souris, le curseur (en temps normal) ou le rectangle élastique (lors d'un redimensionnement) forment l'écho de cette souris.
+
+==== Loi de Fitts
+
+La loi de Fitts, publiée par Paul Fitts en 1954, est une manière d'estimer l'efficacité de l'utilisateur pour atteindre un élément particulier d'une interface graphique grâce à son périphérique d'entrée ; en d'autres termes, la rapidité avec laquelle il sera capable d'agir sur un élément précis de cette interface.
+
+Cette rapidité est fonction de la distance séparant le centre de l'élément cible de son point de départ, mais aussi de la taille de l'élément cible.
