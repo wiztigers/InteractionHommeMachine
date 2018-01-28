@@ -25,7 +25,7 @@ Il est possible de classer les périphériques d'entrée de différentes manièr
 * leur *mode d'entrée* :
 ** en mode *requête* : l'attente est bloquante.
 ** en mode *échantillonage* : la réponse est immédiate
-** en mode événementielle : file d'attente
+** en mode *événementiel* : file d'attente
 
 Une notion utile est aussi la notion d'*écho*.
 Il s'agit de la représentation graphique des actions de l'utilisateur.
