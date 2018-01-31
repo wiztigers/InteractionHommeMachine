@@ -101,7 +101,7 @@ Les fichiers créés sont alors destinés :
 
 
 
-=== Constucteur d'interface graphique
+=== Constructeur d'interface graphique
 
 Il est enfin possible d'utiliser un *constructeur (builder) d'interface graphique*.
 Il s'agit d'un logiciel WYSIWYG de création d'interface graphique.
