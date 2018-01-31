@@ -1,0 +1,51 @@
+
+== Tests
+
+Même un système qui satisfait toutes les exigences du client (c'est à dire qui respecte totalement sa spécification) n'est qu'utile _potentiellement_.
+En effet, un système qui possède toutes les fonctionnalités requises ne sert à rien si ces fonctionnalités ne sont pas exploitables, que le système n'est pas utilisable _en pratique_.
+Un système réellement utilisable, réelement convivial fera preuve de *qualités ergonomiques* telles que la facilité d'apprentissage, la facilité d'exploitation, la protection contre les erreurs d'utilisation, et ainsi de suite.
+D'où l'importance de *tester*, de *valider* que le système possède effectivement ces qualités.
+
+Valider l'ergonomie d'un système se fait via des _usability tests_ (ou « tests d'utilisabilité »).
+
+Durant ces tests, ce n'est jamais les designers/développeurs d'un système qui l'utilisent eux-mêmes : ils en savent trop sur l'objet à tester, et cette connaissance induit un biais cognitif qui risque de les faire tomber dans une vue <<technocentric_approach,technocentriste>> du système.
+
+Les tests ont un rôle double :
+
+* informationnel : le but premier d'un test est de trouver ce qui est perfectible afin d'améliorer l'interface ;
+* social : faire tester un système par une personne extérieur permet de convaincre plus facilement les designers/développeurs qu'il y a réellement un problème dans le système.
+
+=== Types de tests
+
+Il existe différentes manières de tester l'ergonomie d'un système :
+
+* Un *test informel* a pour principe de laisser l'utilisateur « seul » avec le système.
+  On le libre de choisir quelles tâches il entreprend et de la manière dont il s'y prend.
+  Éventuellement, on peut lui demander d'exécuter les tâches d'une journée de travail habituelle.
+* Un *test formel* guide davantage l'utilisateur.
+  Il est possible de lui faire exécuter une même tâche avec différentes interfaces (pour comparer différents designs), de lui imposer d'accomplir des tâches particulières, dans un certain ordre, et ainsi de suite.
+* Un *test A/B* vise à comparer deux designs d'interface différents. Si le but est de comparer plus de deux designs, on appelle cela un *test A/Z*.
+
+Une règle à respecter absolument dans tous les cas est que le designer/développeur ne doit *jamais intervenir*, ne jamais guider l'utilisateur, même pour « essayer de l'aider ».
+Par contre, il faut *toujours observer* l'utilisateur, prendre des notes sur ce qu'il fait, observer ses réactions, car on *apprend toujours* quelque chose d'un tel test sur la qualité du système.
+
+Il est aussi utile de s'assurer que l'utilisateur est conscient que ça n'est pas _lui_ qui est testé, mais le système, afin de s'assurer de la sincérité de ses actions et de ses réponses.
+
+=== Outils de mesure
+
+* Il est possible de fournir à l'utilisateur des questionnaires de satisfaction, de lui demander son appréciation ...
+  Cependant, ce type d'information est souvent difficile à quantifier.
+  De plus, l'utilisateur peut, de bonne foi, oublier certains détails pourtant vitaux pour la compréhension de l'ergonomie du système.
+* On peut aussi demander à l'utilisateur de *penser à voix haute* (« _think aloud_ »), au fur et à mesure qu'il intéragit avec le système.
+  Cette façon de faire donne souvent des résultats plus sincères et utiles que la première, mais aussi plus « brutes », plus difficiles à exploiter.
+  À noter que cette manière de mener le test peut aussi être approprié pour valider le contenu d'un manuel ou une documentation.
+* Il existe aussi des *méthodes analytiques* de validation d'un système, dans les détails desquels ce cours n'entrera pas.
+
+=== Quand tester ?
+
+On peut tester à toutes les étapes du développement, mais pas de la même manière ni avec les mêmes enjeux.
+
+* _avant le développement_, en présentant à l'utilisateur des maquettes sur papier, des slides informatiques, voire même une personne qui dialogue avec l'utilisateur en « jouant le rôle » de l'interface ;
+* _pendant le développement_, en utlisant des prototypes plus ou moins fonctionnels, des _mockups_, ou une interface graphique représentant l'état des développements et ce, même si les fonctionnalités réelles ne sont pas encore implémentées ;
+* _après le développement_, il est rarement possible de changer grand chose puisque le logiciel est pour ainsi dire dans sa forme finale. Cependant, on peut quand même être à la recherche de « _showstoppers_ », des graves problèmes qui gênent gravement l'utilisateur.
+  De plus, tester un logiciel terminé permet toujours d'apprendre quelque chose pour les _releases_ futures.
