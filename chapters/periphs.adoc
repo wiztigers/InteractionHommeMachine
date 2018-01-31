@@ -34,7 +34,7 @@ Par exemple lorque l'utilisateur utilise une souris, le curseur (en temps normal
 ==== Dispositif haptiques
 
 Un périphérique d'entrée *haptique* est tactile (toucher, vibrations, ...) et kinesthésique (retour de force, ...).
-Il utilisent des moyens comme les vibrations, les souffles d'air ou les ultrasons pour permettre à l'utilisateur de manipuler des objets virtuels comme s'il les tenait vraiment en main, sans ressentir ni le poids ni les mécanismes du périphérique proprement dit.
+Il utilise des moyens comme les vibrations, les souffles d'air ou les ultrasons pour permettre à l'utilisateur de manipuler des objets virtuels comme s'il les tenait vraiment en main, sans ressentir ni le poids ni les mécanismes du périphérique proprement dit.
 
 Par exemple, certains dispositifs haptiques permettent de ressentir la texture d'objets affiché par un écran lorsque l'utilisateur passe la main sur cet écran.
 Certains controleurs de jeu (comme les volants à retour de force) peuvent aussi être qualifiés d'haptiques en cela qu'il vibrent entre les mains de l'utilisateur pour lui faire ressentir des chocs, ou les vibrations d'un moteur par exemple.
@@ -44,3 +44,21 @@ Certains controleurs de jeu (comme les volants à retour de force) peuvent aussi
 La loi de Fitts, publiée par Paul Fitts en 1954, est une manière d'estimer l'efficacité de l'utilisateur pour atteindre un élément particulier d'une interface graphique grâce à son périphérique d'entrée ; en d'autres termes, la rapidité avec laquelle il sera capable d'agir sur un élément précis de cette interface.
 
 Cette rapidité est fonction de la distance séparant le centre de l'élément cible de son point de départ, mais aussi de la taille de l'élément cible.
+
+==== Hystérésis
+
+Les périphériques d'entrée permettent d'accomplir différentes opérations, dont le sens est donné par la manière dont ils sont utilisés.
+
+Par exemple, pour le périphérique de pointage qu'est la souris :
+
+* l'action se fait grâce au double clic ;
+* la sélection se fait par un simple clic (éventuellement assorti de modificateurs issus de l'appui sur les touches control, alt ou shift du clavier) ;
+* le tracé ou déplacement se fait en déplaçant le pointeur, bouton de clic enfoncé.
+
+Il y a donc à priori conflit entre la sélection et le tracé/déplacement : lorsque l'utilisateur clique, est-ce une sélection ou le début d'un déplacement ?
+À l'inverse, s'il clique en se déplaçant, est-ce vraiment un tracé ?
+Les humains ne sont en effet pas des robots, et leurs mains peuvent trembler naturellement, ou simplement bouger suite au mouvement d'un des doigts.
+
+En découle la notion d'*hystérésis* : un tracé ne sera par exemple reconnu après appui sur le bouton de la souris que lorsque le déplacement du curseur est supérieur à un seuil, qualifiant par là même un vrai déplacement, et non un simple faux positif.
+
+Cette notion d'hystérésis s'applique à la plupart des périphériques d'entrée.

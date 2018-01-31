@@ -112,7 +112,7 @@ De plus, l'utilisateur conserve toujours la possibilité de *revenir en arrière
 
 Un des fondateurs et défenseur des IHM par manipulation directe est Ben Shneiderman (_The future of interactive systems and the emergence of direct manipulation_, _Behaviour & Information Technology_, 1982).
 
-L'idée sous-jacente à ce style d'interface est que les objets informatiques peuvent manipulés de manière similaire à des objets physiques, et que l'utilisateur peut faire des actions sur eux à l'aide de son périphérique d'entrée.
+L'idée sous-jacente à ce style d'interface est que les objets informatiques peuvent être manipulés de manière similaire à des objets physiques, et que l'utilisateur peut faire des actions sur eux à l'aide de son périphérique d'entrée.
 
 Dans sa forme la plus « pure », une IHM par manipulation directe respecte quatre grands principes :
 

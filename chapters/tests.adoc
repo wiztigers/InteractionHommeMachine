@@ -12,7 +12,7 @@ Durant ces tests, ce n'est jamais les designers/développeurs d'un système qui 
 
 Les tests ont un rôle double :
 
-* informationnel : le but premier d'un test est de trouver ce qui est perfectible afin d'améliorer l'interface ;
+* informatif : le but premier d'un test est de trouver ce qui est perfectible afin d'améliorer l'interface ;
 * social : faire tester un système par une personne extérieur permet de convaincre plus facilement les designers/développeurs qu'il y a réellement un problème dans le système.
 
 === Types de tests
