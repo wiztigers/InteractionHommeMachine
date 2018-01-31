@@ -31,6 +31,14 @@ Une notion utile est aussi la notion d'*écho*.
 Il s'agit de la représentation graphique des actions de l'utilisateur.
 Par exemple lorque l'utilisateur utilise une souris, le curseur (en temps normal) ou le rectangle élastique (lors d'un redimensionnement) forment l'écho de cette souris.
 
+==== Dispositif haptiques
+
+Un périphérique d'entrée *haptique* est tactile (toucher, vibrations, ...) et kinesthésique (retour de force, ...).
+Il utilisent des moyens comme les vibrations, les souffles d'air ou les ultrasons pour permettre à l'utilisateur de manipuler des objets virtuels comme s'il les tenait vraiment en main, sans ressentir ni le poids ni les mécanismes du périphérique proprement dit.
+
+Par exemple, certains dispositifs haptiques permettent de ressentir la texture d'objets affiché par un écran lorsque l'utilisateur passe la main sur cet écran.
+Certains controleurs de jeu (comme les volants à retour de force) peuvent aussi être qualifiés d'haptiques en cela qu'il vibrent entre les mains de l'utilisateur pour lui faire ressentir des chocs, ou les vibrations d'un moteur par exemple.
+
 ==== Loi de Fitts
 
 La loi de Fitts, publiée par Paul Fitts en 1954, est une manière d'estimer l'efficacité de l'utilisateur pour atteindre un élément particulier d'une interface graphique grâce à son périphérique d'entrée ; en d'autres termes, la rapidité avec laquelle il sera capable d'agir sur un élément précis de cette interface.
