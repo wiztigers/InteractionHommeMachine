@@ -1,0 +1,280 @@
+== Conception
+
+Au bout du compte, il y a deux principales manières d'approcher la conception d'une IHM :
+
+* [[technocentric_approach]] l'approche *technocentriste* pense en premier lieu à la machine :
+  Quelles sont ses contraintes de fonctionnement ?
+  De quelle forme sont les données qu'elle traite ?
+  Quels sont ses périphériques d'entrée ?
+* [[anthropocentric_approach]] l'approche *anthropocentriste* pense en premier lieu à l'homme :
+  Quel est la problématique à résoudre ?
+  Quel est le contexte, l'environnement auquel est soumis l'utilisateur ?
+  Comment maximiser son envie d'utiliser le logiciel, et son efficience à le faire ?
+
+Bien que la première approche puisse éventuellement faire gagner du temps de conception, cela n'est aucunement garanti et se fera quasiment systématiquement au détriment de l'ergonomie de l'interface produite. Si on désire concevoir une interface conviviale pour l'utilisateur, l'approche anthropocentriste est donc à privilégier dans tous les cas.
+
+Pour cela, une règle d'or est à respecter :
+""
+Concentrez-vous sur les utilisateurs et les tâches qu'ils ont à accomplir, pas sur la technologie.
+""
+
+=== Les utilisateurs
+
+L'utilisateur, ou plutôt les utilisateurs, sont d'un intérêt crucial, puisque ce sont eux qui décideront au cours de leur usage si le système créé est convivial ou pas.
+Il est donc incontournable de bien cerner _qui_ utilisera l'interface, de bien *identifier ses utilisateurs cibles*.
+Cela peut se faire à travers certaines questions précises, dont une liste figure ci-dessous à titre d'exemple.
+
+* Qui est l'utilisateur cible ?
+  Est-ce l'acheteur, ou quelqu'un d'autre ?
+* Quelles sont ses compétences, ses connaissances ?
+  Est-il formé au système ? Est-il même _disposé à se former_ au système ?
+* Quels problèmes a l'utilisateur dans son activité ?
+  Est-il satisfait ou non de sa situation actuelle ?
+  Quelle est aujourd'hui l'approche qu'il a de son activité ?
+* Quels services est sensé rendre l'interface ?
+  Quels problèmes aidera-t'elle à résoudre ?
+  Quel est l'intérêt du système pour l'utilisateur ?
+  Comment notre service s'inscrira-t'il dans son activité ?
+  De quelle manière changera-t'il son activité ?
+* Quels sont les autres facteurs qui peuvent influer sur l'utilisabilité du système ?
+** facteurs physiques ou physiologiques
+** facteurs psychologiques ou socio-culturels
+** savoirs-faire et compétences annexes
+
+Répondre à ces questions n'est ni facile ni rapide, mais c'est vital, et les résultats de concevoir une IHM sans y répondre sont en général ... décevants.
+
+La meilleure manière de répondre à ces questions sur les utilisateurs est de _leur parler_.
+Éventuellement en parlant à leur management.
+L'utilisateur doit être associé au design de l'interface qu'il utilisera.
+Il n'est ni un objet abstrait, ni un simple sujet d'étude.
+
+Une autre maxime du design d'interfaces utilisateur est qu'un système ne doit être conçu ni _pour_ les utilisateurs, ni _par_ eux, mais _avec_ eux.
+Ce qu'il faut en comprendre est qu'un designer n'est pas réellement capable de penser à la place des utilisateurs, mais que ceux-ci sont le plus souvent incapable de créer leurs propres outils.
+Le mieux est que tous travaillent ensemble.
+
+==== Profils utilisateur
+
+Essayer de satisfaire tout le monde, destiner son système au grand public au sens le plus large, ne permet en général de ne satisfaire personne totalement.
+Imaginer, donner un visage à l'utilisateur cible donne des contraintes, un cadre qui aide à mieux construire l'IHM d'après les besoin réels de notre utilisateur en particulier.
+Certains designers vont même jusqu'à créer des *profils* d'utilisateurs types.
+Ces profils constituent autant de personnes fictives qui ont un nom, un métier, une famille, des hobbies, et ainsi de suite.
+Il est effectivement possible d'aller jusque là ; cependant, ces profils doivent être créés d'après des données réelles, collectées, factuelles ... et non simplement inventés !
+
+
+
+=== Leurs tâches
+
+Les tâches de chaque utilisateur doivent être accomplies à cause d'un certain *contexte*.
+Ce contexte dépend de beaucoup de facteurs :
+
+* l'entreprise cliente, sa stratégie, son historique
+* ses employés, leur métier et ses caractéristiques, leurs compétences
+* le marché où ils évoluent, ou -pour être précis- la perception qu'ils ont de ce marché
+
+De la même manière qu'il est crucial de bien cerner les utilisateurs d'un système grâce à des questions pertinentes, cerner la nature exacte des tâches qu'ils ont à réaliser l'est tout autant :
+
+* Quelles tâches particulières sont concernées par le système ?
+* Quelles tâches sont les plus habituelles ?
+  Lesquelles s'entreprennent plus rarement ?
+* Quelles tâches sont les plus importantes ?
+  Lesquelles le sont moins ?
+* Comment se décompose chaque tâche en détail ?
+  Que produit-elle ?
+* Quels sont ses prérequis (données, outils, communications, ...) ?
+* Quel utilisateur fait chaque tâche ?
+* Quels sont les problèmes rencontrés habituellement, ou les erreurs régulièrement commises au cours de l'exécution de chaque tâche ?
+  Quelles sont les causes de ces problèmes ou erreurs ?
+* Quelles tâches sont en lien l'une avec l'autre ?
+
+Le système que vous concevez (ou achetez) n'est pas le centre de l'univers.
+Le contexte est important.
+Et la technologie seule ne résout pas tous les problèmes.
+
+
+
+
+[[concepts]]
+=== Concepts
+
+Avant d'envisager à quoi ressemblera l'interface, il est plus profitable de l'envisager à travers les *concepts* qu'elle permettra de manier.
+Ses concepts doivent être correctement définis.
+Un bon concept doit être adapté à l'utilisateur et à la tâche.
+Il faut notamment faire attention aux traditions ou habitudes qu'on manie sans réfléchir.
+
+==== Exemples
+
+* La commande `mv` permet de déplacer, mais aussi de renommer un fichier.
+  Est-ce un concept adapté à un débutant dans le monde UNIX ?
+* La plupart des traitements de texte nécessitent de Sauver/Enregistrer son travail.
+  Est-ce le meilleur concept qu'on puisse imaginer ?
+  Ne pourrait-on pas annuler les opérations de n'importe quel document, même si on vient de le réouvrir ?
+* Google est une entreprise qui brasse des milliards de dollars et emploie des dizaines de milliers de personnes.
+  Son activité est très diversifiée. +
+  Or, quelle est la page d'accueil de son produit phare ?
+  L'évolution de l'entreprise a-t'elle impliqué un changement de son concept de base ?
+
+
+
+=== Vocabulaire
+
+Lors de la conception d'une interface il est important de *clairement définir* chaque terme qu'on emploie.
+Il faut savoir de quoi on parle.
+En effet, si la définition même des termes utilisés par l'interface est floue et/ou changeante dès la conception, comment demander à l'utilisateur de s'y retrouver ?
+
+Il est de plus nécessaire d'employer toujours le même terme dans une situation donnée.
+Utiliser des synonymes ou inventer de nouveaux termes (par exemple pour « éviter les répétitions ») est à éviter.
+L'utilisateur doit être en terrain connu : une IHM n'est pas un roman ou une rédaction.
+
+Enfin, il faut rester conscient que le vocabulaire utilisé par l'application (ou par le designer de l'application), n'est pas toujours celui de l'utilisateur.
+
+
+
+=== Scenarios
+
+Décrire les différentes fonctionnalités de l'interface ne doit pas se faire dès le début en se reférant à des éléments graphiques.
+En phase de design, on étudie les différentes opérations supportées par une interface afin d'en maximiser l'ergonomie, mais on ne s'intéresse pas encore, en pratique, à quoi ressembleront _graphiquement_ ces opérations.
+
+==== Exemple
+
+La première manière de décrire un scénario donné manie des concepts qui pourront se traduire de n'importe quelle manière dans une interface graphique.
+La seconde commet l'erreur de penser trop tôt à la technologie qui supportera graphiquement le même scénario.
+
+. _Alice consulte le solde de son compte courant.
+  Elle dépose ensuite de l'argent sur son compte._
+. _Alice double clique sur l'icône « Mon compte courant ».
+  L'interface affiche le statut de son compte ainsi que les dernières opérations sous forme d'un tableau.
+  Elle clique ensuite sur « Effectuer un versement »._
+  ...
+
+
+
+
+
+== Implémentation
+
+L'ergonomie (_usability_) d'un système renferme plusieurs aspects.
+Par exemple, la norme ISO 25010 définit un système comme ergonomique s'il respecte les attributs de qualité suivants :
+
+* *Attrait* (_Attractiveness_ / _User interface aesthetics_) +
+   Est-ce que l'utilisateur a envie d'utiliser l'interface ?
+* *Facilité de compréhension* (_Understandability_ / _Appropriateness recognizability_) +
+   Est-ce qu'il est (intuitivement) facile pour un utilisateur de comprendre et retenir comment réaliser une opération ?
+* *Facilité d'apprentissage* (_Learnability_) +
+   Est-ce qu'il est facile de former de futurs utilisateurs à l'utilisation du logiciel ?
+* *Facilité d'exploitation* (_Operability_) +
+   Est-ce qu'il est facile pour l'utilisateur d'accomplir sa tâche ?
+* *Protection contre les erreurs d'utilisation* (_User error protection_) +
+   Comment réagit le logiciel si son utilisateur a un comportement inatendu ?
+* *Accessibilité* (_Accessibility_) +
+   Est-ce que le logiciel est utilisable par des personnes en situation de handicap ?
+
+Mais comment, en pratique, implémenter les concepts d'un système afin que son interface ait ces qualités ?
+
+Une manière est de faire en sorte de respecter les sept principes de base détaillés dans ce chapitre.
+Cependant, pour chacun, il existe souvent autant de manières de « bien faire » que de gâcher l'ergonomie de votre système.
+Le but n'est pas d'être complètement dogmatique dans l'application de ces principes.
+Rappelez-vous l'importance d'être adapté aux utilisateurs et à leurs tâches : le contexte de chaque projet est roi.
+
+
+
+[[principle_compatibility]]
+=== Compatibilité
+
+Il est utile d'exploiter les connaissances que l'utilisateur possède déjà et qui concernent des interfaces similaires, que ce soit dans leur apparence ou dans leurs buts.
+Cela peut se traduire, par exemple, par :
+
+* S'assurer de la cohésion des différents produits proposés par une même compagnie.
+  Cela passe par respecter la *charte graphique* (ou _look & feel_) de l'entreprise, c'est à dire l'ensemble des règles qui lui sont propres et qui régissent l'apparence et les comportements des différents éléments de ses interfaces graphique.
+* Respecter les *conventions de la plateforme* qui accueille notre interface.
+* Exploiter un univers familier.
+
+
+
+[[principle_guiding]]
+=== Guidage
+
+L'utilisateur ne doit jamais être perdu ou livré à lui-même.
+Il doit pouvoir, en permanence :
+
+* connaître l'*état* du système
+* comprendre quel *impact* ont eu ou auront ses actions sur cet état
+* pouvoir en déduire quelles actions entreprendre
+
+Correctement guider l'utilisateur facilite son apprentissage du système et sa facilité à s'y repérer.
+De même, cela contribue à prévenir d'éventuelles erreurs d'utilisation dues à une mauvaise compréhension de l'état du système ou d'une opération particulière.
+
+Il existe deux types de guidage complémentaires :
+
+* Le *guidage explicite* se fait via des messages d'avertissement ou de confirmation, des boîtes de dialogue spécifique, un manuel utilisateur ou une aide en ligne, des codes d'erreur précis, ...
+* Le *guidage implicite* passe par une *structuration appropriée* de l'affichage, l'utilisation d'*éléments différenciés* que ce soit par leur couleur, leur police de caractère, le fait de les regrouper par catégorie, ...
+
+
+
+[[principle_consistency]]
+=== Homogénéité
+
+Les outils informatiques cultivent et entretiennent les habitudes de leurs utilisateurs.
+Les utilisateurs recherchent eux-même cela : ils veulent pouvoir au plus vite tomber dans une sorte d'utilisation inconsciente de leurs outils, afin de pouvoir les « oublier » et se concentrer sur les tâches qu'ils ont à accomplir.
+Plus un système informatique est *homogène*, mieux ils y arriveront.
+
+Un système est homogène si, par exemple :
+
+* son *look & feel* est cohérent
+* sa conception est *stable*
+* sa *logique d'utilisation* est apparente
+
+Ces qualités rendent le système plus prévisible, plus facilement exploitable, plus compréhensible.
+Tout ceci contribue à rendre les détails propres au système « oubliables », afin que l'utilisateur puisse se concentrer sur _ce_ qu'il a à faire, au lieu de _comment_ le faire.
+
+
+
+[[principle_flexibility]]
+=== Souplesse
+
+Un système *souple* s'adapte à l'utilisateur, à sa tâche et au support sur lequel elle tourne.
+Il peut, par exemple :
+
+* proposer *plusieurs manières* de réaliser une même opération
+* offrir des moyens de *personnalisation* de sa configuration
+
+
+
+[[principle_explicit_control]]
+=== Contrôle explicite
+
+L'utilisateur doit toujours *garder le contrôle* sur le système.
+De même, il doit comprendre de quelle manière ce contrôle s'exerce.
+
+Un système ergonomique offrira un *feedback* immédiat aux actions de l'utilisateur, afin que celui-ci puisse se rendre compte de l'effet de ses actions.
+Ce *retour* offert à l'utilisateur doit être présent même si la commande est longue.
+Cela peut se faire via des messages de confirmation, des barres de progression, des voyants de statut, et ainsi de suite.
+À l'inverse, un _freeze_ de l'IHM pendant la durée d'une opération longue est à proscrire.
+
+Tout cela contribue à rendre les opérations permises par un système *prédictible*.
+Outre faciliter l'apprentissage, cela prévient les erreurs d'utilisation dues à une mauvaise compréhension de ses actions par l'utilisateur, ou à la simple impatience.
+
+
+
+[[principle_error_management]]
+=== Gestion des erreurs
+
+Lorsqu'un erreur survient, l'utilisateur doit pouvoir la percevoir et l'identifier comme une erreur.
+S'il est nécessaire que l'utilisateur fasse une opération explicite pour corriger une erreur, il doit être <<principle_guiding,guidé>> afin de pouvoir faire des choix éclairés, et non livré à lui-même.
+Enfin, lorsqu'une erreur survient, le système doit être suffisamment *robuste* (ie. fiable) pour que cette erreur n'impacte pas la suite du fonctionnement du système.
+
+Il faut garder à l'esprit que toute erreur n'est pas *bloquante*.
+Il est possible de notifier l'utilisateur de manière *non-bloquante*, c'est à dire sans que celui-ci doive interrompre ce qu'il est en train de faire, afin qu'il puisse identifier ce qui s'est mal passé plus tard, quand il le jugera utile.
+
+Un système *tolérant* aux erreurs qui surviennent et qui offre les outils pour analyser et corriger précisément tout type d'erreur, met son utilisateur *en confiance*.
+
+
+
+[[principle_concision]]
+=== Concision
+
+Les informations fournies à l'utilisateur doivent être *concises* et *précises*.
+Attention, le langage utilisé pour fournir ses information, ainsi que leur niveau de précision doivent être *adapté à l'utilisateur*.
+En effet, un message exposant le fonctionnement interne du système, bien que compréhensible par un développeur, _n'est pas_ adapté à un utilisateur !
+
+Cette concision s'applique aussi à la facilité d'exploitation du système.
+Il est important de *minimiser le nombre et la durée des actions* à réaliser par l'utilisateur pour accomplir une opération particulière.

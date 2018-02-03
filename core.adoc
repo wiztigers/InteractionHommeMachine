@@ -14,5 +14,7 @@ include::chapters/categories.adoc[]
 
 include::chapters/implementation.adoc[]
 
+include::chapters/conception.adoc[]
+
 include::chapters/tests.adoc[]
 
