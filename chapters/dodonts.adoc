@@ -1,0 +1,124 @@
+== Exemples
+
+=== Restrictions arbitraires
+
+De trop nombreuses IHMs imposent arbitrairement des restrictions à leurs utilisateurs.
+Par exemple :
+
+* Limiter le nombre d'annulations d'opérations (« _undo_ ») maximum possibles. +
+  Pour quelle raison ? Stocker un nombre indéfini d'opérations nécessite-t'il tant de ressources machine que ça ?
+* Limiter la taille d'un champ de texte d'un formulaire à un certain nombre de caractères. +
+  Y a t'il une limitation à la base de données sous-jacente ? Si oui, pourquoi cette limitation existe-t-elle ?
+* Forcer à remplir _tous_ les champs d'un formulaire. +
+  Comment l'utilisateur est-il sensé faire s'il ne dispose pas d'une partie des informations ?
+  Toutes ces informations sont-elles réellement indispensables ?
+
+Parfois, ces limitations ont une raison d'être due aux limitations techniques d'un système donné.
+Cependant, elles sont toujours perçues par l'utilisateur comme arbitraires, frustrantes, et faciles à oublier.
+
+En conséquence, il est préférable de *limiter* à tout prix ces restrictions, que ce soit dans leur nombre ou leur impact.
+
+
+
+=== Mécanismes internes
+
+La conception d'un système devrait prendre comme point de départ l'utilisateur et les tâches qu'il a à accomplir (voir <<anthropocentric_approach,approche anthropocentriste>>).
+Il est nécessaire, afin de maximiser l'efficience avec laquelle l'utilisateur accomplit ses tâches, qu'il puisse se concentrer sur elle, sans avoir à se préoccuper de détails d'implémentation de l'interface.
+
+De plus, les <<concepts,concepts>> qu'utilise ce système doivent être clairement définis.
+Clairement définir ses concepts implique de savoir lesquels sont réellement utiles à l'utilisateur, et lesquels sont, à l'inverse, utiles au seul concepteur/développeur de l'interface.
+
+En conséquence, les concepts et le vocabulaire propres à un système, mais non utiles à l'exécution d'une tâche, doivent être *toujours invisibles pour l'utilisateur*.
+En d'autres termes, il faut garder les mécanismes internes du système ... à l'intérieur.
+
+
+
+=== Nombreuses fonctionnalités
+
+Lorsqu'un système offre toujours plus de fonctionnalités ou d'options, il promet davantage de puissance à son utilisateur.
+Cependant, ces améliorations fonctionnelles doivent nécessairement se retrouver dans l'IHM, au risque de rendre celle-ci toujours plus complexe.
+Il faut donc éviter que, pour l'utilisateur, de grands pouvoirs impliquent ... une grande confusion !
+
+Une IHM offrant pléthore de fonctionnalités peut être intimidante.
+Surtout pour un utilisateur qui n'utilise vraiment qu'une portion, parfois minime, de ces fonctionnalités.
+
+Il vaut mieux ne pas s'aliéner les utilisateurs débutants, en cours de formation ou occasionnels.
+De plus, il ne faut pas freiner l'utilisateur, même expert, dans ses opérations les plus courantes en le forçant à considérer d'autres opérations offertes par le système.
+
+En conséquence, seules les fonctionnalités les plus importantes doivent être aisément accessibles et visibles.
+À l'inverse, les fonctionnalités moins couramment utilisées doivent pouvoir être ignorées.
+
+* Utiliser de *valeurs par défaut*, par exemple en :
+** initialisant automatiquement certains champs de formulaire
+** positionnant certaines options dans un menu de paramètres à part
+* Utiliser de *templates* ou de *wizards* pour que l'utilisateur n'ait pas à apprendre ou à maîtriser toutes ses possibilités avant de pouvoir accomplir une opération
+* Ne pas afficher les contrôles ou widgets qui ne sont pas pertinents pour l'action en cours
+* Utiliser des noms de fonctionnalités génériques.
+  Cela peut signifier que deux fonctionnalités permettant de manier deux concepts nommés différement porteront le même nom aux yeux de l'utilisateur.
+  Par exemple, « créer », « ouvrir », « déplacer », « copier », « sauv(egard)er » ou « supprimer » sont des appellations généralement bien comprises par les utilisateurs, qui peuvent être réutilisées dans des contextes différents, de manière à ce que l'utilisateur n'ait pas l'impression de manier ou de devoir apprendre de nouvelles fonctionnalités.
+
+
+
+=== Biais cognitif
+
+Un designer ne doit pas partir du principe que l'utilisateur connait le fonctionnement du programme, et tout spécialement pas son fonctionnement interne.
+L'utilisateur ne connait ni le langage, ni surtout les intentions du designer, et n'a en général pas connaissance du contexte nécessaire pour comprendre les messages d'erreur.
+
+À titre d'exercice, avant de cliquer sur chacun des liens suivant (chacun mène vers un article de presse), lisez-en l'intitulé relativement loufoque, et essayez de vous imaginer la situation qu'ils décrivent.
+Ensuite seulement, cliquez et lisez l'article.
+Est-ce que les faits décrits correspondaient tous exactement à ce que vous aviez imaginé ?
+
+* https://www.20minutes.fr/rennes/1603371-20150507-rennes-sebastien-couru-apres-bus-pendant-4-kilometres[Rennes: Sébastien a couru après son bus pendant 4 kilomètres]
+* https://www.20minutes.fr/insolite/1523295-20150122-video-grande-bretagne-babouin-ressuscite-grace-staying-alive-bee-gees[Un babouin ressucite grâce à « Staying Alive » des Bee Gees]
+* http://www.lessentiel.lu/fr/news/story/21591841[Il réécrit la Bible car il la trouve « mal écrite »]
+* http://www.cnewsmatin.fr/lol/2015-06-25/il-danse-en-lechant-un-crapaud-la-police-larrete-706594[Il danse en léchant un crapaud : la police l'arrête]
+
+Pour les simples utilisateurs d'un système, la situation est semblable.
+Il ne sont probablement pas plus idiots que le designer ou le développeur.
+Ils en savent même probablement davantage sur la réalité des tâches que le logiciel permet d'accomplir.
+Mais ils ne connaissent pas vraiment le logiciel lui-même dans le détail, et ce contexte qui leur fait défaut leur empêche par exemple de comprendre un message d'erreur qui détaille le fonctionnement interne du logiciel.
+
+Typiquement, un développeur ou un designer pensent « _inside-out_ » : il connaissent les détails internes du système, et s'en servent, même inconsciemment, pour évaluer l'ergonomie de l'interface externe.
+À l'inverse, un utilisateur lambda pense « _outside-in_ » : il ne connaît que le logiciel de l'extérieur, et doit se servir de cette connaissance partielle pour comprendre ce qui se passe vraiment.
+
+C'est ce biais cognitif, intrisèque aux fonctions de designer ou de développeur, qui doit être évité pour maximiser entre autres la facilité d'apprentissage et d'exploitation d'un logiciel par son utilisateur réel.
+
+
+
+=== Données
+
+L'informatique est la traitement automatique de l'information.
+L'utilisateur à besoin que le système qu'il utilise lui fournisse des *informations utiles*, pas qu'il se contente de lui afficher des données sans traitement.
+Les meilleures IHMs n'embrouillent pas l'utilisateur avec des données dont il n'a pas besoin à ce moment, mais lui présentent les informations réellement nécessaires, compilées à partir de ces données.
+
+En particulier :
+
+* Les messages d'erreur, ou fenêtres de confirmation ne doivent pas décrire un problème, mais proposer une solution la plus concise et utile possible, dans un langage compréhensible par l'utilisateur.
+* L'esthétique d'une IHM doit certes être attrayante et cohérente.
+  Cependant, il est parfois nécessaire de faire des compromis pour rendre la prise d'informations par l'utilisateur plus aisée.
+* La quantité d'informations, leur forme et l'ordre dans lequel elles sont présentées doivent toutes être appropriées au périphérique de sortie considéré.
+  En particulier, le contenu doit être adapté à la navigation sur mobile (voir <<chapter_adaptive_design,Adaptive Design>>).
+
+De manière générale, la convivialité des données présentées réside dans l'attention portée par le concepteur aux détails.
+
+
+
+=== Affichage
+
+Une maxime qui est pour beaucoup dans le fait que l'utilisateur s'approprie une interface et la trouve intuitive peut être traduite par « l'écran appartient à l'utilisateur ».
+Elle signifie que quand un changement survient à l'écran, l'utilisateur doit le percevoir, s'y attendre, et le maîtriser.
+
+En pratique, cela veut dire :
+
+* Les éléments d'une interface ne doivent pas bouger unilatéralement, sans le consentement de l'utilisateur.
+* Une interface ne doit pas « trop » changer d'un seul coup (notion anglaise de _display inertia_).
+** Par exemple, si l'utilisateur effectue une « petite » opération localisée, cela ne doit se traduire à l'écran que par un « petit » changement localisé.
+** Si, à l'inverse, il est nécessaire de grandement changer ce que l'interface affiche à l'écran, ce changement doit être d'une part annoncé, attendu par l'utilisateur, et d'autre part le moins disruptif possible pour l'interface.
+* Les changements doivent apparaître à l'écran de manière visible par l'utilisateur.
+  Ils ne doivent pas être si infimes que l'utilisateur ne les remarque pas.
+  Ils ne doivent pas non plus être dissimulés par d'autres éléments de l'interface elle-même, comme une boîte de dialogue par exemple.
+* Une interface ne doit pas (ré)ordonner ses éléments différement de ce que l'utilisateur attend, ou de ce qu'il a configuré.
+  Même si la volonté est d'aider l'utilisateur, en lui proposant par exemple un tri automatique « plus logique » : la logique du concepteur n'est pas forcément celle de l'utilisateur. +
+ Des opérations de tri ou de classement peuvent évidemment être proposées, mais elles doivent être explicites et au choix de l'utilisateur.
+* Une interface ne doit _jamais_ déplacer le pointeur de souris elle-même.
+  En aucun cas.

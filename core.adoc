@@ -16,5 +16,9 @@ include::chapters/implementation.adoc[]
 
 include::chapters/conception.adoc[]
 
+include::chapters/dodonts.adoc[]
+
+include::chapters/colors.adoc[]
+
 include::chapters/tests.adoc[]
 

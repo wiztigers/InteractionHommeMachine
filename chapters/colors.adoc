@@ -1,0 +1,45 @@
+== Couleurs
+
+=== Usage
+
+Dans le domaine des IHM, les couleurs sont utilisées pour :
+
+Attirer l'attention::
+Les éléments d'intérêt gagnent à être représentés par une couleur qui se détache du reste de l'interface.
+De plus, il est possible d'utiliser tout un assortiment d'effets de couleurs (incluant des mouvements, des dégradés, du clignotement, ...) pour attirer une attention particulière sur un élément particulier.
+
+Indiquer un état:: 
+Les utilisateurs sont habitués à associer certaines couleurs à un statut particulier.
+Par exemple, le rouge sera associé aux erreurs ou à un danger, tandis que le vert sera perçu comme un succès ou un marqueur de sécurité.
+
+Organiser les relations entre éléments::
+Différents éléments de même nature peuvent être facilement identifiés par la rétuilisation du même code couleur.
+De même, un dégradé de couleurs pourra permettre de hiérarchiser les éléments par leur ordre d'importance, par exemple.
+
+=== Palettes
+
+Il est important pour l'attrait d'une interface d'utiliser une *palette de couleurs* bien choisie.
+C'est là le travail des artistes, mais il est possible d'isoler certaines règles de base :
+
+_Less is more_ ::
+Il vaut mieux minimiser le nombre de couleurs différentes.
+Multiplier le nombre de couleurs fait courir le risque d'aboutir à une concurrence entre ces couleurs pour l'attention de l'utilisateur.
+
+Le confort visuel doit primer ::
+En effet, même si une palette de couleurs attrayante est évidemment préférable à une autre moins esthétique, cette notion d'esthétique est souvent nébuleuse et subjective.
+Par contre, il est vital de garder en tête qu'une interface graphique _n'est pas_ quelque chose qu'on accroche au mur au dessus d'un canapé, mais une chose qui sera affiché par un écran, et devant laquelle l'utilisateur passera des heures : il est important donc de *minimiser la fatigue visuelle*.
+
+Différences selon l'utilisateur ::
+Une palette de couleurs sera non seulement perçue différement, mais devra souvent être affichée différement selon la personne (daltonisme, ...) et selon le matériel (type & réglage de l'écran) considérés.
+
+Relations de voisinage ::
+Les couleurs qui « vont le mieux ensemble » sont souvent liées par des relations de voisinage particulières sur le cercle chromatique.
+On peut distinguer plusieurs relations intéressantes :
+
+* Les objets rendus dans des *couleurs chaudes* apparaissent plus proches, plus grands, plus accueillants, tandis que ceux affichant des *couleurs froides* apparaissent plus éloignés, plus petits, plus professionnels.
+* Les *couleurs complémentaires* sont *diamétralement opposées* sur le cercle chromatique.
+  Pour davantage de variété, plutôt que prendre la couleur diamétralement opposée à une couleur, on pourra choisir ses voisines.
+* Il est possible de jouer sur les *harmonies triadiques*, en prenant trois couleurs équidistantes, qui dessinent un triangle équilatéral sur le cercle chromatique.
+  Les *harmonies tetradiques*, elles, associent quatre couleurs qui, si on les relient, forment un carré ou un rectangle sur le cercle chromatique.
+* Les *couleurs analogues* sont voisines sur le cercle chromatique.
+* Enfin, on pourra utiliser des *monochromes* de couleurs situées au même endroit du cercle chromatique, mais offrant des niveaux de saturation ou de luminosité différents.
