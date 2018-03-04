@@ -1,0 +1,149 @@
+
+== Interfaces multi-support
+
+Aujourd'hui, une IHM n'a plus forcément vocation à être affichée sur un seul type d'écran.
+L'heure est aux produits *multi-supports*, et les IHM doivent suivre.
+Parmi les supports les plus courants, on peut citer :
+
+* l'« ordinateur » classique (_desktop_ ou _laptop_) : support historique, encore souvent nécessaire ;
+* le téléphone mobile (smartphone,...) : sa part de marché a explosé ces dernières années ; pourtant, l'expérience utilisateur d'Internet sur mobile est encore loin d'être parfaite
+* les tablettes : la taille de leur écran les rapproche d'un PC, mais leur modèle de navigation tactile les rapproche davantage d'un téléphone mobile ... pourtant, la navigation tactile sur tablette offre des différence notables ;
+* une foule d'autres supports : montres connectées, TV connectées, etc.
+
+Aujourd'hui, même la conception d'une interface qui se limite au duo « PC et smartphone » est bien souvent obsolète.
+
+
+
+Il y a certaines spécificités des téléphones mobiles à garder en tête lors de la conception d'une IHM :
+
+* La relativement petite taille de l'écran conditionne les éléments qui peuvent être affichés.
+  Mais comme l'écran est tactile, les contrôles (boutons,...) ne peuvent pas être inférieurs à une certaine taille.
+* La navigation sur téléphone mobile se fait souvent « à une main », voire avec le seul pouce.
+  La postion des contrôles doit donc être pensée en fonction de cette contrainte.
+* Sur mobile, l'utilisateur a parfois un besoin très spécifique à remplir, et/ou peu de temps à y consacrer.
+  Une IHM approprié à l'usage mobile doit donc offrir uniquement ce dont l'utilisateur a besoin.
+
+Recycler à l'identique une IHM déjà existante sur PC afin de se contenter de l'afficher sur un écran plus petit n'est donc pas une solution.
+Pourtant, par exemple, trop de sites web forcent encore leurs utilisateurs à zoomer/dézoomer et à faire défiler sur deux axes une page qui n'a pas été pensée pour la navigation mobile.
+
+
+
+[[chapter_responsive_design]]
+=== Responsive design
+
+Ethan Marcotte a défini la notion de Responsive Design en 2010 dans https://alistapart.com/article/responsive-web-design[un article pour le magazine A List Apart].
+
+Cette conception implique un design unique qui s'adapte *automatiquement* pour tous les écrans (c'est à dire pour toutes les tailles de viewport) grâce à une mise en page *fluide*.
+Peu importe l'appareil sur lequel est affichée l'interface graphique, seule la taille de l'écran compte.
+
+Par exemple, des éléments d'un menu disposés horizontalement sur un écran large « flottent » verticalement lorsque la largeur de l'écran se réduit.
+Une grille de 4×1 éléments pourra ainsi se voir successivement redimensionnée en 2×2, puis 4×1.
+
+==== Avantages
+* Tous les formats d'affichage sont supportés : les formats présents, mais aussi (théoriquement) à venir sont pris en compte.
+  Cette conception est donc très *pérenne*.
+* Cette solution offre un avantage au niveau de la maintenance.
+
+==== Inconvénients
+* Cette manière de faire pose des questions de *performance* et de *dimensionnement*.
+* L'enfer est dans les détails : envisager une solution purement responsive est souvent illusoire.
+* Ce design a évidemment un coût.
+
+
+
+[[chapter_adaptive_design]]
+=== Adaptive design
+
+Le terme d'adaptive design a été utilisé pour la première fois par Aaron Gustafson dans son ouvrage _Adaptive Web Design_.
+
+Il implique de concevoir un design adapté, *optimal pour chaque appareil* sur lequel doit s'afficher une IHM.
+Cela entend une stratégie de contenu propre à chaque support et ce, dès la conception.
+L'adaptive design est centré sur l'expérience utilisateur ; d'où la nécessité de comprendre les besoin et habitudes de navigation (potentiellement différentes) des utilisateurs de chaque appareil.
+Puisque l'accent est mis sur les phases d'analyse du besoin et de conception, une grande rigueur est nécessaire.
+
+==== Avantages
+* Ce type de conception offre davantage de contrôle, une maîtrise fine de ce qui est affiché sur quel appareil et comment.
+* Les contenus étant adaptés à chaque appareil, l'adaptive designe offre en général de meilleures performances.
+
+==== Inconvénients
+* Puisqu'il n'y a pas un seul design mais plusieurs, les coûts de maintenance peuvent être plus importants.
+* Qu'en est-il des appareils non prévus ?
+
+
+
+=== Choisir
+
+==== Gradient Chart
+//https://www.cennydd.com/writing/the-gradient-chart
+Une méthode préliminaire est celle du « Gradient Chart » de Cennyd Bowles :
+
+. Premièrement, lister toutes les fonctionnalités que l'interface doit remplir
+. Puis, les ordonner en fonction de leur importance pour les utilisateurs de chaque appareil
+. Enfin, relier chaque fonctionnalité de même nom par une ligne :
+** si les lignes ne se croisent pas tellement, un design responsive pur peut à priori être adapté.
+** si toutes les lignes sont entremêlées, il vaudra mieux partir sur un adaptive design.
+
+image::resources/responsive/gradient-chart-CennydBowles.png[caption="Exemple : ", title="Gradient Chart, Cennyd Bowles"]
+
+==== Amélioration progressive
+
+La méthode d'amélioration progressive consiste à débuter avec la base la plus simple (par exemple _mobile first_ ou _desktop first_), puis à construire par dessus, à améliorer l'interface en fonction des capacités de chaque appareil.
+
+Comme toujours, meilleure est la connaissance de l'utilisateur, meilleure sera l'interface destinée à remplir ses besoins.
+
+
+
+
+=== Techniques
+
+Voici un aperçu rapide des techniques de bases qui rendent possible un design multi-support.
+
+Unités absolues, Unités relatives::
+Il est important de manier correctement les différentes unités disponibles.
+Ces unités, parfois nombreuses, se répartissent en deux catégories :
+
+* les unités *absolues* : pixels, centimètres, pouces, ...
+* les unités *relatives* : pourcentage de la taille de l'élément parent ou du viewport, fonction de la taille du texte, ...
+
+//  https://www.w3schools.com/cssref/css_units.asp
+//  https://www.w3.org/Style/Examples/007/units.fr.html
+
+Mise en page fluide::
+C'est le contenu qui doit décider de la mise en page, et pas seulement la taille de l'écran.
+Cela signifie qu'un élément qui prend davantage de place va naturellement « pousser » les élements voisins de manière harmonieuse.
+
+Dimensions maximum::
+C'est une chose que d'avoir une interface qui s'adapte au plus grands écrans.
+Cependant, il faut aussi penser au delà de quelle taille les éléments ne doivent pas grandir, pour éviter les effets d'étirement par exemple.
+
+Images::
+Les images affichées peuvent être de deux types : *bitmaps* (_.jpg_, _.png_, _.gif_, ...) ou *vectorielles* (_.svg, ...).
+Une image vectorielle offre l'avantage de pouvoir être affichée à n'importe quelle résolution sans perte de qualité, alors qu'une image bitmap agrandie apparaitra pixelisée.
+La question de la taille mémoire de l'image est à garder à l'esprit.
+De même, il est nécessaire de s'assurer du bon rendu des couleurs (en particulier sur le web : attention aux palettes et aux optimisations).
+
+Polices de caractères::
+* Les polices *web* offrent un rendu souvent intéressant et original, mais doivent être téléchargées, ce qui induit une latence d'affichage.
+* Les polices *système* permettent un affichage rapide, mais elle peuvent ne pas être installées sur le système hôte.
+
+Dans tous les cas, une bonne pratique est de prévoir une ou plusieurs *polices de remplacement* (_fallbacks_).
+C'est pourquoi on parle plutôt aujourd'hui de *familles de polices* (_font families_) affectées à un contenu particulier.
+
+Breakpoints::
+Fondements du _adaptive design_, les breakpoints permettent de fixer une limite pour affecter une caractéristique donnée à une interface.
+On distingue notamment :
+
+* les breakpoints *majeurs*, qui altèrent complètement la mise en page de l'interface ;
+* les breakpoints *mineurs*, qui lui apportent de plus légers changements : par exemple, au niveau de espacement entre les éléments :
+* les breakpoints *partiels*, qui sont ... entre les deux. Ils apportent en général un changement important, mais limité à un *groupe d'éléments* (_nested objects_) particulier.
+
+
+=== Égalité devant le contenu
+
+La notion d'égalité devant le contenu (_content parity_, ou _*One Web*_(W3C)) consiste à rendre disponible les mêmes informations et services à tous les utilisateurs.
+Et cela, *quel que soit l'appareil* qu'ils utilisent pour accéder à ces contenus.
+Cela ne signifie cependant pas que les contenus seront affichés exactement de la même manière quel que soit l'appareil.
+Au contraire, les contenus devraient être présentés de la manière *la plus appropriée* à chaque appareil.
+
+Ces buts sont évidemment à poursuivre dans la limite du raisonnable.
+En particulier, des points comme les capacités techniques ou d'input des appareils ou, dans un contexte mobile, les considérations de réseau peuvent affecter la présentation du contenu.
