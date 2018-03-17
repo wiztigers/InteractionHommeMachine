@@ -22,5 +22,7 @@ include::chapters/colors.adoc[]
 
 include::chapters/responsive.adoc[]
 
+include::chapters/accessibility.adoc[]
+
 include::chapters/tests.adoc[]
 

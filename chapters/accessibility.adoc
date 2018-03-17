@@ -1,0 +1,130 @@
+
+== Accessibilité
+
+=== Définition et contexte
+
+L'accessibilité numérique est la mise d'un à la disposition de tous les individus, quels que soient leur matériel ou logiciel, leur infrastructure réseau, leur langue maternelle, leur culture, leur localisation géographique, ou leurs aptitudes physiques ou mentales, des ressources numériques.
+
+L'accessibilité est généralement associée à la notion de handicap.
+En effet, le handicap de l'utilisateur d'un logiciel influe directement sur sa capacité à l'utiliser.
+
+Il existe en fait bien des types de handicaps différents, temporaires ou permanents, qui ont pour la majorité différents dégrés ou formes spécifiques :
+
+* les handicaps *visuels* (cécité totale ou partielle, daltonismes, épilepsie, ...) empêchent de percevoir tout ou partie des aspects graphiques d'une interface.
+* les handicaps *auditifs* (surdité totale ou partielle, hyperacousie, acouphènes, ...) empêchent de percevoir tout ou partie des aspects sonores d'une interface.
+* les handicaps *cognitifs* (autisme, dyslexie, dyscalculie, TDAH, ...) freinent l'apprentissage, la compréhension et/ou l'exploitation d'une interface.
+* les handicaps *moteurs* (paralysies, atrophies, dyspraxie, syndrome du canal carpien, foulures, fractures, ...) entravent la faculté d'exploitation d'une interface.
+
+Cependant, les personnes en situation de handicap ne sont pas les seules concernées par l'accessibilité d'une interface.
+On peut citer par exemple le cas d'une personne distraite par autre chose qui aura ses capacités de réaction et d'opération décrues, celui d'une personne opérant dans un environnement bruyant, dont la carte son est cassée ou qui a tout simplement ses enceintes éteintes qui bénéficiera de contraintes semblables à celles d'une personne sourde, le cas évident d'une personne ne maîtrisant pas la langue de l'interface, et ainsi de suite.
+L'accessibilité d'un logiciel concerne donc tout le monde.
+
+
+
+=== Enjeux
+
+Les enjeux de l'accessibilités sont nombreux :
+
+* *économiques* : certains handicaps sont plus courants qu’on ne croit.
+  Par exemple le daltonisme, qui concernerait 1 homme sur 7, ou encore le vieillissement actuel de la population des pays développés et tout ce qui l’accompagne (devenir « dur d’oreille », presbite, souffrir de DMLA, de tremblements ou de pertes de mémoires).
+  Dans ce cadre, il parait difficile pour une entreprise d'ignorer les (parfois nombreuses) part de marché que représentent les personnes en situation de handicap, qui peuvent constituer autant de clients potentiels.
+* *légaux* : en France, le cadre légal est encore relativement peu contraignant pour les entreprises du numérique.
+  Cependant, le secteur d'activité (transports, administration, ...) d'une entreprise peut quand même la contraindre à prendre certaines mesures pour améliorer l'accessibilité de ses produits.
+* *techniques* : rendre un logiciel accessible consiste avant tout à respecter certaines bonnes pratiques de conception et d'implémentation.
+  Ces bonnes pratiques ne découlent bien souvent pas directement du sujet de l'accessibilité, et leur bénéfice premier est bien souvent autre (pérénnité, maintenabilité, interopérabilité, ...).
+* *sociétaux* : l’informatique, en étant accessible, peut devenir un fantastique outil d’autonomie et d'intégration à la société.
+  Et, puisque l'accessibilité d'un logiciel ne concerne pas les seules personnes en situation de handicap, il peut bénéficier à tous.
+  Par exemple, la télécommande a initialement été conçue pour les personnes handicapées !
+
+
+
+=== Solution
+
+Les situations dans lesquelles les utilisateurs ont besoin d'une interface accessible sont diverses et variées.
+De plus, des stratégies, produits ou aides spécifiques existent déjà pour adresser certains problèmes.
+Parmi eux, on peut citer entre autres :
+
+* les agrandissement d'éléments (loupe, ...)
+* les lecteurs d'écran utilisant la synthèse vocale
+* les plages braille ou périphériques d'entrée spécifique
+* les générateurs de sous-titres
+* les personnalisations de l'affichage
+
+Il parait donc difficile de répondre de manière exhaustive et appropriée à chacun de ces usages.
+La solution est de respecter certains standards :
+
+* les *normes*, par exemple issues d'organismes comme l'ISO ou l'AFNOR
+* les *guidelines* spécifiques à chaque plateforme, comme par exemple les https://www.w3.org/standards/webdesign/accessibility[recommandations du W3C], qui forme la base de plusieurs référentiels nationaux.
+* les *standards* et *usages*, tacites ou non, en termes de protocoles de communication ou d'implémentation
+* concevoir son application de manière *modulaire*, en _séparant le fond de la forme_
+
+Toutes ces sources ne sont bien souvent pas centrées sur l'accessibilité, mais comportent soit une partie qui lui est dédiée, soit un tas de bonnes pratiques qui permettent naturellement l'accessibilité.
+
+
+
+=== Validation
+
+Il existe différentes manières complémentaires pour valider l'accessibilité d'un logiciel :
+
+* Suivre un checklist basée sur les recommandations de la plateforme cible
+* Utiliser des lecteurs d'écrans et/ou d'autres outils, les mêmes utilisés par les utilisateurs en situation de handicap
+* Les interfaces web peuvent bénéficier de visualisations par un navigateur uniquement textuel, comme lynx
+* Faire appel directement à un panel approprié de testeurs en situation de handicap lors des tests d'utilisabilité.
+
+
+
+
+
+== Internationalisation
+
+L'adaptation d'une IHM à des usagers issus d'une ou plusieurs cultures différentes recouvre plusieurs notions :
+
+* La *traduction* des éléments textuels affichés
+* La *localisation* (_localization_ ou _l10n_, parfois aussi appelée régionalisation) est l'adaptation de l'interface à une autre langue, et même au delà, à une autre culture.
+  Ce processus est bien plus vaste que la simple traduction.
+* L'*internationalisation* (_internationalization_ ou _i18n_, parfois aussi appelée globalisation) est l'ensemble des techniques de conception et d'implémentation rendant possible la localisation.
+  L’internationalisation est un prérequis à une bonne localisation.
+
+
+=== Traduction
+
+* L'*Unicode* étant le seul encodage unifiant toutes les écritures informatiques, il est particulièrement intéressant qu'une application fonctionne principalement dans cet encodage
+* Les règles de *pluriel* et de *grammaire*, par exemple la manière dont une phrase est construite, varient largement d'une langue à l'autre.
+* De manière générale, il vaut mieux éviter de recourir à des expressions imagées, qui peuvent être difficile à traduire en dehors d'un contexte linguistique donné.
+* Davantage que la notion de seule langue, il est important de manier une *locale*, qui est un couple (langue, pays) représentant le fait qu'une langue peut être parlée dans plusieurs pays, et qu'un même pays peut compter des locuteurs de plusieurs langues.
+  Une locale est représentée par un code standardisé, tel que `fr_FR` (le français parlé en France), `en_US` (l'anglais parlé aux États Unis), `fr_CA` (le français parlé au Canada), `en_CA` (l'anglais parlé au Canada), et ainsi de suite.
+* Outre les mots et les phrases, il est nécessaire d'actualiser le format des *nombres* entiers ou décimaux, des *dates* et des heures, les *unités* de poids et de mesure, ...
+* Attention à n'oublier aucun endroit dans lequel apparaissent des mots ou des phrases : au sein des images et icônes, ainsi qu'au niveau sonore (au niveau d'une synthèse vocale par exemple).
+* Traduire les libellés en change fatalement la longueur.
+  Il est donc indispensable de valider la *robustesse de la mise en page* de l'interface, car les éléments affichés peuvent l'altérer grandement.
+
+
+=== Localisation
+
+* Il est souvent nécessaire de mettre à jour les monnaies utilisées ainsi que les coordonnées demandées par le système.
+* Il est aussi utile de s'intéresser à la manière dont changer de culture influe sur les *tris* ou l'*ordonnancement* des éléments au sein de l'interface, en particulier si c'est l'ordre alphabétique qui est utilisé.
+* Les *types de clavier* (QWERTY, claviers en langues asiatiques, ...) ainsi que les *habitudes* des utilisateurs qui les utilisent doivent être pris en compte.
+* Certains *symboles* ou *icônes*, de même que certaines *syntaxes* ou *couleurs* sont propres à une culture donnée.
+* De même, attention à la *formulation* des textes et images, qui peut heurter la *sensibilité* de certains utilisateurs issus d'une culture spécifique.
+* Alors que nos habitudes d'Européen peuvent ne nous faire considérer que les langues qui se lisent de gauche à droite (on parle de langues _L2R_, pour _Left to Right_), certaines langues se lisent de droite à gauche (_R2L_, pour _Right to Left_), voire de haut en bas.
+  Ces autres *sens de lecture* ne concernent pas que les textes, mais peuvent nécessiter d'altérer la position à l'écran des différents éléments d'une interface.
+* Les *réglements et lois* spécifiques d'un pays donnés peuvent avoir une influence sur ce que peut faire ou pas un système, et cela concerne aussi les IHM.
+  En particulier, il faut s'intéresser à la légalité de demander certaines informations relatives à la vie privée dans un formulaire d'inscription ou d'achat, par exemple.
+  Au delà de la stricte légalité, certaines cultures peuvent ne pas être habituées à ce qu'elles considèrent comme des intrusions dans leur vie privée, ou encore n'être pas habituées ou simplement équipées pour des fonctionnalités liées aux réseaux sociaux.
+* Les utilisateurs d'une culture donnée peuvent avoir certaines *attentes* ou habitudes concernant la mise en page et/ou la densité d'informations affichés par certains types d'interface.
+  Par exemple, alors qu'en Europe la tendance est plutôt aux images et à un certaine baisse de la lecture, en Asie, la densité de texte affichée est en général bien plus importante.
+
+
+=== Internationalisation
+
+L'internationalisation consiste à *préparer* son adaptation à des langues et des cultures différentes.
+C'est un travail essentiellement technique, de conception et d'implémentation.
+Pour qu'un logiciel puisse être considéré comme étant internationalisé
+
+* Il doit de manière générale *éviter les à-priori* concerna la construction des informations textuelles affichées par l'interface.
+En particulier, on peut citer comme exemple :
+** n'effectuer *aucune concaténation* de chaînes de caractères pour construire un message affiché à l'utilisateur ; en effet, toutes les langues n'ont pas la même façon de construire leurs phrases.
+** éviter toute *dépendance* du code envers les libellés affichés ; par exemple, comparer le libellé d'un bouton appuyé avec des valeurs codées en dur pour savoir quelle opération déclencher est la pire des manières de faire.
+* gerer correctement les *encodages* de chaînes de caractères produites en sortie et attendues en entrée.
+* détecter les *préférences culturelles* de l'utilisateur chaque fois que cela est possible, et les rendre configurables dans tous les cas.
+* *séparer le fond et le forme*, afin que la forme (constituée par l'interface) puisse être remplacée ou altérée par configuration ou par des outils tiers.
