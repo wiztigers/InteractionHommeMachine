@@ -7,7 +7,7 @@ image::https://upload.wikimedia.org/wikipedia/commons/f/f9/Universit%C3%A9_de_St
 
 == Description
 
-Ce document constitue un https://wiztigers.github.io/InteractionHommeMachine/[support de cours] de génie logiciel, enseigné depuis l'année scolaire 2016-2017 à l'https://www.unistra.fr/[Université de Strasbourg]. +
+Ce document constitue un https://wiztigers.github.io/InteractionHommeMachine/[support de cours] d'Interaction Homme-Machine, enseigné depuis 2018 à l'https://www.unistra.fr/[Université de Strasbourg]. +
 Il est consultable *directement en ligne à l'aide des liens suivants*: [https://wiztigers.github.io/InteractionHommeMachine/[html]] [https://wiztigers.github.io/InteractionHommeMachine/InteractionHommeMachine.pdf[pdf]].
 
 Si vous désirez contribuer à ce contenu, c'est link:CONTRIBUTING.adoc[par ici].

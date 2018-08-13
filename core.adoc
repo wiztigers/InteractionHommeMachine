@@ -1,4 +1,4 @@
-= Interfaces Homme-Machine : Support de cours
+= Interaction Homme-Machine : Support de cours
 Régis WITZ <rwitz@unistra.fr>
 :doctype: book
 :toc: left
