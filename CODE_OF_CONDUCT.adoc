@@ -1,0 +1,23 @@
+= Code de conduite
+
+Certains points sont à garder en tête lors de l'édition de ce document.
+
+Pour toute question ou remarque, merci de mailto:regis.witz@free.fr[contacter l'auteur].
+
+== Comportements souhaitables
+
+Exemples de comportements à encourager :
+
+* S'assurer de l'exactitude des informations ; si possible, indiquer leurs sources.
+* Utiliser des formulations concises, accessibles et inclusives.
+* Respecter les différents points de vue et opinions possibles.
+* Si des images ou des vidéos sont utilisées à fins d'illustration, en fournir une description accessible.
+
+== Comportements non souhaitables
+
+Exemples de comportements à éviter :
+
+* Éviter les formulations alambiquées, le vocabulaire inutilement compliqué, ainsi que l'écriture http://www.academie-francaise.fr/actualites/declaration-de-lacademie-francaise-sur-lecriture-dite-inclusive[dite « inclusive »].
+* Éviter le langage grossier, vulgaire, insultant, sexualisé ou autre.
+* Pas d'attaques personnelles.
+* Pas d'informations de nature privée, sans la permission explicite des personnes ou organisations concernées.

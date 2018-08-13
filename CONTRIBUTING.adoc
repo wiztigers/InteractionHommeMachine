@@ -1,0 +1,11 @@
+= Contribuer
+
+Vous désirez contribuer ?
+Tout d'abord merci, c'est très sympa ! ｡◕‿‿◕｡
+
+Pour cela, n'hésitez pas à :
+
+* en discuter avec moi en ouvrant une https://github.com/wiztigers/GenieLogiciel/issues[issue], ou bien à
+* me proposer directement vos modifications dans une pull request. Dans ce cas, merci de vous conformer à cette petite link:CODE_OF_CONDUCT.adoc[checklist].
+
+À très bientôt, j'espère !
