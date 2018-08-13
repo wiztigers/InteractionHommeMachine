@@ -1,19 +1,15 @@
 sudo: required
 
 env:
-  - book="core" stylename="github"
-  - exportdir="gh-pages"
+  - book="core" stylename="github" exportdir="gh-pages"
 
 before_install:
   - git clone https://github.com/wiztigers/docgen.git docgen
   - chmod +x docgen/setup.sh docgen/docgen.py
   - ./docgen/setup.sh sass ${stylename}
 
-script:
-  - ./docgen/docgen.py --html --input ${book}.adoc  --output index.html --outdir gh-pages --stylename ${stylename} --stylesdir sass --linkstyle
-  - ./docgen/docgen.py --pdf  --input gh-pages/index.html --output ${book}.pdf   --outdir gh-pages
-
-before_deploy:
+script
+  - [ -d ${exportdir} ] || mkdir ${exportdir}
   - cp README.adoc ${exportdir}
   - cp -r resources ${exportdir}/resources
   - cp "sass/stylesheets/${stylename}.css" "${exportdir}/${stylename}.css"
@@ -21,6 +17,8 @@ before_deploy:
   - cp -r "sass/images/${stylename}" "${exportdir}/images/${stylename}";
   - sed -i.tmp  -e "s/..\/images\/$stylename/.\/images\/$stylename/g" "${exportdir}/${stylename}.css";
   - rm "${exportdir}/${stylename}.css.tmp";
+  - ./docgen/docgen.py --html --input ${book}.adoc  --output index.html --outdir gh-pages --stylename ${stylename} --stylesdir sass --linkstyle
+  - ./docgen/docgen.py --pdf  --input gh-pages/index.html --output ${book}.pdf   --outdir gh-pages
 
 deploy:
   provider: pages
