@@ -74,7 +74,7 @@ Puisque l'accent est mis sur les phases d'analyse du besoin et de conception, un
 === Choisir
 
 ==== Gradient Chart
-//https://www.cennydd.com/writing/the-gradient-chart
+
 Une méthode préliminaire est celle du « Gradient Chart » de Cennyd Bowles :
 
 . Premièrement, lister toutes les fonctionnalités que l'interface doit remplir
@@ -83,7 +83,7 @@ Une méthode préliminaire est celle du « Gradient Chart » de Cennyd Bowles :
 ** si les lignes ne se croisent pas tellement, un design responsive pur peut à priori être adapté.
 ** si toutes les lignes sont entremêlées, il vaudra mieux partir sur un adaptive design.
 
-image::resources/responsive/gradient-chart-CennydBowles.png[caption="Exemple : ", title="Gradient Chart, Cennyd Bowles"]
+image::resources/responsive/gradient-chart-CennydBowles.png[caption="Exemple : ", title="Gradient Chart, Cennyd Bowles", link=https://www.cennydd.com/writing/the-gradient-chart]
 
 ==== Amélioration progressive
 
