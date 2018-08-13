@@ -1,0 +1,19 @@
+image::https://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png[Creative Commons License, link="http://creativecommons.org/licenses/by-nc-nd/3.0/fr/"]
+image::https://travis-ci.org/wiztigers/InteractionHommeMachine.svg?branch=master[link=https://travis-ci.org/wiztigers/InteractionHommeMachine]
+
+= Interaction Homme-Machine
+
+image::https://upload.wikimedia.org/wikipedia/commons/f/f9/Universit%C3%A9_de_Strasbourg.svg[alt="Logo de l'Université de Strasbourg", link=https://www.unistra.fr/]
+
+== Description
+
+Ce document constitue un https://wiztigers.github.io/InteractionHommeMachine/[support de cours] de génie logiciel, enseigné depuis l'année scolaire 2016-2017 à l'https://www.unistra.fr/[Université de Strasbourg]. +
+Il est consultable *directement en ligne à l'aide des liens suivants*: [https://wiztigers.github.io/InteractionHommeMachine/[html]] [https://wiztigers.github.io/InteractionHommeMachine/InteractionHommeMachine.pdf[pdf]].
+
+== Mise en garde
+
+Comme je l'ai écrit, ce livre est un *support*, qui n'est pas destiné à _remplacer_ une présence assidue en cours ! +
+Il est là pour vous donner une (bonne) idée des différents points que nous aborderons, pour vous permettre de suivre sans avoir à passer votre temps à prendre des notes, et pour vous servir de bouée de sauvetage si vous avez un empêchement ponctuel. +
+Cependant, comme il est rédigé de manière à être conçis et à vous donner accès rapidement aux informations essentielles, il n'est pas vraiment exhaustif et ne contient que peu d'exemples ou de détails contextuels, qui sont indispensables à une bonne compréhension de ce domaine ... Pour tout ça, venez en cours !
+
+Bonne lecture ! (◕‿◕✿)

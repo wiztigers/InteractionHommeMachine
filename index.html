@@ -1,0 +1,2417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.7.1">
+<meta name="author" content="Régis WITZ">
+<title>Interfaces Homme-Machine : Support de cours</title>
+<link rel="stylesheet" href="./github.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>Interfaces Homme-Machine : Support de cours</h1>
+<div class="details">
+<span id="author" class="author">Régis WITZ</span><br>
+<span id="email" class="email"><a href="mailto:rwitz@unistra.fr">rwitz@unistra.fr</a></span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table des Matières</div>
+<ul class="sectlevel1">
+<li><a href="#_la_vision">La vision</a>
+<ul class="sectlevel2">
+<li><a href="#_caractéristiques">Caractéristiques</a></li>
+<li><a href="#_boucle_perception_action">Boucle perception - action</a></li>
+<li><a href="#_interaction_à_deux_mains">Interaction à deux mains</a></li>
+</ul>
+</li>
+<li><a href="#_la_mémoire">La mémoire</a></li>
+<li><a href="#_résolution_de_buts">Résolution de buts</a>
+<ul class="sectlevel2">
+<li><a href="#_algorithmie">Algorithmie</a></li>
+<li><a href="#seven_stages_of_action">Théorie de l&#8217;action</a></li>
+<li><a href="#_réalité">Réalité</a></li>
+</ul>
+</li>
+<li><a href="#_périphériques">Périphériques</a>
+<ul class="sectlevel2">
+<li><a href="#_Écrans">Écrans</a></li>
+<li><a href="#_périphériques_dentrée">Périphériques d&#8217;entrée</a></li>
+</ul>
+</li>
+<li><a href="#chapter_gui_styles">Styles d&#8217;interfaces</a>
+<ul class="sectlevel2">
+<li><a href="#_style_conversationnel">Style conversationnel</a></li>
+<li><a href="#style_direct_manipulation">Style par manipulation directe</a></li>
+<li><a href="#style_gestures">Style par reconnaissance de traces</a></li>
+</ul>
+</li>
+<li><a href="#_implémentation">Implémentation</a>
+<ul class="sectlevel2">
+<li><a href="#_machine_à_états">Machine à états</a></li>
+<li><a href="#_programmation_événementielle">Programmation événementielle</a></li>
+<li><a href="#_fichiers_de_description">Fichiers de description</a></li>
+<li><a href="#_constructeur_dinterface_graphique">Constructeur d&#8217;interface graphique</a></li>
+</ul>
+</li>
+<li><a href="#_conception">Conception</a>
+<ul class="sectlevel2">
+<li><a href="#_les_utilisateurs">Les utilisateurs</a></li>
+<li><a href="#_leurs_tâches">Leurs tâches</a></li>
+<li><a href="#concepts">Concepts</a></li>
+<li><a href="#_vocabulaire">Vocabulaire</a></li>
+<li><a href="#_scenarios">Scenarios</a></li>
+</ul>
+</li>
+<li><a href="#_implémentation_2">Implémentation</a>
+<ul class="sectlevel2">
+<li><a href="#principle_compatibility">Compatibilité</a></li>
+<li><a href="#principle_guiding">Guidage</a></li>
+<li><a href="#principle_consistency">Homogénéité</a></li>
+<li><a href="#principle_flexibility">Souplesse</a></li>
+<li><a href="#principle_explicit_control">Contrôle explicite</a></li>
+<li><a href="#principle_error_management">Gestion des erreurs</a></li>
+<li><a href="#principle_concision">Concision</a></li>
+</ul>
+</li>
+<li><a href="#_exemples_3">Exemples</a>
+<ul class="sectlevel2">
+<li><a href="#_restrictions_arbitraires">Restrictions arbitraires</a></li>
+<li><a href="#_mécanismes_internes">Mécanismes internes</a></li>
+<li><a href="#_nombreuses_fonctionnalités">Nombreuses fonctionnalités</a></li>
+<li><a href="#_biais_cognitif">Biais cognitif</a></li>
+<li><a href="#_données">Données</a></li>
+<li><a href="#_affichage">Affichage</a></li>
+</ul>
+</li>
+<li><a href="#_couleurs">Couleurs</a>
+<ul class="sectlevel2">
+<li><a href="#_usage">Usage</a></li>
+<li><a href="#_palettes">Palettes</a></li>
+</ul>
+</li>
+<li><a href="#_interfaces_multi_support">Interfaces multi-support</a>
+<ul class="sectlevel2">
+<li><a href="#chapter_responsive_design">Responsive design</a></li>
+<li><a href="#chapter_adaptive_design">Adaptive design</a></li>
+<li><a href="#_choisir">Choisir</a></li>
+<li><a href="#_techniques">Techniques</a></li>
+<li><a href="#_Égalité_devant_le_contenu">Égalité devant le contenu</a></li>
+</ul>
+</li>
+<li><a href="#_accessibilité">Accessibilité</a>
+<ul class="sectlevel2">
+<li><a href="#_définition_et_contexte">Définition et contexte</a></li>
+<li><a href="#_enjeux">Enjeux</a></li>
+<li><a href="#_solution">Solution</a></li>
+<li><a href="#_validation">Validation</a></li>
+</ul>
+</li>
+<li><a href="#_internationalisation">Internationalisation</a>
+<ul class="sectlevel2">
+<li><a href="#_traduction">Traduction</a></li>
+<li><a href="#_localisation">Localisation</a></li>
+<li><a href="#_internationalisation_2">Internationalisation</a></li>
+</ul>
+</li>
+<li><a href="#_tests">Tests</a>
+<ul class="sectlevel2">
+<li><a href="#_types_de_tests">Types de tests</a></li>
+<li><a href="#_outils_de_mesure">Outils de mesure</a></li>
+<li><a href="#_quand_tester">Quand tester ?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_la_vision">La vision</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Les indications apportées par les interfaces informatiques sont de nature essentiellement visuelle. Or, la vision humaine est imparfaite et facilement abusée : nous voyons parfois des choses qui n&#8217;existent pas, ou manquons à remarquer ce qui est devant nos yeux.</p>
+</div>
+<div class="paragraph">
+<p>Ces imperfections de la vision humaine peuvent être exploitées à des fins récréatives, comme avec les illusions d&#8217;optique.
+Cependant, certaines dispositions d&#8217;objets affichées sur un écran peuvent être très désagréables suivant les situations.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="http://ophtasurf.free.fr/illusions_extraordinaires2.htm"><img src="resources/intro/illusion_akiyoshi9.png" alt="illusion akiyoshi9"></a>
+</div>
+<div class="title">Exemple d'illusion d'optique :© Akiyoshi Kitaoka, « Trick eyes ».</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/intro/triangle_de_curry.jpg" alt="triangle de curry">
+</div>
+<div class="title">Exemple d'illusion mathématique :Triangle de Curry</div>
+</div>
+<div class="sect2">
+<h3 id="_caractéristiques">Caractéristiques</h3>
+<div class="paragraph">
+<p>Son <strong>champ de vision</strong> est d&#8217;environ 180° ; cela signifie par exemple qu&#8217;outre son écran, un utilisateur perçoit aussi (quoique moins bien) sur les cotés.
+On en déduit aussi que l&#8217;utilisateur ne perçoit pas ce qui est derrière lui.
+Cela peut avoir son importance suivant l'<strong>environnement</strong> dans lequel se trouve l&#8217;interface : outre la réalité virtuelle, cela concerne par exemple les interfaces qui sont dans la rue (distributeurs, &#8230;&#8203;) ou dont la nature est dépendante du lieu ou elles se trouvent (machines outils, &#8230;&#8203;).</p>
+</div>
+<div class="paragraph">
+<p>Son <strong>acuité</strong> donne la <strong>taille minimale</strong> des objets observables.
+En particulier, un seul pixel peut être très facilement vu.
+L&#8217;utilisateur d&#8217;une interface percevra souvent des artefacts graphiques ou des décalages d&#8217;objets les uns par rapport aux autres.</p>
+</div>
+<div class="paragraph">
+<p>Sa sensibilité aux <strong>couleurs</strong> : la théorie des couleurs est complexe et parfois subjective.
+Sans entrer dans les détails pour l&#8217;instant, on retiendra que chaque couleur est porteuse d&#8217;une sémantique subjective, et que la perception de chaque couleur est influencée par les couleurs qui l&#8217;environnent.</p>
+</div>
+<div class="paragraph">
+<p>Sa perception de la <strong>profondeur</strong>, grâce à la <strong>vision stéréoscopique</strong> : nous avons deux yeux qui voient chacun une image légèrement différente ; notre cerveau déduit la notion de profondeur de ces deux images.
+Cependant, d&#8217;autres <strong>informations secondaires</strong> peuvent aussi donner une impression de profondeur : on peut citer par exemple la taille des objets les uns par rapport aux autres, les ombres, la luminosité, &#8230;&#8203;
+Ce sont ces informations qui nous permettent de « percevoir » la profondeur d&#8217;une scène en trois dimensions affichée sur un écran, par nature en deux dimensions seulement.</p>
+</div>
+<div class="paragraph">
+<p>Sa sensibilité aux <strong>mouvements</strong>.
+Dans une interface graphique, le mouvement peut être utilisé au bénéfice de l&#8217;utilisateur, par exemple pour attirer son attention sur un objet <strong>clignotant</strong>, ou lui indiquer l&#8217;avancement d&#8217;une tâche grâce à une barre de <strong>progression</strong>.
+Cependant, trop d&#8217;éléments en mouvement à l&#8217;écran le font souvent au détriment de la compréhension de l&#8217;utilisateur.</p>
+</div>
+<div class="paragraph">
+<p>Sa capacité à <strong>reconnaître</strong> et à <strong>différencier</strong>, grâce à la <strong>vision active</strong>, apte entre autres à isoler un élément particulier reconnaissable par une ou plusieurs <strong>caractéristiques différentes</strong> de celles des éléments environnants.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/intro/panda_cubs_inchengdu.png" alt="panda cubs inchengdu">
+</div>
+<div class="title">Votre vision active vous permet de détecter ces pandas dans leur milieu naturel (Panda cubs in Chengdu, inchengdu, CC BY 2.0)</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_boucle_perception_action">Boucle perception - action</h3>
+<div class="paragraph">
+<p>Notre vue, notre toucher et notre proprioception sont en interaction constante.
+Par exemple, pour saisir un objet, notre vue nous permet d&#8217;amorcer notre mouvement, de corriger la trajectoire de notre main, et de réajuster spécifiquement nos mouvements, tandis que notre toucher nous sert à confirmer que notre geste est correctement exécuté, ainsi qu&#8217;à affermir notre prise.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_interaction_à_deux_mains">Interaction à deux mains</h3>
+<div class="paragraph">
+<p>De manière générale, notre main dominante exécute l'<strong>action</strong>, tandis que notre main non-dominante nous permet de situer le <strong>contexte</strong> de cette action.
+Cette collaboration entre nos deux mains nous permet d&#8217;entreprendre des manipulations complexes.</p>
+</div>
+<div class="paragraph">
+<p>Cependant, cette interaction entre les deux mains de l&#8217;utilisateur reste relativement peu exploitée dans le domaine des IHM. Citons comme exceptions certaines applications de réalité virtuelle et certains contrôleurs à reconnaissance de mouvements majoritairement utilisés dans le domaine des jeux vidéos.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_la_mémoire">La mémoire</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tout utilisateur d&#8217;IHM utilise sa mémoire pour <strong>apprendre</strong> à se servir de cette interface, mais aussi pour <strong>exécuter une action</strong> à l&#8217;aide de cette interface.</p>
+</div>
+<div class="paragraph">
+<p>On peut en fait distinguer trois types de mémoires :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La <strong>mémoire sensorielle</strong>, capable de retenir fidèlement mais très, très brièvement (souvent moins d&#8217;une seconde) les informations prodiguées par les différents sens.
+Seules les <strong>informations significatives</strong> pour l&#8217;utilisateur ont une chance d&#8217;être retenues.<br>
+Cette <a href="https://www.youtube.com/watch?v=ubNF9QNEQLA">vidéo externe</a> peut vous donner une idée de la quantité importante d&#8217;informations que la vision perçoit mais que la mémoire sensorielle oublie très rapidement.</p>
+</li>
+<li>
+<p>La <strong>mémoire à court terme</strong>, capable de retenir environ 7 éléments mémoriels (on parle en général d&#8217;une capacité de <strong>7 « mnèmes »</strong>) pendant une durée maximale de quelques dizaines de secondes au maximum.
+Cette mémoire sert majoritairement à l&#8217;utilisateur d&#8217;une interface pour effectuer son action courante.
+La mémoire à court terme est de très faible capacité, et est très volatile.
+Une IHM ne devrait donc pas obliger son utilisateur à retenir trop d&#8217;informations (comme l&#8217;état actuel du système, ou les opérations effectuées auparavant) afin d&#8217;exécuter correctement une action.<br>
+La limite de 7 mnèmes donne aussi une idée du nombre maximal d&#8217;éléments que devrait proposer un menu, par exemple.</p>
+</li>
+<li>
+<p>La <strong>mémoire à long terme</strong> permet en théorie de retenir un nombre infini de mnèmes, pour une durée infinie.
+À noter que la répétition d&#8217;une action ou d&#8217;une information permet une meilleure mémorisation.
+Cela a son importance pour la formation d&#8217;un utilisateur à une interface, ainsi que pour sa rapidité d&#8217;adoption.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_résolution_de_buts">Résolution de buts</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_algorithmie">Algorithmie</h3>
+<div class="paragraph">
+<p>L&#8217;informatique enseigne que tout problème peut être décomposé en sous-problèmes ; ces sous-problèmes pouvant à leur tour être décomposés, jusqu&#8217;à atteindre une série de problèmes triviaux à résoudre.
+La résolution dans l&#8217;ordre de tous ces problèmes triviaux permet d&#8217;atteindre le but final.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="seven_stages_of_action">Théorie de l&#8217;action</h3>
+<div class="imageblock">
+<div class="content">
+<img src="resources/intro/ThéorieDeLAction.png" alt="ThéorieDeLAction">
+</div>
+<div class="title">Théorie de l'action (Don Norman, 1986)</div>
+</div>
+<div class="paragraph">
+<p>La théorie de l&#8217;action de Don Norman énonce que tout utilisateur franchit les étapes suivantes lorsqu&#8217;il manipule une interface dans un but précis :</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>L&#8217;utilisateur traduit son but en formulant son <strong>intention</strong>, &#8230;&#8203;</p>
+</li>
+<li>
+<p>&#8230;&#8203; puis il <strong>spécifie</strong> actions à entreprendre pour satisfaire son intention, &#8230;&#8203;</p>
+</li>
+<li>
+<p>&#8230;&#8203; enfin, il <strong>exécute</strong> cette série d&#8217;actions.</p>
+</li>
+<li>
+<p>La machine <strong>interprète</strong> les données en entrée de l&#8217;utilisateur, puis matérialise son <strong>retour</strong> sous forme de données en sortie.</p>
+</li>
+<li>
+<p>L&#8217;utilisateur <strong>perçoit</strong> la sortie de la machine, &#8230;&#8203;</p>
+</li>
+<li>
+<p>&#8230;&#8203; il <strong>interprète</strong> ces sorties qu&#8217;il a réussi à percevoir sous forme de résultat, &#8230;&#8203;</p>
+</li>
+<li>
+<p>&#8230;&#8203; enfin, il <strong>évalue</strong> les résultats qu&#8217;il a interprété en regard de son but initial, pour savoir si celui-ci est atteint.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_réalité">Réalité</h3>
+<div class="paragraph">
+<p>La théorie ne donne qu&#8217;une vision partielle de la manière dont un humain tente d&#8217;accomplir ses buts à l&#8217;aide d&#8217;une IHM.</p>
+</div>
+<div class="paragraph">
+<p>En pratique, il est nécessaire de garder en tête que :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>l&#8217;humain s&#8217;adapte de manière constante à son contexte,</p>
+</li>
+<li>
+<p>il tente souvent de résoudre ses problèmes de manière incrémentale, sans forcément planifier ses actions,</p>
+</li>
+<li>
+<p>le comportement des utilisateurs est très variable, surtout si la situation qu&#8217;ils subissent est inhabituelle pour eux.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En conséquence, il peut y avoir autant, voir davantage, de méthodes de résolution d&#8217;un même problème que d&#8217;utilisateurs.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_périphériques">Périphériques</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Les périphériques de sortie, et surtout les périphériques d&#8217;entrée, déterminent la manière dont l&#8217;utilisateur interagit avec une machine donnée.
+En conséquence, ces périphériques fixent les contraintes, donc conditionnent fortement, la conception des interfaces graphiques.</p>
+</div>
+<div class="sect2">
+<h3 id="_Écrans">Écrans</h3>
+<div class="paragraph">
+<p>Le type de périphérique de sortie prévalent dans le domaine des IHM est bien évidemment l'<strong>écran</strong>.
+Les écrans sont aujourd&#8217;hui de plusieurs types : écrans LED, LCD, vieux écrans CRT, écrans amoled, retina, etc.</p>
+</div>
+<div class="paragraph">
+<p>Leurs caractéristiques principales sont leur <strong>résolution</strong>, la <strong>définition</strong> de l&#8217;image qu&#8217;ils offrent, leur <strong>persistance</strong> ou rémanence, et leur vitesse de <strong>rafraîchissement</strong>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_périphériques_dentrée">Périphériques d&#8217;entrée</h3>
+<div class="paragraph">
+<p>Le nombre de <strong>périphériques d&#8217;entrée</strong> disponible aujourd&#8217;hui est impressionnant : clavier, souris, molette, trackball, tablette (graphique), touchpad, joystick, joypad, &#8230;&#8203; difficile d&#8217;être exhaustif.
+Un des périphériques d&#8217;entrée les plus utilisés, l&#8217;écran tactile (qu&#8217;il soit capacitif ou résistif), est à la fois un périphérique d&#8217;entrée et de sortie.</p>
+</div>
+<div class="paragraph">
+<p>Tous ces périphériques d&#8217;entrée offrent chacun des sensations différentes, et sont donc réservés à des <strong>usages différents</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Il est possible de classer les périphériques d&#8217;entrée de différentes manières :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ceux à <strong>coordonnées absolues</strong> (x,y) comme la tablette ou l&#8217;écran tactile donnent la position pointée ;
+d&#8217;un autre coté, ceux à <strong>coordonnées relatives</strong> (dx,dy) comme la souris ou le touchpad donnent le déplacement depuis la dernière position connue.</p>
+</li>
+<li>
+<p>les périphériques d&#8217;entrées peuvent être <strong>directs</strong> (par exemple l&#8217;écran tactile) ou <strong>indirects</strong> (comme le touchpad).</p>
+</li>
+<li>
+<p>leur <strong>mode d&#8217;entrée</strong> :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>en mode <strong>requête</strong> : l&#8217;attente est bloquante.</p>
+</li>
+<li>
+<p>en mode <strong>échantillonage</strong> : la réponse est immédiate</p>
+</li>
+<li>
+<p>en mode <strong>événementiel</strong> : file d&#8217;attente</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Une notion utile est aussi la notion d'<strong>écho</strong>.
+Il s&#8217;agit de la représentation graphique des actions de l&#8217;utilisateur.
+Par exemple lorque l&#8217;utilisateur utilise une souris, le curseur (en temps normal) ou le rectangle élastique (lors d&#8217;un redimensionnement) forment l&#8217;écho de cette souris.</p>
+</div>
+<div class="sect3">
+<h4 id="_dispositif_haptiques">Dispositif haptiques</h4>
+<div class="paragraph">
+<p>Un périphérique d&#8217;entrée <strong>haptique</strong> est tactile (toucher, vibrations, &#8230;&#8203;) et kinesthésique (retour de force, &#8230;&#8203;).
+Il utilise des moyens comme les vibrations, les souffles d&#8217;air ou les ultrasons pour permettre à l&#8217;utilisateur de manipuler des objets virtuels comme s&#8217;il les tenait vraiment en main, sans ressentir ni le poids ni les mécanismes du périphérique proprement dit.</p>
+</div>
+<div class="paragraph">
+<p>Par exemple, certains dispositifs haptiques permettent de ressentir la texture d&#8217;objets affiché par un écran lorsque l&#8217;utilisateur passe la main sur cet écran.
+Certains controleurs de jeu (comme les volants à retour de force) peuvent aussi être qualifiés d&#8217;haptiques en cela qu&#8217;il vibrent entre les mains de l&#8217;utilisateur pour lui faire ressentir des chocs, ou les vibrations d&#8217;un moteur par exemple.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_loi_de_fitts">Loi de Fitts</h4>
+<div class="paragraph">
+<p>La loi de Fitts, publiée par Paul Fitts en 1954, est une manière d&#8217;estimer l&#8217;efficacité de l&#8217;utilisateur pour atteindre un élément particulier d&#8217;une interface graphique grâce à son périphérique d&#8217;entrée ; en d&#8217;autres termes, la rapidité avec laquelle il sera capable d&#8217;agir sur un élément précis de cette interface.</p>
+</div>
+<div class="paragraph">
+<p>Cette rapidité est fonction de la distance séparant le centre de l&#8217;élément cible de son point de départ, mais aussi de la taille de l&#8217;élément cible.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_hystérésis">Hystérésis</h4>
+<div class="paragraph">
+<p>Les périphériques d&#8217;entrée permettent d&#8217;accomplir différentes opérations, dont le sens est donné par la manière dont ils sont utilisés.</p>
+</div>
+<div class="paragraph">
+<p>Par exemple, pour le périphérique de pointage qu&#8217;est la souris :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>l&#8217;action se fait grâce au double clic ;</p>
+</li>
+<li>
+<p>la sélection se fait par un simple clic (éventuellement assorti de modificateurs issus de l&#8217;appui sur les touches control, alt ou shift du clavier) ;</p>
+</li>
+<li>
+<p>le tracé ou déplacement se fait en déplaçant le pointeur, bouton de clic enfoncé.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Il y a donc à priori conflit entre la sélection et le tracé/déplacement : lorsque l&#8217;utilisateur clique, est-ce une sélection ou le début d&#8217;un déplacement ?
+À l&#8217;inverse, s&#8217;il clique en se déplaçant, est-ce vraiment un tracé ?
+Les humains ne sont en effet pas des robots, et leurs mains peuvent trembler naturellement, ou simplement bouger suite au mouvement d&#8217;un des doigts.</p>
+</div>
+<div class="paragraph">
+<p>En découle la notion d'<strong>hystérésis</strong> : un tracé ne sera par exemple reconnu après appui sur le bouton de la souris que lorsque le déplacement du curseur est supérieur à un seuil, qualifiant par là même un vrai déplacement, et non un simple faux positif.</p>
+</div>
+<div class="paragraph">
+<p>Cette notion d&#8217;hystérésis s&#8217;applique à la plupart des périphériques d&#8217;entrée.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="chapter_gui_styles">Styles d&#8217;interfaces</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ce chapitre détaille les principaux styles de communication entre l&#8217;homme et la machine.
+En d&#8217;autres termes, les principales manières de construire et d&#8217;utiliser une IHM.</p>
+</div>
+<div class="paragraph">
+<p>À noter que le style réel d&#8217;une interface peut être difficile à reconnaitre, car celle-ci fait un effort pour « dissimuler », avec plus ou moins de bonheur, ses mécanismes internes sous une couche d&#8217;ergonomie.
+Par exemple, les assistants vocaux peuvent sembler bien plus riches et complexes qu&#8217;un terminal, alors qu&#8217;ils communiquent au fond tous les deux de la même manière.
+De même, les formulaires web sont souvent éclatés en différentes pages, ou pré-remplis avec les informations concernant l&#8217;utilisateur que le site a glané au cours de sa navigation.</p>
+</div>
+<div class="paragraph">
+<p>De plus, rares sont les interfaces qui n&#8217;utilisent qu&#8217;une seule de ces modes de communication.
+Rappelons que tous les moyens sont bons pour mieux faire se comprendre l&#8217;homme et la machine.
+En conséquence, la plupart des IHM sont hybrides, laissant à l&#8217;utilisateur plusieurs moyens de s&#8217;exprimer, ou utilisant un certain style pour certaines des fonctionnalités proposées, et un autre style pour d&#8217;autres.</p>
+</div>
+<div class="sect2">
+<h3 id="_style_conversationnel">Style conversationnel</h3>
+<div class="paragraph">
+<p>Cette catégorie d&#8217;interface graphique regroupe elle même trois sous-catégories : les interactions de type « <a href="#style_console">console</a> », celles de type « <a href="#style_form">formulaire</a> » et enfin les interfaces de <a href="#style_browser">navigation</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="style_console">Console</h4>
+<div class="paragraph">
+<p>Il s&#8217;agit là de la plus ancienne manière pour l&#8217;homme de communiquer « graphiquement » avec la machine.
+La séquence d&#8217;interaction est toujours la même :</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>l&#8217;utilisateur entre une commande</p>
+</li>
+<li>
+<p>l&#8217;utilisateur valide sa commande</p>
+</li>
+<li>
+<p>la commande est exécutée</p>
+</li>
+<li>
+<p>les résultats de la commande sont présentés à l&#8217;utlisateur</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>La commande entrée par l&#8217;utilisateur doit évidemment être <strong>exprimée dans un langage</strong> et avec une <strong>syntaxe</strong> compris et attendus par l&#8217;ordinateur.
+Ce « langage console » est souvent <strong>assez éloigné du langage naturel</strong> de l&#8217;utilisateur.</p>
+</div>
+<div class="sect4">
+<h5 id="style_console_examples">Exemples</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Comme son nom l&#8217;indique, les interfaces de type <strong>terminal</strong>, les consoles de commandes entrent dans cette catégorie.</p>
+</li>
+<li>
+<p>Les <strong>assistants personnels</strong> fonctionnent aussi comme des consoles.
+Leur objectif est en effet d'<strong>émuler une conversation</strong> avec l&#8217;utilisateur : celui-ci formule ses commandes oralement, et sa machine (ie. son téléphone) présente ses réponses à l&#8217;écran, souvent en formulant ses réponses grâce à une synthèse vocale.
+Cependant, bien que la manière dont l&#8217;utilisateur doit formuler ses « demandes » à son assistant personnel se rapproche fortement du langage naturel, celle-ci doit quand même respecter une syntaxe précise à base de mot clefs.
+De plus, les assistants personnels actuels ne comprennent qu&#8217;un nombre de langage limité -voire parlent uniquement anglais. S&#8217;ajoute donc dans certains cas la barrière de la langue.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="style_console_pros">Avantages</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Pour l&#8217;utilisateur qui en maitrise la syntaxe, ce type d&#8217;interface est très puissant car elle lui permet de s&#8217;exprimer de manière très <strong>rapide et concise</strong>.</p>
+</li>
+<li>
+<p>Une interface console est <strong>évolutive</strong> : sa syntaxe peut être enrichie de méta-mots (scripts), de synonymes (<em>alias</em>), de conditions, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Bien qu&#8217;on sorte du domaine de l&#8217;interface homme-machine pur, ce type d&#8217;interface est aussi adapté à l&#8217;interaction entre programmes (« interaction machine-machine »), en raison justement de sa rigueur et de sa syntaxe clairement définie.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="style_console_cons">Inconvénients</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>La syntaxe attendue par une console constitue une <strong>barrière d&#8217;entrée</strong>.
+En effet, plus celle-ci s&#8217;éloigne des habitudes de l&#8217;utilisateur, plus son temps d&#8217;apprentissage est important.</p>
+</li>
+<li>
+<p>Malgré la manière dont on peut l&#8217;enrichir (voir <a href="#style_console_pros">avantages</a>), la <strong>syntaxe</strong> reste quand même <strong>stricte</strong>.
+En particulier, toute difficulté qu&#8217;aurait l&#8217;utilisateur à traduire ses intentions dans le langage console constitue la <em>distance d&#8217;exécution</em> décrite par Norman dans sa <a href="#seven_stages_of_action">théorie de l&#8217;action</a>, et est une cause potentielle de problème durant l&#8217;utilisation d&#8217;une interface console.</p>
+</li>
+<li>
+<p>Il est souvent difficile pour l&#8217;utilisateur d&#8217;accomplir <strong>plusieurs tâches en parallèle</strong> avec une interface console.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="style_form">Formulaire</h4>
+<div class="paragraph">
+<p>Il s&#8217;agit là de tous les formulaires ou menus.
+La liste de commandes que peut exécuter une interface à base de formulaires est <strong>explicite</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Pour executer une action grâce à un formulaire, l&#8217;utilisateur en remplit les <strong>champs</strong> indispensable, puis valide sa saisie.</p>
+</div>
+<div class="sect4">
+<h5 id="style_form_examples">Exemples</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Les formulaires sont très présents sur les sites <strong>web</strong>.
+Par exemple, lorsque l&#8217;utilisateur décide de créer un compte, de commenter un article, de communiquer ses informations et ainsi de suite, il remplit quasiment systématiquement un formulaire.</p>
+</li>
+<li>
+<p>Les <strong>applications de gestion</strong> sont souvent à base de formulaires.</p>
+</li>
+<li>
+<p>L&#8217;interface du <strong>minitel</strong> était entièrement à base de formulaires.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="style_form_pros">Avantages</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Les actions de l&#8217;utilisateur sont fortement <strong>guidées</strong> : les champs sont libellés et expliqués pour qu&#8217;ils offrent une sémantique forte, certains champs pour lesquels seules certaines valeurs sont acceptables contraignent l&#8217;utilisateur via des menus à choix limités, certains champs peuvent être pré-remplis avec une valeur par défaut, et ainsi de suite.
+Tout cela fait que, si l&#8217;utilisateur est suffisament formé et dispose des informations requises, il lui est difficile de mal remplir un formulaire.</p>
+</li>
+<li>
+<p>La valeur des champs d&#8217;un formulaire est souvent <strong>non imposée</strong>, est reste <strong>modifiable jusqu&#8217;à la validation</strong> par l&#8217;utilisateur.
+Celui-ci a donc le temps de changer d&#8217;avis ou de rassembler les informations dont il a besoin.</p>
+</li>
+<li>
+<p>Un formulaire a une <strong>forme plus graphique</strong> qu&#8217;une console, par exemple.
+Entre autres, cela offre différents moyens supplémentaires d&#8217;orienter l&#8217;utilisateur et de guider sa saisie, par exemple par l&#8217;utilisation judicieuse des couleurs et des polices de caractères, ou par un placement logique des différents champs à l&#8217;écran.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="style_form_cons">Inconvénients</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Un formulaire donné permet d&#8217;accomplir une <strong>tâche prédéfinie</strong>, ce qui offre <strong>peu d&#8217;évolutivité</strong>.
+Faire évoluer un formulaire n&#8217;est parfois pas une bonne idée : en effet, l&#8217;utilisateur étant habitué à un certain formalisme (ordre de saisie, position des champs à l&#8217;écran, &#8230;&#8203;) peut se sentir perdu et frustré, voire entrer involontairement des valeurs eronnées.</p>
+</li>
+<li>
+<p>Un formulaire permet rarement la <strong>parallélisation</strong> de plusieurs tâche.
+S&#8217;il le permet, cela se fait souvent au détriment de sa simplicité de compréhension.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="style_browser">Navigateur</h4>
+<div class="paragraph">
+<p>Ce style d&#8217;interface est caractérisé par la capacité de l&#8217;utilisateur à naviguer entre différents <strong>nœuds</strong>, caractérisés par leur identifiant ou <strong>adresse</strong> hypertexte.
+Lorsque l&#8217;utilisateur y accède, chaque nœud offre son contenu, qui peut être une donnée ou un traitement.
+Tous les nœuds sont <strong>reliés entre eux</strong> directement ou indirectement.
+De plus, l&#8217;utilisateur conserve toujours la possibilité de <strong>revenir en arrière</strong> dans sa navigation.</p>
+</div>
+<div class="sect4">
+<h5 id="style_browser_examples">Exemples</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Les <strong>navigateurs internet</strong>, évidement.
+Inutile d&#8217;en dresser une liste ici : vous en utilisez probablement un actuellement.</p>
+</li>
+<li>
+<p>Les <strong>explorateurs de fichiers</strong> offrent aussi une interface à base de navigation de nœud à nœud (fichier, dossier, &#8230;&#8203;). Nautilus pour Gnome, Konqueror pour KDE, File explorer pour Windows sont quelques uns des nombreux exemples.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="style_direct_manipulation">Style par manipulation directe</h3>
+<div class="paragraph">
+<p>Un des fondateurs et défenseur des IHM par manipulation directe est Ben Shneiderman (<em>The future of interactive systems and the emergence of direct manipulation</em>, <em>Behaviour &amp; Information Technology</em>, 1982).</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;idée sous-jacente à ce style d&#8217;interface est que les objets informatiques peuvent être manipulés de manière similaire à des objets physiques, et que l&#8217;utilisateur peut faire des actions sur eux à l&#8217;aide de son périphérique d&#8217;entrée.</p>
+</div>
+<div class="paragraph">
+<p>Dans sa forme la plus « pure », une IHM par manipulation directe respecte quatre grands principes :</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Les objets d&#8217;intérêt sont <strong>disponibles en permanence</strong>.</p>
+</li>
+<li>
+<p>L&#8217;utilisateur <strong>agit directement</strong> sur ces objets d&#8217;intérêt, plutôt que d&#8217;utiliser une syntaxe complexe ou un enchaînement d&#8217;actions.</p>
+</li>
+<li>
+<p><a id="style_direct_manipulation_third_principle"></a> Chaque action de l&#8217;utilisateur sur un objet d&#8217;intérêt est :</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>incrémentale</strong>,</p>
+</li>
+<li>
+<p><strong>réversible</strong>,</p>
+</li>
+<li>
+<p>aux <strong>résultats immédiatement visibles</strong>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Une telle interface est <strong>structurée en couches</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="style_direct_manipulation_examples">Exemples</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Le paradigme actuel de la plupart des logiciels et des systèmes d&#8217;exploitation, <strong>WIMP</strong> (<em>Windows</em>, <em>Icons</em>, <em>Menus</em>, <em>Pointers</em>), est une application directe (bien que plus ou moins heureuse, voir <a href="#style_direct_manipulation_cons">Inconvénients</a>) des principes de la manipulation directe.</p>
+</li>
+<li>
+<p>Les interfaces graphiques permettant d&#8217;éditer des données et de les visualiser telles qu&#8217;elles seront éditées (appliquant le principe <strong>WYSIWYG</strong>, pour <em>What You See Is What You Get</em>) permettent aussi souvent de les manipuler directement.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="style_direct_manipulation_pros">Avantages</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Ce style d&#8217;interface est <strong>intuitif</strong>.
+Cet avantage découle à la fois de ses qualités intrinsèques, mais aussi en raison du fait que l&#8217;écrasante majorité des interfaces graphiques utilise ce style depuis les années 70.</p>
+</li>
+<li>
+<p>Les tâches que peut accomplir l&#8217;utilisateur avec ce style d&#8217;interface sont <strong>non-prédéfinies</strong>.
+Une nouvelle tâche donne simplement lieu à un nouvel objet, ou à une nouvelle façon d&#8217;intéragir avec un objet existant.</p>
+</li>
+<li>
+<p>Combiné avec un système multi-fenêtres, ce style assure la <strong>parallélisation</strong> des tâches.
+L&#8217;utilisateur peut travailler en même temps dans deux fenêtres différentes.</p>
+</li>
+<li>
+<p>Ce style offre des <strong>entrées et sorties riches</strong> : déplacement d&#8217;icones, redimensionnement, <em>drag and drop</em>, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="style_direct_manipulation_cons">Inconvénients</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Cette manière d&#8217;intéragir avec la machine étant avant tout pensée pour que l&#8217;utilisateur manipule directement et lui-même les objets, l'<strong>automatisation</strong> d&#8217;une interface par manipulation directe est difficile.</p>
+</li>
+<li>
+<p>Certaines tâches sont par nature complexes.
+Se pose donc la question de la manière de « résumer » ces tâches complexes en un seul objet, ou en une seule action sur un objet.
+Répondre de manière satisfaisante à cette question est bien souvent impossible.
+Cela a en particulier pour conséquence que le <a href="#style_direct_manipulation_third_principle">troisième principe</a> est bien souvent mal appliqué, la tâche complexe étant souvent déléguée à une fenêtre dédiée avec laquelle l&#8217;utilisateur va passer beaucoup de temps à intéragir.
+Il est donc plus adapté, pour la plupart des systèmes <a href="#style_direct_manipulation_examples"><em>WIMP</em></a>, d&#8217;utiliser le qualificatif de « manipulation indirecte » &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="style_gestures">Style par reconnaissance de traces</h3>
+<div class="paragraph">
+<p>Cette catégorie d&#8217;IHM est rendue possible par le fait de détecter certaines données particulières issues d&#8217;un périphérique d&#8217;entrée considéré.
+Ces données sont ensuite comparées à un <strong>vocabulaire</strong> afin de leur donner une <strong>sémantique</strong> précise.
+Cette sémantique est ensuite traduite en opération(s) à effectuer par l&#8217;application.</p>
+</div>
+<div class="sect3">
+<h4 id="style_gestures_examples">Exemples</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>La plupart des smartphones et des tablettes permettent, au moins dans une certaine mesure, des interactions dans ce style.
+Les capacités de l&#8217;écran tactile (sensibilité ? support du multitouch ?) ainsi que la nature des applications tournant sur ces supports sont cependant très variés, rendant difficile la définition du « vocabulaire tactile » exact supporté par un smartphone donné.</p>
+</li>
+<li>
+<p>Les capteur (caméras) à reconnaissance de mouvements permettent eux aussi de concevoir de telles interfaces.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="style_gestures_pros">Avantages</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Ce style d&#8217;interface est <strong>intuitif</strong>.
+Cet avantage découle à la fois de ses qualités intrinsèques, mais aussi grâce à la généralisation des smartphones dans la population depuis la fin des années 2000.
+Cela fait que les utilisateurs maitrisent pour la plupart un minimum de « mots » d&#8217;interaction avec un écran tactile.</p>
+</li>
+<li>
+<p>Ce style d&#8217;interface est, peut-on dire, « dans l&#8217;air du temps », ou à la mode.
+Cette caractéristique n&#8217;est pas à négliger, car elle rend plus facile la possibiliter de susciter l&#8217;adhésion des utilisateurs à une IHM.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="style_gestures_cons">Inconvénients</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Une telle interface nécessite un <strong>périphérique d&#8217;entrée spécifique</strong>.
+Rien ne sert de concevoir une IHM très intuitive par reconnaissance de traces si la machine cible ne permet pas ce type d&#8217;interaction (voir le chapitre sur l'<a href="#chapter_adaptive_design"><em>Adaptive design</em></a> pour quelques pistes de solution).</p>
+</li>
+<li>
+<p>Même si elle est intuitive, une telle interface attend quand même un vocabulaire précis, une syntaxe à apprendre qui constitue néanmoins une <strong>barrière d&#8217;entrée</strong> que l&#8217;utilisateur doit franchir avant de pouvoir utiliser l&#8217;interface.</p>
+</li>
+<li>
+<p>S&#8217;il simple pour l&#8217;utilisateur d&#8217;accomplir une action avec un simple geste, se pose la question de comment <strong>annuler</strong> cette action.</p>
+</li>
+<li>
+<p>Le style par reconnaissance de traces souffre du même inconvénient que le style par <a href="#style_direct_manipulation_cons">manipulation directe</a> : comment traduire des actions complexes par un simple geste ?</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_implémentation">Implémentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Historiquement, dans les années 70-80, les interfaces graphiques étaient caractérisées par le fait d&#8217;être utilisées par un utilisateur averti ou « expert », qui était souvent le seul à utiliser un ordinateur donné.
+De plus, les performances étaient faibles et les entrées/sorties peu nombreuses, surtout comparées aux caractéristiques de l&#8217;informatique d&#8217;aujourd&#8217;hui.
+Tout cela se traduisait par des IHM relativement pauvres.
+Donc, il y avait peu de code dédié spécifiquement à l&#8217;IHM dans les applications de l&#8217;époque.</p>
+</div>
+<div class="paragraph">
+<p>Au tournant des années 90, les choses ont commencé à changer.
+L&#8217;informatique s&#8217;est tourné toujours plus vers le grand public.
+Les interfaces graphiques ont suivi, et sont devenues toujours plus simples d&#8217;accès.
+Elles ont aussi profité de machines toujours plus puissantes, qui permettaient des affichages plus colorés, détaillés et complexes, et des utilisations diversifiées.
+De plus, la volonté actuelle des concepteurs d&#8217;IHM est de les rendre toujours plus intuitives, mais aussi toujours plus riches.</p>
+</div>
+<div class="paragraph">
+<p>En conséquence, la proportion du code spécifique à l&#8217;IHM dans le code des applications est en général plus grande que par le passé.
+Au delà de ce fait, le temps accordé au design, à la conception de l&#8217;interaction homme-machine est lui aussi toujours plus important.</p>
+</div>
+<div class="paragraph">
+<p>Ce chapitre détaille les différentes manières d&#8217;implémenter une IHM aujourd&#8217;hui.</p>
+</div>
+<div class="sect2">
+<h3 id="_machine_à_états">Machine à états</h3>
+<div class="paragraph">
+<p>Toutes les fonctionnalités de l&#8217;interface sont décomposées en tâches élémentaires.
+Chacune de ces tâches correspond à l&#8217;implémentation d&#8217;un <strong>automate à états finis</strong>.
+Cet automate est enrichi d&#8217;actions associées :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>aux <strong>états</strong> : l&#8217;action est exécutée lorsque l&#8217;état considéré devient l&#8217;état courant ;</p>
+</li>
+<li>
+<p>aux <strong>transitions</strong> : l&#8217;action est exécutée lorsque la transition considérée est empruntée.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_exemple">Exemple</h4>
+<div class="paragraph">
+<p>Voici un exemple de logique d&#8217;implémentation d&#8217;une tâche élémentaire : dessiner une ligne, dans un logiciel de dessin par exemple.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>partant d&#8217;un état initial de l&#8217;application,</p>
+</li>
+<li>
+<p>lorsque le bouton gauche de la souris est enfoncé, on mémorise la position actuelle <em>P1</em> de la souris et on passe dans l&#8217;état <em>Dessiner une ligne</em>.</p>
+</li>
+<li>
+<p>si la souris est déplacée, on efface la ligne précédemment dessinée (si elle existe), on mémorise la position actuelle <em>P2</em> de la souris, et on redessine une ligne allant de <em>P1</em> à <em>P2</em>.</p>
+</li>
+<li>
+<p>lorsque le bouton gauche de la souris est relâché, on valide la dernière ligne dessinée.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Le schéma d&#8217;implémentation de la machine à états finis correspondante est ici représentée en utilisant le formalisme UML (diagramme d&#8217;activités).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/implementation/machineàétats.png" alt="machineàétats">
+</div>
+<div class="title">Exemple de machine à états : Dessiner une ligne</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_avantages">Avantages</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Implémenter un automate est aisé et réaliste pour des <strong>systèmes simples</strong>.</p>
+</li>
+<li>
+<p>Cette possibilité offre une <strong>flexibilité</strong> inégalée qui peut être indispensable dans certains cas, notamment en terme de configuration des actions à exécuter.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_inconvénients">Inconvénients</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Tout implémenter soi-même est à éviter absolument si le système est <strong>complexe</strong>.</p>
+</li>
+<li>
+<p>Comment représenter et maîtriser l&#8217;état global du système ?</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_programmation_événementielle">Programmation événementielle</h3>
+<div class="paragraph">
+<p>Ce paradigme de programmation est caractérisé par sa non-linéarité.
+Pour chaque objet <em>O</em> de l&#8217;interface : si l’événement <em>E</em> se produit sur l’objet <em>O</em>, alors le traitement <em>T</em> est exécuté.</p>
+</div>
+<div class="sect3">
+<h4 id="_exemple_2">Exemple</h4>
+<div class="paragraph">
+<p>La plupart des librairies graphiques se basent sur de la programmation événementielle.
+Les exemples sont nombreux: Qt, swing, node.js, &#8230;&#8203;</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_avantages_2">Avantages</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>L&#8217;aspect « local » de l&#8217;implémentation de chaque traitement fait que les composants sont souvent bien <strong>isolés</strong>, et favorise la <strong>modularité</strong>.</p>
+</li>
+<li>
+<p>Une fois ses principaux principes acquis, la programmation événementielle est relativement <strong>simple</strong> d&#8217;utilisation et <strong>adaptée</strong> au domaine des IHM.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_inconvénients_2">Inconvénients</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>La programmation événementielle n&#8217;est pas forcément simple à se représenter pour un développeur.</p>
+</li>
+<li>
+<p>C&#8217;est à chaque traitement implémenté de vérifier lui-même si il doit s&#8217;interrompre et, si c&#8217;est le cas, de le faire proprement. Implémenter une tâche de longue durée sans prendre cette précaution élémentaire est la cause la plus courante de « freeze » de l&#8217;IHM.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fichiers_de_description">Fichiers de description</h3>
+<div class="paragraph">
+<p>Plutôt que d&#8217;implémenter directement une interface graphique en utilisant un langage de programmation, il est possible d&#8217;utiliser un <strong>langage de balisage</strong> d&#8217;interface graphique (ou <em>User Interface Markup Language</em>).</p>
+</div>
+<div class="paragraph">
+<p>Les fichiers créés sont alors destinés :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>soit à être compilés, éventuellement en passant par une étape de traduction en un langage de programmation plus générique ;</p>
+</li>
+<li>
+<p>soit à être interprétés par un <em>runtime</em>.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_exemples">Exemples</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>QML, qui fait partie du projet Qt ;</p>
+</li>
+<li>
+<p>XUL, supporté par la fondation Mozilla ;</p>
+</li>
+<li>
+<p>UIML, le précurseur, forme un standard ouvert ;</p>
+</li>
+<li>
+<p>XAML, supporté par Microsoft.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_avantages_3">Avantages</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>La plupart de ces langages de description formant un sous-ensemble d&#8217;XML, il est possible de créer des interfaces grâce à eux sans avoir de compétence avancée en programmation.</p>
+</li>
+<li>
+<p>Conséquence directe, cette solution peut former une base commune pour le designer et le développeur pour communiquer et se comprendre.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_inconvénients_3">Inconvénients</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>L&#8217;interprétation de ces fichiers par leur runtime induit forcément une certaine latence qui peut, dans le pire des cas, dégrader la réactivité de l&#8217;IHM ainsi créée.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_constructeur_dinterface_graphique">Constructeur d&#8217;interface graphique</h3>
+<div class="paragraph">
+<p>Il est enfin possible d&#8217;utiliser un <strong>constructeur (builder) d&#8217;interface graphique</strong>.
+Il s&#8217;agit d&#8217;un logiciel WYSIWYG de création d&#8217;interface graphique.</p>
+</div>
+<div class="sect3">
+<h4 id="_exemple_3">Exemple</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Glade, qui sert à créer des interfaces GTK+ :</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://glade.gnome.org"><img src="resources/implementation/Glade_3_screenshot.png" alt="Glade 3 screenshot"></a>
+</div>
+<div class="title">Glade 3.6.7 </div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Qt Creator, qui fait partie de Qt :</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://en.wikipedia.org/wiki/Qt_Creator"><img src="resources/implementation/Qt_Creator_3.1.1_editing_a_sample_UI_file_from_Qt_5.3_using_Designer.png" alt="Qt Creator 3.1.1 editing a sample UI file from Qt 5.3 using Designer"></a>
+</div>
+<div class="title">Qt Designer (Qt Creator 3.1.1, Qt 5.3) </div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La plupart des Environnements de Développement Intégrés (<em>IDE</em>) intègrent un constructeur d&#8217;interface graphique.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_avantages_4">Avantages</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Ces technologies étant <strong>WYSIWIG</strong> (<em>What You See Is What You Get</em>), elles permettent de voir rapidement (voire de tester) le résultat d&#8217;un ou plusieurs changements dans le design de l&#8217;IHM.
+Cela est particulièrement intéressant pendant les phases de conception, ou un <strong>prototype</strong> est particulièrement utile.</p>
+</li>
+<li>
+<p>La quantité de code à réaliser est réduite.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_inconvénients_4">Inconvénients</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>En fait de WYSIWIG, il est plus explicite de parler de <strong>WYSIOWYG</strong> (<em>What You See Is Only What You Get</em>).
+En d&#8217;autres termes, l&#8217;utilisation de constructeur d&#8217;interface graphique peut donner un faux sentiment de sécurité ou de compétence, et faire négliger la quantité de code métier à implémenter pour rendre l&#8217;IHM fonctionnelle.</p>
+</li>
+<li>
+<p>Si le constructeur produit du code source, ce code doit être maintenu par l&#8217;équipe de développement.
+Or, il est souvent malaisé d&#8217;analyser et de corriger du code généré par un algorithme &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conception">Conception</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Au bout du compte, il y a deux principales manières d&#8217;approcher la conception d&#8217;une IHM :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a id="technocentric_approach"></a> l&#8217;approche <strong>technocentriste</strong> pense en premier lieu à la machine :
+Quelles sont ses contraintes de fonctionnement ?
+De quelle forme sont les données qu&#8217;elle traite ?
+Quels sont ses périphériques d&#8217;entrée ?</p>
+</li>
+<li>
+<p><a id="anthropocentric_approach"></a> l&#8217;approche <strong>anthropocentriste</strong> pense en premier lieu à l&#8217;homme :
+Quel est la problématique à résoudre ?
+Quel est le contexte, l&#8217;environnement auquel est soumis l&#8217;utilisateur ?
+Comment maximiser son envie d&#8217;utiliser le logiciel, et son efficience à le faire ?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Bien que la première approche puisse éventuellement faire gagner du temps de conception, cela n&#8217;est aucunement garanti et se fera quasiment systématiquement au détriment de l&#8217;ergonomie de l&#8217;interface produite. Si on désire concevoir une interface conviviale pour l&#8217;utilisateur, l&#8217;approche anthropocentriste est donc à privilégier dans tous les cas.</p>
+</div>
+<div class="paragraph">
+<p>Pour cela, une règle d&#8217;or est à respecter :</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Concentrez-vous sur les utilisateurs et les tâches qu&#8217;ils ont à accomplir, pas sur la technologie.</p>
+</div>
+</blockquote>
+</div>
+<div class="sect2">
+<h3 id="_les_utilisateurs">Les utilisateurs</h3>
+<div class="paragraph">
+<p>L&#8217;utilisateur, ou plutôt les utilisateurs, sont d&#8217;un intérêt crucial, puisque ce sont eux qui décideront au cours de leur usage si le système créé est convivial ou pas.
+Il est donc incontournable de bien cerner <em>qui</em> utilisera l&#8217;interface, de bien <strong>identifier ses utilisateurs cibles</strong>.
+Cela peut se faire à travers certaines questions précises, dont une liste figure ci-dessous à titre d&#8217;exemple.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Qui est l&#8217;utilisateur cible ?
+Est-ce l&#8217;acheteur, ou quelqu&#8217;un d&#8217;autre ?</p>
+</li>
+<li>
+<p>Quelles sont ses compétences, ses connaissances ?
+Est-il formé au système ? Est-il même <em>disposé à se former</em> au système ?</p>
+</li>
+<li>
+<p>Quels problèmes a l&#8217;utilisateur dans son activité ?
+Est-il satisfait ou non de sa situation actuelle ?
+Quelle est aujourd&#8217;hui l&#8217;approche qu&#8217;il a de son activité ?</p>
+</li>
+<li>
+<p>Quels services est sensé rendre l&#8217;interface ?
+Quels problèmes aidera-t&#8217;elle à résoudre ?
+Quel est l&#8217;intérêt du système pour l&#8217;utilisateur ?
+Comment notre service s&#8217;inscrira-t&#8217;il dans son activité ?
+De quelle manière changera-t&#8217;il son activité ?</p>
+</li>
+<li>
+<p>Quels sont les autres facteurs qui peuvent influer sur l&#8217;utilisabilité du système ?</p>
+<div class="ulist">
+<ul>
+<li>
+<p>facteurs physiques ou physiologiques</p>
+</li>
+<li>
+<p>facteurs psychologiques ou socio-culturels</p>
+</li>
+<li>
+<p>savoirs-faire et compétences annexes</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Répondre à ces questions n&#8217;est ni facile ni rapide, mais c&#8217;est vital, et les résultats de concevoir une IHM sans y répondre sont en général &#8230;&#8203; décevants.</p>
+</div>
+<div class="paragraph">
+<p>La meilleure manière de répondre à ces questions sur les utilisateurs est de <em>leur parler</em>.
+Éventuellement en parlant à leur management.
+L&#8217;utilisateur doit être associé au design de l&#8217;interface qu&#8217;il utilisera.
+Il n&#8217;est ni un objet abstrait, ni un simple sujet d&#8217;étude.</p>
+</div>
+<div class="paragraph">
+<p>Une autre maxime du design d&#8217;interfaces utilisateur est qu&#8217;un système ne doit être conçu ni <em>pour</em> les utilisateurs, ni <em>par</em> eux, mais <em>avec</em> eux.
+Ce qu&#8217;il faut en comprendre est qu&#8217;un designer n&#8217;est pas réellement capable de penser à la place des utilisateurs, mais que ceux-ci sont le plus souvent incapable de créer leurs propres outils.
+Le mieux est que tous travaillent ensemble.</p>
+</div>
+<div class="sect3">
+<h4 id="_profils_utilisateur">Profils utilisateur</h4>
+<div class="paragraph">
+<p>Essayer de satisfaire tout le monde, destiner son système au grand public au sens le plus large, ne permet en général de ne satisfaire personne totalement.
+Imaginer, donner un visage à l&#8217;utilisateur cible donne des contraintes, un cadre qui aide à mieux construire l&#8217;IHM d&#8217;après les besoin réels de notre utilisateur en particulier.
+Certains designers vont même jusqu&#8217;à créer des <strong>profils</strong> d&#8217;utilisateurs types.
+Ces profils constituent autant de personnes fictives qui ont un nom, un métier, une famille, des hobbies, et ainsi de suite.
+Il est effectivement possible d&#8217;aller jusque là ; cependant, ces profils doivent être créés d&#8217;après des données réelles, collectées, factuelles &#8230;&#8203; et non simplement inventés !</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_leurs_tâches">Leurs tâches</h3>
+<div class="paragraph">
+<p>Les tâches de chaque utilisateur doivent être accomplies à cause d&#8217;un certain <strong>contexte</strong>.
+Ce contexte dépend de beaucoup de facteurs :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>l&#8217;entreprise cliente, sa stratégie, son historique</p>
+</li>
+<li>
+<p>ses employés, leur métier et ses caractéristiques, leurs compétences</p>
+</li>
+<li>
+<p>le marché où ils évoluent, ou -pour être précis- la perception qu&#8217;ils ont de ce marché</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>De la même manière qu&#8217;il est crucial de bien cerner les utilisateurs d&#8217;un système grâce à des questions pertinentes, cerner la nature exacte des tâches qu&#8217;ils ont à réaliser l&#8217;est tout autant :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Quelles tâches particulières sont concernées par le système ?</p>
+</li>
+<li>
+<p>Quelles tâches sont les plus habituelles ?
+Lesquelles s&#8217;entreprennent plus rarement ?</p>
+</li>
+<li>
+<p>Quelles tâches sont les plus importantes ?
+Lesquelles le sont moins ?</p>
+</li>
+<li>
+<p>Comment se décompose chaque tâche en détail ?
+Que produit-elle ?</p>
+</li>
+<li>
+<p>Quels sont ses prérequis (données, outils, communications, &#8230;&#8203;) ?</p>
+</li>
+<li>
+<p>Quel utilisateur fait chaque tâche ?</p>
+</li>
+<li>
+<p>Quels sont les problèmes rencontrés habituellement, ou les erreurs régulièrement commises au cours de l&#8217;exécution de chaque tâche ?
+Quelles sont les causes de ces problèmes ou erreurs ?</p>
+</li>
+<li>
+<p>Quelles tâches sont en lien l&#8217;une avec l&#8217;autre ?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Le système que vous concevez (ou achetez) n&#8217;est pas le centre de l&#8217;univers.
+Le contexte est important.
+Et la technologie seule ne résout pas tous les problèmes.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="concepts">Concepts</h3>
+<div class="paragraph">
+<p>Avant d&#8217;envisager à quoi ressemblera l&#8217;interface, il est plus profitable de l&#8217;envisager à travers les <strong>concepts</strong> qu&#8217;elle permettra de manier.
+Ses concepts doivent être correctement définis.
+Un bon concept doit être adapté à l&#8217;utilisateur et à la tâche.
+Il faut notamment faire attention aux traditions ou habitudes qu&#8217;on manie sans réfléchir.</p>
+</div>
+<div class="sect3">
+<h4 id="_exemples_2">Exemples</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>La commande <code>mv</code> permet de déplacer, mais aussi de renommer un fichier.
+Est-ce un concept adapté à un débutant dans le monde UNIX ?</p>
+</li>
+<li>
+<p>La plupart des traitements de texte nécessitent de Sauver/Enregistrer son travail.
+Est-ce le meilleur concept qu&#8217;on puisse imaginer ?
+Ne pourrait-on pas annuler les opérations de n&#8217;importe quel document, même si on vient de le réouvrir ?</p>
+</li>
+<li>
+<p>Google est une entreprise qui brasse des milliards de dollars et emploie des dizaines de milliers de personnes.
+Son activité est très diversifiée.<br>
+Or, quelle est la page d&#8217;accueil de son produit phare ?
+L&#8217;évolution de l&#8217;entreprise a-t&#8217;elle impliqué un changement de son concept de base ?</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_vocabulaire">Vocabulaire</h3>
+<div class="paragraph">
+<p>Lors de la conception d&#8217;une interface il est important de <strong>clairement définir</strong> chaque terme qu&#8217;on emploie.
+Il faut savoir de quoi on parle.
+En effet, si la définition même des termes utilisés par l&#8217;interface est floue et/ou changeante dès la conception, comment demander à l&#8217;utilisateur de s&#8217;y retrouver ?</p>
+</div>
+<div class="paragraph">
+<p>Il est de plus nécessaire d&#8217;employer toujours le même terme dans une situation donnée.
+Utiliser des synonymes ou inventer de nouveaux termes (par exemple pour « éviter les répétitions ») est à éviter.
+L&#8217;utilisateur doit être en terrain connu : une IHM n&#8217;est pas un roman ou une rédaction.</p>
+</div>
+<div class="paragraph">
+<p>Enfin, il faut rester conscient que le vocabulaire utilisé par l&#8217;application (ou par le designer de l&#8217;application), n&#8217;est pas toujours celui de l&#8217;utilisateur.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_scenarios">Scenarios</h3>
+<div class="paragraph">
+<p>Décrire les différentes fonctionnalités de l&#8217;interface ne doit pas se faire dès le début en se reférant à des éléments graphiques.
+En phase de design, on étudie les différentes opérations supportées par une interface afin d&#8217;en maximiser l&#8217;ergonomie, mais on ne s&#8217;intéresse pas encore, en pratique, à quoi ressembleront <em>graphiquement</em> ces opérations.</p>
+</div>
+<div class="sect3">
+<h4 id="_exemple_4">Exemple</h4>
+<div class="paragraph">
+<p>La première manière de décrire un scénario donné manie des concepts qui pourront se traduire de n&#8217;importe quelle manière dans une interface graphique.
+La seconde commet l&#8217;erreur de penser trop tôt à la technologie qui supportera graphiquement le même scénario.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><em>Alice consulte le solde de son compte courant.
+Elle dépose ensuite de l&#8217;argent sur son compte.</em></p>
+</li>
+<li>
+<p><em>Alice double clique sur l&#8217;icône « Mon compte courant ».
+L&#8217;interface affiche le statut de son compte ainsi que les dernières opérations sous forme d&#8217;un tableau.
+Elle clique ensuite sur « Effectuer un versement ».</em>
+&#8230;&#8203;</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_implémentation_2">Implémentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>L&#8217;ergonomie (<em>usability</em>) d&#8217;un système renferme plusieurs aspects.
+Par exemple, la norme ISO 25010 définit un système comme ergonomique s&#8217;il respecte les attributs de qualité suivants :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Attrait</strong> (<em>Attractiveness</em> / <em>User interface aesthetics</em>)<br>
+Est-ce que l&#8217;utilisateur a envie d&#8217;utiliser l&#8217;interface ?</p>
+</li>
+<li>
+<p><strong>Facilité de compréhension</strong> (<em>Understandability</em> / <em>Appropriateness recognizability</em>)<br>
+Est-ce qu&#8217;il est (intuitivement) facile pour un utilisateur de comprendre et retenir comment réaliser une opération ?</p>
+</li>
+<li>
+<p><strong>Facilité d&#8217;apprentissage</strong> (<em>Learnability</em>)<br>
+Est-ce qu&#8217;il est facile de former de futurs utilisateurs à l&#8217;utilisation du logiciel ?</p>
+</li>
+<li>
+<p><strong>Facilité d&#8217;exploitation</strong> (<em>Operability</em>)<br>
+Est-ce qu&#8217;il est facile pour l&#8217;utilisateur d&#8217;accomplir sa tâche ?</p>
+</li>
+<li>
+<p><strong>Protection contre les erreurs d&#8217;utilisation</strong> (<em>User error protection</em>)<br>
+Comment réagit le logiciel si son utilisateur a un comportement inatendu ?</p>
+</li>
+<li>
+<p><strong>Accessibilité</strong> (<em>Accessibility</em>)<br>
+Est-ce que le logiciel est utilisable par des personnes en situation de handicap ?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Mais comment, en pratique, implémenter les concepts d&#8217;un système afin que son interface ait ces qualités ?</p>
+</div>
+<div class="paragraph">
+<p>Une manière est de faire en sorte de respecter les sept principes de base détaillés dans ce chapitre.
+Cependant, pour chacun, il existe souvent autant de manières de « bien faire » que de gâcher l&#8217;ergonomie de votre système.
+Le but n&#8217;est pas d&#8217;être complètement dogmatique dans l&#8217;application de ces principes.
+Rappelez-vous l&#8217;importance d&#8217;être adapté aux utilisateurs et à leurs tâches : le contexte de chaque projet est roi.</p>
+</div>
+<div class="sect2">
+<h3 id="principle_compatibility">Compatibilité</h3>
+<div class="paragraph">
+<p>Il est utile d&#8217;exploiter les connaissances que l&#8217;utilisateur possède déjà et qui concernent des interfaces similaires, que ce soit dans leur apparence ou dans leurs buts.
+Cela peut se traduire, par exemple, par :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>S&#8217;assurer de la cohésion des différents produits proposés par une même compagnie.
+Cela passe par respecter la <strong>charte graphique</strong> (ou <em>look &amp; feel</em>) de l&#8217;entreprise, c&#8217;est à dire l&#8217;ensemble des règles qui lui sont propres et qui régissent l&#8217;apparence et les comportements des différents éléments de ses interfaces graphique.</p>
+</li>
+<li>
+<p>Respecter les <strong>conventions de la plateforme</strong> qui accueille notre interface.</p>
+</li>
+<li>
+<p>Exploiter un univers familier.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="principle_guiding">Guidage</h3>
+<div class="paragraph">
+<p>L&#8217;utilisateur ne doit jamais être perdu ou livré à lui-même.
+Il doit pouvoir, en permanence :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>connaître l'<strong>état</strong> du système</p>
+</li>
+<li>
+<p>comprendre quel <strong>impact</strong> ont eu ou auront ses actions sur cet état</p>
+</li>
+<li>
+<p>pouvoir en déduire quelles actions entreprendre</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Correctement guider l&#8217;utilisateur facilite son apprentissage du système et sa facilité à s&#8217;y repérer.
+De même, cela contribue à prévenir d&#8217;éventuelles erreurs d&#8217;utilisation dues à une mauvaise compréhension de l&#8217;état du système ou d&#8217;une opération particulière.</p>
+</div>
+<div class="paragraph">
+<p>Il existe deux types de guidage complémentaires :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Le <strong>guidage explicite</strong> se fait via des messages d&#8217;avertissement ou de confirmation, des boîtes de dialogue spécifique, un manuel utilisateur ou une aide en ligne, des codes d&#8217;erreur précis, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Le <strong>guidage implicite</strong> passe par une <strong>structuration appropriée</strong> de l&#8217;affichage, l&#8217;utilisation d'<strong>éléments différenciés</strong> que ce soit par leur couleur, leur police de caractère, le fait de les regrouper par catégorie, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="principle_consistency">Homogénéité</h3>
+<div class="paragraph">
+<p>Les outils informatiques cultivent et entretiennent les habitudes de leurs utilisateurs.
+Les utilisateurs recherchent eux-même cela : ils veulent pouvoir au plus vite tomber dans une sorte d&#8217;utilisation inconsciente de leurs outils, afin de pouvoir les « oublier » et se concentrer sur les tâches qu&#8217;ils ont à accomplir.
+Plus un système informatique est <strong>homogène</strong>, mieux ils y arriveront.</p>
+</div>
+<div class="paragraph">
+<p>Un système est homogène si, par exemple :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>son <strong>look &amp; feel</strong> est cohérent</p>
+</li>
+<li>
+<p>sa conception est <strong>stable</strong></p>
+</li>
+<li>
+<p>sa <strong>logique d&#8217;utilisation</strong> est apparente</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Ces qualités rendent le système plus prévisible, plus facilement exploitable, plus compréhensible.
+Tout ceci contribue à rendre les détails propres au système « oubliables », afin que l&#8217;utilisateur puisse se concentrer sur <em>ce</em> qu&#8217;il a à faire, au lieu de <em>comment</em> le faire.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="principle_flexibility">Souplesse</h3>
+<div class="paragraph">
+<p>Un système <strong>souple</strong> s&#8217;adapte à l&#8217;utilisateur, à sa tâche et au support sur lequel elle tourne.
+Il peut, par exemple :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>proposer <strong>plusieurs manières</strong> de réaliser une même opération</p>
+</li>
+<li>
+<p>offrir des moyens de <strong>personnalisation</strong> de sa configuration</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="principle_explicit_control">Contrôle explicite</h3>
+<div class="paragraph">
+<p>L&#8217;utilisateur doit toujours <strong>garder le contrôle</strong> sur le système.
+De même, il doit comprendre de quelle manière ce contrôle s&#8217;exerce.</p>
+</div>
+<div class="paragraph">
+<p>Un système ergonomique offrira un <strong>feedback</strong> immédiat aux actions de l&#8217;utilisateur, afin que celui-ci puisse se rendre compte de l&#8217;effet de ses actions.
+Ce <strong>retour</strong> offert à l&#8217;utilisateur doit être présent même si la commande est longue.
+Cela peut se faire via des messages de confirmation, des barres de progression, des voyants de statut, et ainsi de suite.
+À l&#8217;inverse, un <em>freeze</em> de l&#8217;IHM pendant la durée d&#8217;une opération longue est à proscrire.</p>
+</div>
+<div class="paragraph">
+<p>Tout cela contribue à rendre les opérations permises par un système <strong>prédictible</strong>.
+Outre faciliter l&#8217;apprentissage, cela prévient les erreurs d&#8217;utilisation dues à une mauvaise compréhension de ses actions par l&#8217;utilisateur, ou à la simple impatience.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="principle_error_management">Gestion des erreurs</h3>
+<div class="paragraph">
+<p>Lorsqu&#8217;un erreur survient, l&#8217;utilisateur doit pouvoir la percevoir et l&#8217;identifier comme une erreur.
+S&#8217;il est nécessaire que l&#8217;utilisateur fasse une opération explicite pour corriger une erreur, il doit être <a href="#principle_guiding">guidé</a> afin de pouvoir faire des choix éclairés, et non livré à lui-même.
+Enfin, lorsqu&#8217;une erreur survient, le système doit être suffisamment <strong>robuste</strong> (ie. fiable) pour que cette erreur n&#8217;impacte pas la suite du fonctionnement du système.</p>
+</div>
+<div class="paragraph">
+<p>Il faut garder à l&#8217;esprit que toute erreur n&#8217;est pas <strong>bloquante</strong>.
+Il est possible de notifier l&#8217;utilisateur de manière <strong>non-bloquante</strong>, c&#8217;est à dire sans que celui-ci doive interrompre ce qu&#8217;il est en train de faire, afin qu&#8217;il puisse identifier ce qui s&#8217;est mal passé plus tard, quand il le jugera utile.</p>
+</div>
+<div class="paragraph">
+<p>Un système <strong>tolérant</strong> aux erreurs qui surviennent et qui offre les outils pour analyser et corriger précisément tout type d&#8217;erreur, met son utilisateur <strong>en confiance</strong>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="principle_concision">Concision</h3>
+<div class="paragraph">
+<p>Les informations fournies à l&#8217;utilisateur doivent être <strong>concises</strong> et <strong>précises</strong>.
+Attention, le langage utilisé pour fournir ses information, ainsi que leur niveau de précision doivent être <strong>adapté à l&#8217;utilisateur</strong>.
+En effet, un message exposant le fonctionnement interne du système, bien que compréhensible par un développeur, <em>n&#8217;est pas</em> adapté à un utilisateur !</p>
+</div>
+<div class="paragraph">
+<p>Cette concision s&#8217;applique aussi à la facilité d&#8217;exploitation du système.
+Il est important de <strong>minimiser le nombre et la durée des actions</strong> à réaliser par l&#8217;utilisateur pour accomplir une opération particulière.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exemples_3">Exemples</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_restrictions_arbitraires">Restrictions arbitraires</h3>
+<div class="paragraph">
+<p>De trop nombreuses IHMs imposent arbitrairement des restrictions à leurs utilisateurs.
+Par exemple :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Limiter le nombre d&#8217;annulations d&#8217;opérations (« <em>undo</em> ») maximum possibles.<br>
+Pour quelle raison ? Stocker un nombre indéfini d&#8217;opérations nécessite-t&#8217;il tant de ressources machine que ça ?</p>
+</li>
+<li>
+<p>Limiter la taille d&#8217;un champ de texte d&#8217;un formulaire à un certain nombre de caractères.<br>
+Y a t&#8217;il une limitation à la base de données sous-jacente ? Si oui, pourquoi cette limitation existe-t-elle ?</p>
+</li>
+<li>
+<p>Forcer à remplir <em>tous</em> les champs d&#8217;un formulaire.<br>
+Comment l&#8217;utilisateur est-il sensé faire s&#8217;il ne dispose pas d&#8217;une partie des informations ?
+Toutes ces informations sont-elles réellement indispensables ?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Parfois, ces limitations ont une raison d&#8217;être due aux limitations techniques d&#8217;un système donné.
+Cependant, elles sont toujours perçues par l&#8217;utilisateur comme arbitraires, frustrantes, et faciles à oublier.</p>
+</div>
+<div class="paragraph">
+<p>En conséquence, il est préférable de <strong>limiter</strong> à tout prix ces restrictions, que ce soit dans leur nombre ou leur impact.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mécanismes_internes">Mécanismes internes</h3>
+<div class="paragraph">
+<p>La conception d&#8217;un système devrait prendre comme point de départ l&#8217;utilisateur et les tâches qu&#8217;il a à accomplir (voir <a href="#anthropocentric_approach">approche anthropocentriste</a>).
+Il est nécessaire, afin de maximiser l&#8217;efficience avec laquelle l&#8217;utilisateur accomplit ses tâches, qu&#8217;il puisse se concentrer sur elle, sans avoir à se préoccuper de détails d&#8217;implémentation de l&#8217;interface.</p>
+</div>
+<div class="paragraph">
+<p>De plus, les <a href="#concepts">concepts</a> qu&#8217;utilise ce système doivent être clairement définis.
+Clairement définir ses concepts implique de savoir lesquels sont réellement utiles à l&#8217;utilisateur, et lesquels sont, à l&#8217;inverse, utiles au seul concepteur/développeur de l&#8217;interface.</p>
+</div>
+<div class="paragraph">
+<p>En conséquence, les concepts et le vocabulaire propres à un système, mais non utiles à l&#8217;exécution d&#8217;une tâche, doivent être <strong>toujours invisibles pour l&#8217;utilisateur</strong>.
+En d&#8217;autres termes, il faut garder les mécanismes internes du système &#8230;&#8203; à l&#8217;intérieur.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nombreuses_fonctionnalités">Nombreuses fonctionnalités</h3>
+<div class="paragraph">
+<p>Lorsqu&#8217;un système offre toujours plus de fonctionnalités ou d&#8217;options, il promet davantage de puissance à son utilisateur.
+Cependant, ces améliorations fonctionnelles doivent nécessairement se retrouver dans l&#8217;IHM, au risque de rendre celle-ci toujours plus complexe.
+Il faut donc éviter que, pour l&#8217;utilisateur, de grands pouvoirs impliquent &#8230;&#8203; une grande confusion !</p>
+</div>
+<div class="paragraph">
+<p>Une IHM offrant pléthore de fonctionnalités peut être intimidante.
+Surtout pour un utilisateur qui n&#8217;utilise vraiment qu&#8217;une portion, parfois minime, de ces fonctionnalités.</p>
+</div>
+<div class="paragraph">
+<p>Il vaut mieux ne pas s&#8217;aliéner les utilisateurs débutants, en cours de formation ou occasionnels.
+De plus, il ne faut pas freiner l&#8217;utilisateur, même expert, dans ses opérations les plus courantes en le forçant à considérer d&#8217;autres opérations offertes par le système.</p>
+</div>
+<div class="paragraph">
+<p>En conséquence, seules les fonctionnalités les plus importantes doivent être aisément accessibles et visibles.
+À l&#8217;inverse, les fonctionnalités moins couramment utilisées doivent pouvoir être ignorées.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Utiliser de <strong>valeurs par défaut</strong>, par exemple en :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>initialisant automatiquement certains champs de formulaire</p>
+</li>
+<li>
+<p>positionnant certaines options dans un menu de paramètres à part</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Utiliser de <strong>templates</strong> ou de <strong>wizards</strong> pour que l&#8217;utilisateur n&#8217;ait pas à apprendre ou à maîtriser toutes ses possibilités avant de pouvoir accomplir une opération</p>
+</li>
+<li>
+<p>Ne pas afficher les contrôles ou widgets qui ne sont pas pertinents pour l&#8217;action en cours</p>
+</li>
+<li>
+<p>Utiliser des noms de fonctionnalités génériques.
+Cela peut signifier que deux fonctionnalités permettant de manier deux concepts nommés différement porteront le même nom aux yeux de l&#8217;utilisateur.
+Par exemple, « créer », « ouvrir », « déplacer », « copier », « sauv(egard)er » ou « supprimer » sont des appellations généralement bien comprises par les utilisateurs, qui peuvent être réutilisées dans des contextes différents, de manière à ce que l&#8217;utilisateur n&#8217;ait pas l&#8217;impression de manier ou de devoir apprendre de nouvelles fonctionnalités.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_biais_cognitif">Biais cognitif</h3>
+<div class="paragraph">
+<p>Un designer ne doit pas partir du principe que l&#8217;utilisateur connait le fonctionnement du programme, et tout spécialement pas son fonctionnement interne.
+L&#8217;utilisateur ne connait ni le langage, ni surtout les intentions du designer, et n&#8217;a en général pas connaissance du contexte nécessaire pour comprendre les messages d&#8217;erreur.</p>
+</div>
+<div class="paragraph">
+<p>À titre d&#8217;exercice, avant de cliquer sur chacun des liens suivant (chacun mène vers un article de presse), lisez-en l&#8217;intitulé relativement loufoque, et essayez de vous imaginer la situation qu&#8217;ils décrivent.
+Ensuite seulement, cliquez et lisez l&#8217;article.
+Est-ce que les faits décrits correspondaient tous exactement à ce que vous aviez imaginé ?</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.20minutes.fr/rennes/1603371-20150507-rennes-sebastien-couru-apres-bus-pendant-4-kilometres">Rennes: Sébastien a couru après son bus pendant 4 kilomètres</a></p>
+</li>
+<li>
+<p><a href="https://www.20minutes.fr/insolite/1523295-20150122-video-grande-bretagne-babouin-ressuscite-grace-staying-alive-bee-gees">Un babouin ressucite grâce à « Staying Alive » des Bee Gees</a></p>
+</li>
+<li>
+<p><a href="http://www.lessentiel.lu/fr/news/story/21591841">Il réécrit la Bible car il la trouve « mal écrite »</a></p>
+</li>
+<li>
+<p><a href="http://www.cnewsmatin.fr/lol/2015-06-25/il-danse-en-lechant-un-crapaud-la-police-larrete-706594">Il danse en léchant un crapaud : la police l&#8217;arrête</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Pour les simples utilisateurs d&#8217;un système, la situation est semblable.
+Il ne sont probablement pas plus idiots que le designer ou le développeur.
+Ils en savent même probablement davantage sur la réalité des tâches que le logiciel permet d&#8217;accomplir.
+Mais ils ne connaissent pas vraiment le logiciel lui-même dans le détail, et ce contexte qui leur fait défaut leur empêche par exemple de comprendre un message d&#8217;erreur qui détaille le fonctionnement interne du logiciel.</p>
+</div>
+<div class="paragraph">
+<p>Typiquement, un développeur ou un designer pensent « <em>inside-out</em> » : il connaissent les détails internes du système, et s&#8217;en servent, même inconsciemment, pour évaluer l&#8217;ergonomie de l&#8217;interface externe.
+À l&#8217;inverse, un utilisateur lambda pense « <em>outside-in</em> » : il ne connaît que le logiciel de l&#8217;extérieur, et doit se servir de cette connaissance partielle pour comprendre ce qui se passe vraiment.</p>
+</div>
+<div class="paragraph">
+<p>C&#8217;est ce biais cognitif, intrisèque aux fonctions de designer ou de développeur, qui doit être évité pour maximiser entre autres la facilité d&#8217;apprentissage et d&#8217;exploitation d&#8217;un logiciel par son utilisateur réel.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_données">Données</h3>
+<div class="paragraph">
+<p>L&#8217;informatique est la traitement automatique de l&#8217;information.
+L&#8217;utilisateur à besoin que le système qu&#8217;il utilise lui fournisse des <strong>informations utiles</strong>, pas qu&#8217;il se contente de lui afficher des données sans traitement.
+Les meilleures IHMs n&#8217;embrouillent pas l&#8217;utilisateur avec des données dont il n&#8217;a pas besoin à ce moment, mais lui présentent les informations réellement nécessaires, compilées à partir de ces données.</p>
+</div>
+<div class="paragraph">
+<p>En particulier :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Les messages d&#8217;erreur, ou fenêtres de confirmation ne doivent pas décrire un problème, mais proposer une solution la plus concise et utile possible, dans un langage compréhensible par l&#8217;utilisateur.</p>
+</li>
+<li>
+<p>L&#8217;esthétique d&#8217;une IHM doit certes être attrayante et cohérente.
+Cependant, il est parfois nécessaire de faire des compromis pour rendre la prise d&#8217;informations par l&#8217;utilisateur plus aisée.</p>
+</li>
+<li>
+<p>La quantité d&#8217;informations, leur forme et l&#8217;ordre dans lequel elles sont présentées doivent toutes être appropriées au périphérique de sortie considéré.
+En particulier, le contenu doit être adapté à la navigation sur mobile (voir <a href="#chapter_adaptive_design">Adaptive Design</a>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>De manière générale, la convivialité des données présentées réside dans l&#8217;attention portée par le concepteur aux détails.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_affichage">Affichage</h3>
+<div class="paragraph">
+<p>Une maxime qui est pour beaucoup dans le fait que l&#8217;utilisateur s&#8217;approprie une interface et la trouve intuitive peut être traduite par « l&#8217;écran appartient à l&#8217;utilisateur ».
+Elle signifie que quand un changement survient à l&#8217;écran, l&#8217;utilisateur doit le percevoir, s&#8217;y attendre, et le maîtriser.</p>
+</div>
+<div class="paragraph">
+<p>En pratique, cela veut dire :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Les éléments d&#8217;une interface ne doivent pas bouger unilatéralement, sans le consentement de l&#8217;utilisateur.</p>
+</li>
+<li>
+<p>Une interface ne doit pas « trop » changer d&#8217;un seul coup (notion anglaise de <em>display inertia</em>).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Par exemple, si l&#8217;utilisateur effectue une « petite » opération localisée, cela ne doit se traduire à l&#8217;écran que par un « petit » changement localisé.</p>
+</li>
+<li>
+<p>Si, à l&#8217;inverse, il est nécessaire de grandement changer ce que l&#8217;interface affiche à l&#8217;écran, ce changement doit être d&#8217;une part annoncé, attendu par l&#8217;utilisateur, et d&#8217;autre part le moins disruptif possible pour l&#8217;interface.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Les changements doivent apparaître à l&#8217;écran de manière visible par l&#8217;utilisateur.
+Ils ne doivent pas être si infimes que l&#8217;utilisateur ne les remarque pas.
+Ils ne doivent pas non plus être dissimulés par d&#8217;autres éléments de l&#8217;interface elle-même, comme une boîte de dialogue par exemple.</p>
+</li>
+<li>
+<p>Une interface ne doit pas (ré)ordonner ses éléments différement de ce que l&#8217;utilisateur attend, ou de ce qu&#8217;il a configuré.
+ Même si la volonté est d&#8217;aider l&#8217;utilisateur, en lui proposant par exemple un tri automatique « plus logique » : la logique du concepteur n&#8217;est pas forcément celle de l&#8217;utilisateur.<br>
+Des opérations de tri ou de classement peuvent évidemment être proposées, mais elles doivent être explicites et au choix de l&#8217;utilisateur.</p>
+</li>
+<li>
+<p>Une interface ne doit <em>jamais</em> déplacer le pointeur de souris elle-même.
+En aucun cas.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_couleurs">Couleurs</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_usage">Usage</h3>
+<div class="paragraph">
+<p>Dans le domaine des IHM, les couleurs sont utilisées pour :</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Attirer l&#8217;attention</dt>
+<dd>
+<p>Les éléments d&#8217;intérêt gagnent à être représentés par une couleur qui se détache du reste de l&#8217;interface.
+De plus, il est possible d&#8217;utiliser tout un assortiment d&#8217;effets de couleurs (incluant des mouvements, des dégradés, du clignotement, &#8230;&#8203;) pour attirer une attention particulière sur un élément particulier.</p>
+</dd>
+<dt class="hdlist1">Indiquer un état</dt>
+<dd>
+<p>Les utilisateurs sont habitués à associer certaines couleurs à un statut particulier.
+Par exemple, le rouge sera associé aux erreurs ou à un danger, tandis que le vert sera perçu comme un succès ou un marqueur de sécurité.</p>
+</dd>
+<dt class="hdlist1">Organiser les relations entre éléments</dt>
+<dd>
+<p>Différents éléments de même nature peuvent être facilement identifiés par la rétuilisation du même code couleur.
+De même, un dégradé de couleurs pourra permettre de hiérarchiser les éléments par leur ordre d&#8217;importance, par exemple.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_palettes">Palettes</h3>
+<div class="paragraph">
+<p>Il est important pour l&#8217;attrait d&#8217;une interface d&#8217;utiliser une <strong>palette de couleurs</strong> bien choisie.
+C&#8217;est là le travail des artistes, mais il est possible d&#8217;isoler certaines règles de base :</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><em>Less is more</em> </dt>
+<dd>
+<p>Il vaut mieux minimiser le nombre de couleurs différentes.
+Multiplier le nombre de couleurs fait courir le risque d&#8217;aboutir à une concurrence entre ces couleurs pour l&#8217;attention de l&#8217;utilisateur.</p>
+</dd>
+<dt class="hdlist1">Le confort visuel doit primer </dt>
+<dd>
+<p>En effet, même si une palette de couleurs attrayante est évidemment préférable à une autre moins esthétique, cette notion d&#8217;esthétique est souvent nébuleuse et subjective.
+Par contre, il est vital de garder en tête qu&#8217;une interface graphique <em>n&#8217;est pas</em> quelque chose qu&#8217;on accroche au mur au dessus d&#8217;un canapé, mais une chose qui sera affiché par un écran, et devant laquelle l&#8217;utilisateur passera des heures : il est important donc de <strong>minimiser la fatigue visuelle</strong>.</p>
+</dd>
+<dt class="hdlist1">Différences selon l&#8217;utilisateur </dt>
+<dd>
+<p>Une palette de couleurs sera non seulement perçue différement, mais devra souvent être affichée différement selon la personne (daltonisme, &#8230;&#8203;) et selon le matériel (type &amp; réglage de l&#8217;écran) considérés.</p>
+</dd>
+<dt class="hdlist1">Relations de voisinage </dt>
+<dd>
+<p>Les couleurs qui « vont le mieux ensemble » sont souvent liées par des relations de voisinage particulières sur le cercle chromatique.
+On peut distinguer plusieurs relations intéressantes :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Les objets rendus dans des <strong>couleurs chaudes</strong> apparaissent plus proches, plus grands, plus accueillants, tandis que ceux affichant des <strong>couleurs froides</strong> apparaissent plus éloignés, plus petits, plus professionnels.</p>
+</li>
+<li>
+<p>Les <strong>couleurs complémentaires</strong> sont <strong>diamétralement opposées</strong> sur le cercle chromatique.
+Pour davantage de variété, plutôt que prendre la couleur diamétralement opposée à une couleur, on pourra choisir ses voisines.</p>
+</li>
+<li>
+<p>Il est possible de jouer sur les <strong>harmonies triadiques</strong>, en prenant trois couleurs équidistantes, qui dessinent un triangle équilatéral sur le cercle chromatique.
+Les <strong>harmonies tetradiques</strong>, elles, associent quatre couleurs qui, si on les relient, forment un carré ou un rectangle sur le cercle chromatique.</p>
+</li>
+<li>
+<p>Les <strong>couleurs analogues</strong> sont voisines sur le cercle chromatique.</p>
+</li>
+<li>
+<p>Enfin, on pourra utiliser des <strong>monochromes</strong> de couleurs situées au même endroit du cercle chromatique, mais offrant des niveaux de saturation ou de luminosité différents.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_interfaces_multi_support">Interfaces multi-support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Aujourd&#8217;hui, une IHM n&#8217;a plus forcément vocation à être affichée sur un seul type d&#8217;écran.
+L&#8217;heure est aux produits <strong>multi-supports</strong>, et les IHM doivent suivre.
+Parmi les supports les plus courants, on peut citer :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>l'« ordinateur » classique (<em>desktop</em> ou <em>laptop</em>) : support historique, encore souvent nécessaire ;</p>
+</li>
+<li>
+<p>le téléphone mobile (smartphone,&#8230;&#8203;) : sa part de marché a explosé ces dernières années ; pourtant, l&#8217;expérience utilisateur d&#8217;Internet sur mobile est encore loin d&#8217;être parfaite</p>
+</li>
+<li>
+<p>les tablettes : la taille de leur écran les rapproche d&#8217;un PC, mais leur modèle de navigation tactile les rapproche davantage d&#8217;un téléphone mobile &#8230;&#8203; pourtant, la navigation tactile sur tablette offre des différence notables ;</p>
+</li>
+<li>
+<p>une foule d&#8217;autres supports : montres connectées, TV connectées, etc.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Aujourd&#8217;hui, même la conception d&#8217;une interface qui se limite au duo « PC et smartphone » est bien souvent obsolète.</p>
+</div>
+<div class="paragraph">
+<p>Il y a certaines spécificités des téléphones mobiles à garder en tête lors de la conception d&#8217;une IHM :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La relativement petite taille de l&#8217;écran conditionne les éléments qui peuvent être affichés.
+Mais comme l&#8217;écran est tactile, les contrôles (boutons,&#8230;&#8203;) ne peuvent pas être inférieurs à une certaine taille.</p>
+</li>
+<li>
+<p>La navigation sur téléphone mobile se fait souvent « à une main », voire avec le seul pouce.
+La postion des contrôles doit donc être pensée en fonction de cette contrainte.</p>
+</li>
+<li>
+<p>Sur mobile, l&#8217;utilisateur a parfois un besoin très spécifique à remplir, et/ou peu de temps à y consacrer.
+Une IHM approprié à l&#8217;usage mobile doit donc offrir uniquement ce dont l&#8217;utilisateur a besoin.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Recycler à l&#8217;identique une IHM déjà existante sur PC afin de se contenter de l&#8217;afficher sur un écran plus petit n&#8217;est donc pas une solution.
+Pourtant, par exemple, trop de sites web forcent encore leurs utilisateurs à zoomer/dézoomer et à faire défiler sur deux axes une page qui n&#8217;a pas été pensée pour la navigation mobile.</p>
+</div>
+<div class="sect2">
+<h3 id="chapter_responsive_design">Responsive design</h3>
+<div class="paragraph">
+<p>Ethan Marcotte a défini la notion de Responsive Design en 2010 dans <a href="https://alistapart.com/article/responsive-web-design">un article pour le magazine A List Apart</a>.</p>
+</div>
+<div class="paragraph">
+<p>Cette conception implique un design unique qui s&#8217;adapte <strong>automatiquement</strong> pour tous les écrans (c&#8217;est à dire pour toutes les tailles de viewport) grâce à une mise en page <strong>fluide</strong>.
+Peu importe l&#8217;appareil sur lequel est affichée l&#8217;interface graphique, seule la taille de l&#8217;écran compte.</p>
+</div>
+<div class="paragraph">
+<p>Par exemple, des éléments d&#8217;un menu disposés horizontalement sur un écran large « flottent » verticalement lorsque la largeur de l&#8217;écran se réduit.
+Une grille de 4×1 éléments pourra ainsi se voir successivement redimensionnée en 2×2, puis 4×1.</p>
+</div>
+<div class="sect3">
+<h4 id="_avantages_5">Avantages</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Tous les formats d&#8217;affichage sont supportés : les formats présents, mais aussi (théoriquement) à venir sont pris en compte.
+Cette conception est donc très <strong>pérenne</strong>.</p>
+</li>
+<li>
+<p>Cette solution offre un avantage au niveau de la maintenance.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_inconvénients_5">Inconvénients</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Cette manière de faire pose des questions de <strong>performance</strong> et de <strong>dimensionnement</strong>.</p>
+</li>
+<li>
+<p>L&#8217;enfer est dans les détails : envisager une solution purement responsive est souvent illusoire.</p>
+</li>
+<li>
+<p>Ce design a évidemment un coût.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="chapter_adaptive_design">Adaptive design</h3>
+<div class="paragraph">
+<p>Le terme d&#8217;adaptive design a été utilisé pour la première fois par Aaron Gustafson dans son ouvrage <em>Adaptive Web Design</em>.</p>
+</div>
+<div class="paragraph">
+<p>Il implique de concevoir un design adapté, <strong>optimal pour chaque appareil</strong> sur lequel doit s&#8217;afficher une IHM.
+Cela entend une stratégie de contenu propre à chaque support et ce, dès la conception.
+L&#8217;adaptive design est centré sur l&#8217;expérience utilisateur ; d&#8217;où la nécessité de comprendre les besoin et habitudes de navigation (potentiellement différentes) des utilisateurs de chaque appareil.
+Puisque l&#8217;accent est mis sur les phases d&#8217;analyse du besoin et de conception, une grande rigueur est nécessaire.</p>
+</div>
+<div class="sect3">
+<h4 id="_avantages_6">Avantages</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Ce type de conception offre davantage de contrôle, une maîtrise fine de ce qui est affiché sur quel appareil et comment.</p>
+</li>
+<li>
+<p>Les contenus étant adaptés à chaque appareil, l&#8217;adaptive designe offre en général de meilleures performances.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_inconvénients_6">Inconvénients</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Puisqu&#8217;il n&#8217;y a pas un seul design mais plusieurs, les coûts de maintenance peuvent être plus importants.</p>
+</li>
+<li>
+<p>Qu&#8217;en est-il des appareils non prévus ?</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_choisir">Choisir</h3>
+<div class="sect3">
+<h4 id="_gradient_chart">Gradient Chart</h4>
+<div class="paragraph">
+<p>Une méthode préliminaire est celle du « Gradient Chart » de Cennyd Bowles :</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Premièrement, lister toutes les fonctionnalités que l&#8217;interface doit remplir</p>
+</li>
+<li>
+<p>Puis, les ordonner en fonction de leur importance pour les utilisateurs de chaque appareil</p>
+</li>
+<li>
+<p>Enfin, relier chaque fonctionnalité de même nom par une ligne :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>si les lignes ne se croisent pas tellement, un design responsive pur peut à priori être adapté.</p>
+</li>
+<li>
+<p>si toutes les lignes sont entremêlées, il vaudra mieux partir sur un adaptive design.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://www.cennydd.com/writing/the-gradient-chart"><img src="resources/responsive/gradient-chart-CennydBowles.png" alt="gradient chart CennydBowles"></a>
+</div>
+<div class="title">Exemple : Gradient Chart, Cennyd Bowles</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_amélioration_progressive">Amélioration progressive</h4>
+<div class="paragraph">
+<p>La méthode d&#8217;amélioration progressive consiste à débuter avec la base la plus simple (par exemple <em>mobile first</em> ou <em>desktop first</em>), puis à construire par dessus, à améliorer l&#8217;interface en fonction des capacités de chaque appareil.</p>
+</div>
+<div class="paragraph">
+<p>Comme toujours, meilleure est la connaissance de l&#8217;utilisateur, meilleure sera l&#8217;interface destinée à remplir ses besoins.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_techniques">Techniques</h3>
+<div class="paragraph">
+<p>Voici un aperçu rapide des techniques de bases qui rendent possible un design multi-support.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Unités absolues, Unités relatives</dt>
+<dd>
+<p>Il est important de manier correctement les différentes unités disponibles.
+Ces unités, parfois nombreuses, se répartissent en deux catégories :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>les unités <strong>absolues</strong> : pixels, centimètres, pouces, &#8230;&#8203;</p>
+</li>
+<li>
+<p>les unités <strong>relatives</strong> : pourcentage de la taille de l&#8217;élément parent ou du viewport, fonction de la taille du texte, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Mise en page fluide</dt>
+<dd>
+<p>C&#8217;est le contenu qui doit décider de la mise en page, et pas seulement la taille de l&#8217;écran.
+Cela signifie qu&#8217;un élément qui prend davantage de place va naturellement « pousser » les élements voisins de manière harmonieuse.</p>
+</dd>
+<dt class="hdlist1">Dimensions maximum</dt>
+<dd>
+<p>C&#8217;est une chose que d&#8217;avoir une interface qui s&#8217;adapte au plus grands écrans.
+Cependant, il faut aussi penser au delà de quelle taille les éléments ne doivent pas grandir, pour éviter les effets d&#8217;étirement par exemple.</p>
+</dd>
+<dt class="hdlist1">Images</dt>
+<dd>
+<p>Les images affichées peuvent être de deux types : <strong>bitmaps</strong> (<em>.jpg</em>, <em>.png</em>, <em>.gif</em>, &#8230;&#8203;) ou <strong>vectorielles</strong> (_.svg, &#8230;&#8203;).
+Une image vectorielle offre l&#8217;avantage de pouvoir être affichée à n&#8217;importe quelle résolution sans perte de qualité, alors qu&#8217;une image bitmap agrandie apparaitra pixelisée.
+La question de la taille mémoire de l&#8217;image est à garder à l&#8217;esprit.
+De même, il est nécessaire de s&#8217;assurer du bon rendu des couleurs (en particulier sur le web : attention aux palettes et aux optimisations).</p>
+</dd>
+<dt class="hdlist1">Polices de caractères</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Les polices <strong>web</strong> offrent un rendu souvent intéressant et original, mais doivent être téléchargées, ce qui induit une latence d&#8217;affichage.</p>
+</li>
+<li>
+<p>Les polices <strong>système</strong> permettent un affichage rapide, mais elle peuvent ne pas être installées sur le système hôte.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Dans tous les cas, une bonne pratique est de prévoir une ou plusieurs <strong>polices de remplacement</strong> (<em>fallbacks</em>).
+C&#8217;est pourquoi on parle plutôt aujourd&#8217;hui de <strong>familles de polices</strong> (<em>font families</em>) affectées à un contenu particulier.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Breakpoints</dt>
+<dd>
+<p>Fondements du <em>adaptive design</em>, les breakpoints permettent de fixer une limite pour affecter une caractéristique donnée à une interface.
+On distingue notamment :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>les breakpoints <strong>majeurs</strong>, qui altèrent complètement la mise en page de l&#8217;interface ;</p>
+</li>
+<li>
+<p>les breakpoints <strong>mineurs</strong>, qui lui apportent de plus légers changements : par exemple, au niveau de espacement entre les éléments :</p>
+</li>
+<li>
+<p>les breakpoints <strong>partiels</strong>, qui sont &#8230;&#8203; entre les deux. Ils apportent en général un changement important, mais limité à un <strong>groupe d&#8217;éléments</strong> (<em>nested objects</em>) particulier.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_Égalité_devant_le_contenu">Égalité devant le contenu</h3>
+<div class="paragraph">
+<p>La notion d&#8217;égalité devant le contenu (<em>content parity</em>, ou <em>*One Web*</em>(W3C)) consiste à rendre disponible les mêmes informations et services à tous les utilisateurs.
+Et cela, <strong>quel que soit l&#8217;appareil</strong> qu&#8217;ils utilisent pour accéder à ces contenus.
+Cela ne signifie cependant pas que les contenus seront affichés exactement de la même manière quel que soit l&#8217;appareil.
+Au contraire, les contenus devraient être présentés de la manière <strong>la plus appropriée</strong> à chaque appareil.</p>
+</div>
+<div class="paragraph">
+<p>Ces buts sont évidemment à poursuivre dans la limite du raisonnable.
+En particulier, des points comme les capacités techniques ou d&#8217;input des appareils ou, dans un contexte mobile, les considérations de réseau peuvent affecter la présentation du contenu.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_accessibilité">Accessibilité</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_définition_et_contexte">Définition et contexte</h3>
+<div class="paragraph">
+<p>L&#8217;accessibilité numérique est la mise d&#8217;un à la disposition de tous les individus, quels que soient leur matériel ou logiciel, leur infrastructure réseau, leur langue maternelle, leur culture, leur localisation géographique, ou leurs aptitudes physiques ou mentales, des ressources numériques.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;accessibilité est généralement associée à la notion de handicap.
+En effet, le handicap de l&#8217;utilisateur d&#8217;un logiciel influe directement sur sa capacité à l&#8217;utiliser.</p>
+</div>
+<div class="paragraph">
+<p>Il existe en fait bien des types de handicaps différents, temporaires ou permanents, qui ont pour la majorité différents dégrés ou formes spécifiques :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>les handicaps <strong>visuels</strong> (cécité totale ou partielle, daltonismes, épilepsie, &#8230;&#8203;) empêchent de percevoir tout ou partie des aspects graphiques d&#8217;une interface.</p>
+</li>
+<li>
+<p>les handicaps <strong>auditifs</strong> (surdité totale ou partielle, hyperacousie, acouphènes, &#8230;&#8203;) empêchent de percevoir tout ou partie des aspects sonores d&#8217;une interface.</p>
+</li>
+<li>
+<p>les handicaps <strong>cognitifs</strong> (autisme, dyslexie, dyscalculie, TDAH, &#8230;&#8203;) freinent l&#8217;apprentissage, la compréhension et/ou l&#8217;exploitation d&#8217;une interface.</p>
+</li>
+<li>
+<p>les handicaps <strong>moteurs</strong> (paralysies, atrophies, dyspraxie, syndrome du canal carpien, foulures, fractures, &#8230;&#8203;) entravent la faculté d&#8217;exploitation d&#8217;une interface.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cependant, les personnes en situation de handicap ne sont pas les seules concernées par l&#8217;accessibilité d&#8217;une interface.
+On peut citer par exemple le cas d&#8217;une personne distraite par autre chose qui aura ses capacités de réaction et d&#8217;opération décrues, celui d&#8217;une personne opérant dans un environnement bruyant, dont la carte son est cassée ou qui a tout simplement ses enceintes éteintes qui bénéficiera de contraintes semblables à celles d&#8217;une personne sourde, le cas évident d&#8217;une personne ne maîtrisant pas la langue de l&#8217;interface, et ainsi de suite.
+L&#8217;accessibilité d&#8217;un logiciel concerne donc tout le monde.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_enjeux">Enjeux</h3>
+<div class="paragraph">
+<p>Les enjeux de l&#8217;accessibilités sont nombreux :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>économiques</strong> : certains handicaps sont plus courants qu’on ne croit.
+Par exemple le daltonisme, qui concernerait 1 homme sur 7, ou encore le vieillissement actuel de la population des pays développés et tout ce qui l’accompagne (devenir « dur d’oreille », presbite, souffrir de DMLA, de tremblements ou de pertes de mémoires).
+Dans ce cadre, il parait difficile pour une entreprise d&#8217;ignorer les (parfois nombreuses) part de marché que représentent les personnes en situation de handicap, qui peuvent constituer autant de clients potentiels.</p>
+</li>
+<li>
+<p><strong>légaux</strong> : en France, le cadre légal est encore relativement peu contraignant pour les entreprises du numérique.
+Cependant, le secteur d&#8217;activité (transports, administration, &#8230;&#8203;) d&#8217;une entreprise peut quand même la contraindre à prendre certaines mesures pour améliorer l&#8217;accessibilité de ses produits.</p>
+</li>
+<li>
+<p><strong>techniques</strong> : rendre un logiciel accessible consiste avant tout à respecter certaines bonnes pratiques de conception et d&#8217;implémentation.
+Ces bonnes pratiques ne découlent bien souvent pas directement du sujet de l&#8217;accessibilité, et leur bénéfice premier est bien souvent autre (pérénnité, maintenabilité, interopérabilité, &#8230;&#8203;).</p>
+</li>
+<li>
+<p><strong>sociétaux</strong> : l’informatique, en étant accessible, peut devenir un fantastique outil d’autonomie et d&#8217;intégration à la société.
+Et, puisque l&#8217;accessibilité d&#8217;un logiciel ne concerne pas les seules personnes en situation de handicap, il peut bénéficier à tous.
+Par exemple, la télécommande a initialement été conçue pour les personnes handicapées !</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_solution">Solution</h3>
+<div class="paragraph">
+<p>Les situations dans lesquelles les utilisateurs ont besoin d&#8217;une interface accessible sont diverses et variées.
+De plus, des stratégies, produits ou aides spécifiques existent déjà pour adresser certains problèmes.
+Parmi eux, on peut citer entre autres :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>les agrandissement d&#8217;éléments (loupe, &#8230;&#8203;)</p>
+</li>
+<li>
+<p>les lecteurs d&#8217;écran utilisant la synthèse vocale</p>
+</li>
+<li>
+<p>les plages braille ou périphériques d&#8217;entrée spécifique</p>
+</li>
+<li>
+<p>les générateurs de sous-titres</p>
+</li>
+<li>
+<p>les personnalisations de l&#8217;affichage</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Il parait donc difficile de répondre de manière exhaustive et appropriée à chacun de ces usages.
+La solution est de respecter certains standards :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>les <strong>normes</strong>, par exemple issues d&#8217;organismes comme l&#8217;ISO ou l&#8217;AFNOR</p>
+</li>
+<li>
+<p>les <strong>guidelines</strong> spécifiques à chaque plateforme, comme par exemple les <a href="https://www.w3.org/standards/webdesign/accessibility">recommandations du W3C</a>, qui forme la base de plusieurs référentiels nationaux.</p>
+</li>
+<li>
+<p>les <strong>standards</strong> et <strong>usages</strong>, tacites ou non, en termes de protocoles de communication ou d&#8217;implémentation</p>
+</li>
+<li>
+<p>concevoir son application de manière <strong>modulaire</strong>, en <em>séparant le fond de la forme</em></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Toutes ces sources ne sont bien souvent pas centrées sur l&#8217;accessibilité, mais comportent soit une partie qui lui est dédiée, soit un tas de bonnes pratiques qui permettent naturellement l&#8217;accessibilité.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validation">Validation</h3>
+<div class="paragraph">
+<p>Il existe différentes manières complémentaires pour valider l&#8217;accessibilité d&#8217;un logiciel :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Suivre un checklist basée sur les recommandations de la plateforme cible</p>
+</li>
+<li>
+<p>Utiliser des lecteurs d&#8217;écrans et/ou d&#8217;autres outils, les mêmes utilisés par les utilisateurs en situation de handicap</p>
+</li>
+<li>
+<p>Les interfaces web peuvent bénéficier de visualisations par un navigateur uniquement textuel, comme lynx</p>
+</li>
+<li>
+<p>Faire appel directement à un panel approprié de testeurs en situation de handicap lors des tests d&#8217;utilisabilité.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_internationalisation">Internationalisation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>L&#8217;adaptation d&#8217;une IHM à des usagers issus d&#8217;une ou plusieurs cultures différentes recouvre plusieurs notions :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La <strong>traduction</strong> des éléments textuels affichés</p>
+</li>
+<li>
+<p>La <strong>localisation</strong> (<em>localization</em> ou <em>l10n</em>, parfois aussi appelée régionalisation) est l&#8217;adaptation de l&#8217;interface à une autre langue, et même au delà, à une autre culture.
+Ce processus est bien plus vaste que la simple traduction.</p>
+</li>
+<li>
+<p>L'<strong>internationalisation</strong> (<em>internationalization</em> ou <em>i18n</em>, parfois aussi appelée globalisation) est l&#8217;ensemble des techniques de conception et d&#8217;implémentation rendant possible la localisation.
+L’internationalisation est un prérequis à une bonne localisation.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_traduction">Traduction</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>L'<strong>Unicode</strong> étant le seul encodage unifiant toutes les écritures informatiques, il est particulièrement intéressant qu&#8217;une application fonctionne principalement dans cet encodage</p>
+</li>
+<li>
+<p>Les règles de <strong>pluriel</strong> et de <strong>grammaire</strong>, par exemple la manière dont une phrase est construite, varient largement d&#8217;une langue à l&#8217;autre.</p>
+</li>
+<li>
+<p>De manière générale, il vaut mieux éviter de recourir à des expressions imagées, qui peuvent être difficile à traduire en dehors d&#8217;un contexte linguistique donné.</p>
+</li>
+<li>
+<p>Davantage que la notion de seule langue, il est important de manier une <strong>locale</strong>, qui est un couple (langue, pays) représentant le fait qu&#8217;une langue peut être parlée dans plusieurs pays, et qu&#8217;un même pays peut compter des locuteurs de plusieurs langues.
+Une locale est représentée par un code standardisé, tel que <code>fr_FR</code> (le français parlé en France), <code>en_US</code> (l&#8217;anglais parlé aux États Unis), <code>fr_CA</code> (le français parlé au Canada), <code>en_CA</code> (l&#8217;anglais parlé au Canada), et ainsi de suite.</p>
+</li>
+<li>
+<p>Outre les mots et les phrases, il est nécessaire d&#8217;actualiser le format des <strong>nombres</strong> entiers ou décimaux, des <strong>dates</strong> et des heures, les <strong>unités</strong> de poids et de mesure, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Attention à n&#8217;oublier aucun endroit dans lequel apparaissent des mots ou des phrases : au sein des images et icônes, ainsi qu&#8217;au niveau sonore (au niveau d&#8217;une synthèse vocale par exemple).</p>
+</li>
+<li>
+<p>Traduire les libellés en change fatalement la longueur.
+Il est donc indispensable de valider la <strong>robustesse de la mise en page</strong> de l&#8217;interface, car les éléments affichés peuvent l&#8217;altérer grandement.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_localisation">Localisation</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Il est souvent nécessaire de mettre à jour les monnaies utilisées ainsi que les coordonnées demandées par le système.</p>
+</li>
+<li>
+<p>Il est aussi utile de s&#8217;intéresser à la manière dont changer de culture influe sur les <strong>tris</strong> ou l'<strong>ordonnancement</strong> des éléments au sein de l&#8217;interface, en particulier si c&#8217;est l&#8217;ordre alphabétique qui est utilisé.</p>
+</li>
+<li>
+<p>Les <strong>types de clavier</strong> (QWERTY, claviers en langues asiatiques, &#8230;&#8203;) ainsi que les <strong>habitudes</strong> des utilisateurs qui les utilisent doivent être pris en compte.</p>
+</li>
+<li>
+<p>Certains <strong>symboles</strong> ou <strong>icônes</strong>, de même que certaines <strong>syntaxes</strong> ou <strong>couleurs</strong> sont propres à une culture donnée.</p>
+</li>
+<li>
+<p>De même, attention à la <strong>formulation</strong> des textes et images, qui peut heurter la <strong>sensibilité</strong> de certains utilisateurs issus d&#8217;une culture spécifique.</p>
+</li>
+<li>
+<p>Alors que nos habitudes d&#8217;Européen peuvent ne nous faire considérer que les langues qui se lisent de gauche à droite (on parle de langues <em>L2R</em>, pour <em>Left to Right</em>), certaines langues se lisent de droite à gauche (<em>R2L</em>, pour <em>Right to Left</em>), voire de haut en bas.
+Ces autres <strong>sens de lecture</strong> ne concernent pas que les textes, mais peuvent nécessiter d&#8217;altérer la position à l&#8217;écran des différents éléments d&#8217;une interface.</p>
+</li>
+<li>
+<p>Les <strong>réglements et lois</strong> spécifiques d&#8217;un pays donnés peuvent avoir une influence sur ce que peut faire ou pas un système, et cela concerne aussi les IHM.
+En particulier, il faut s&#8217;intéresser à la légalité de demander certaines informations relatives à la vie privée dans un formulaire d&#8217;inscription ou d&#8217;achat, par exemple.
+Au delà de la stricte légalité, certaines cultures peuvent ne pas être habituées à ce qu&#8217;elles considèrent comme des intrusions dans leur vie privée, ou encore n&#8217;être pas habituées ou simplement équipées pour des fonctionnalités liées aux réseaux sociaux.</p>
+</li>
+<li>
+<p>Les utilisateurs d&#8217;une culture donnée peuvent avoir certaines <strong>attentes</strong> ou habitudes concernant la mise en page et/ou la densité d&#8217;informations affichés par certains types d&#8217;interface.
+Par exemple, alors qu&#8217;en Europe la tendance est plutôt aux images et à un certaine baisse de la lecture, en Asie, la densité de texte affichée est en général bien plus importante.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_internationalisation_2">Internationalisation</h3>
+<div class="paragraph">
+<p>L&#8217;internationalisation consiste à <strong>préparer</strong> son adaptation à des langues et des cultures différentes.
+C&#8217;est un travail essentiellement technique, de conception et d&#8217;implémentation.
+Pour qu&#8217;un logiciel puisse être considéré comme étant internationalisé</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Il doit de manière générale <strong>éviter les à-priori</strong> concerna la construction des informations textuelles affichées par l&#8217;interface.
+En particulier, on peut citer comme exemple :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>n&#8217;effectuer <strong>aucune concaténation</strong> de chaînes de caractères pour construire un message affiché à l&#8217;utilisateur ; en effet, toutes les langues n&#8217;ont pas la même façon de construire leurs phrases.</p>
+</li>
+<li>
+<p>éviter toute <strong>dépendance</strong> du code envers les libellés affichés ; par exemple, comparer le libellé d&#8217;un bouton appuyé avec des valeurs codées en dur pour savoir quelle opération déclencher est la pire des manières de faire.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>gerer correctement les <strong>encodages</strong> de chaînes de caractères produites en sortie et attendues en entrée.</p>
+</li>
+<li>
+<p>détecter les <strong>préférences culturelles</strong> de l&#8217;utilisateur chaque fois que cela est possible, et les rendre configurables dans tous les cas.</p>
+</li>
+<li>
+<p><strong>séparer le fond et le forme</strong>, afin que la forme (constituée par l&#8217;interface) puisse être remplacée ou altérée par configuration ou par des outils tiers.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tests">Tests</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Même un système qui satisfait toutes les exigences du client (c&#8217;est à dire qui respecte totalement sa spécification) n&#8217;est qu&#8217;utile <em>potentiellement</em>.
+En effet, un système qui possède toutes les fonctionnalités requises ne sert à rien si ces fonctionnalités ne sont pas exploitables, que le système n&#8217;est pas utilisable <em>en pratique</em>.
+Un système réellement utilisable, réelement convivial fera preuve de <strong>qualités ergonomiques</strong> telles que la facilité d&#8217;apprentissage, la facilité d&#8217;exploitation, la protection contre les erreurs d&#8217;utilisation, et ainsi de suite.
+D&#8217;où l&#8217;importance de <strong>tester</strong>, de <strong>valider</strong> que le système possède effectivement ces qualités.</p>
+</div>
+<div class="paragraph">
+<p>Valider l&#8217;ergonomie d&#8217;un système se fait via des <em>usability tests</em> (ou « tests d&#8217;utilisabilité »).</p>
+</div>
+<div class="paragraph">
+<p>Durant ces tests, ce n&#8217;est jamais les designers/développeurs d&#8217;un système qui l&#8217;utilisent eux-mêmes : ils en savent trop sur l&#8217;objet à tester, et cette connaissance induit un biais cognitif qui risque de les faire tomber dans une vue <a href="#technocentric_approach">technocentriste</a> du système.</p>
+</div>
+<div class="paragraph">
+<p>Les tests ont un rôle double :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>informatif : le but premier d&#8217;un test est de trouver ce qui est perfectible afin d&#8217;améliorer l&#8217;interface ;</p>
+</li>
+<li>
+<p>social : faire tester un système par une personne extérieur permet de convaincre plus facilement les designers/développeurs qu&#8217;il y a réellement un problème dans le système.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_types_de_tests">Types de tests</h3>
+<div class="paragraph">
+<p>Il existe différentes manières de tester l&#8217;ergonomie d&#8217;un système :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Un <strong>test informel</strong> a pour principe de laisser l&#8217;utilisateur « seul » avec le système.
+On le libre de choisir quelles tâches il entreprend et de la manière dont il s&#8217;y prend.
+Éventuellement, on peut lui demander d&#8217;exécuter les tâches d&#8217;une journée de travail habituelle.</p>
+</li>
+<li>
+<p>Un <strong>test formel</strong> guide davantage l&#8217;utilisateur.
+Il est possible de lui faire exécuter une même tâche avec différentes interfaces (pour comparer différents designs), de lui imposer d&#8217;accomplir des tâches particulières, dans un certain ordre, et ainsi de suite.</p>
+</li>
+<li>
+<p>Un <strong>test A/B</strong> vise à comparer deux designs d&#8217;interface différents. Si le but est de comparer plus de deux designs, on appelle cela un <strong>test A/Z</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Une règle à respecter absolument dans tous les cas est que le designer/développeur ne doit <strong>jamais intervenir</strong>, ne jamais guider l&#8217;utilisateur, même pour « essayer de l&#8217;aider ».
+Par contre, il faut <strong>toujours observer</strong> l&#8217;utilisateur, prendre des notes sur ce qu&#8217;il fait, observer ses réactions, car on <strong>apprend toujours</strong> quelque chose d&#8217;un tel test sur la qualité du système.</p>
+</div>
+<div class="paragraph">
+<p>Il est aussi utile de s&#8217;assurer que l&#8217;utilisateur est conscient que ça n&#8217;est pas <em>lui</em> qui est testé, mais le système, afin de s&#8217;assurer de la sincérité de ses actions et de ses réponses.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_outils_de_mesure">Outils de mesure</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Il est possible de fournir à l&#8217;utilisateur des questionnaires de satisfaction, de lui demander son appréciation &#8230;&#8203;
+Cependant, ce type d&#8217;information est souvent difficile à quantifier.
+De plus, l&#8217;utilisateur peut, de bonne foi, oublier certains détails pourtant vitaux pour la compréhension de l&#8217;ergonomie du système.</p>
+</li>
+<li>
+<p>On peut aussi demander à l&#8217;utilisateur de <strong>penser à voix haute</strong> (« <em>think aloud</em> »), au fur et à mesure qu&#8217;il intéragit avec le système.
+Cette façon de faire donne souvent des résultats plus sincères et utiles que la première, mais aussi plus « brutes », plus difficiles à exploiter.
+À noter que cette manière de mener le test peut aussi être approprié pour valider le contenu d&#8217;un manuel ou une documentation.</p>
+</li>
+<li>
+<p>Il existe aussi des <strong>méthodes analytiques</strong> de validation d&#8217;un système, dans les détails desquels ce cours n&#8217;entrera pas.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_quand_tester">Quand tester ?</h3>
+<div class="paragraph">
+<p>On peut tester à toutes les étapes du développement, mais pas de la même manière ni avec les mêmes enjeux.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>avant le développement</em>, en présentant à l&#8217;utilisateur des maquettes sur papier, des slides informatiques, voire même une personne qui dialogue avec l&#8217;utilisateur en « jouant le rôle » de l&#8217;interface ;</p>
+</li>
+<li>
+<p><em>pendant le développement</em>, en utlisant des prototypes plus ou moins fonctionnels, des <em>mockups</em>, ou une interface graphique représentant l&#8217;état des développements et ce, même si les fonctionnalités réelles ne sont pas encore implémentées ;</p>
+</li>
+<li>
+<p><em>après le développement</em>, il est rarement possible de changer grand chose puisque le logiciel est pour ainsi dire dans sa forme finale. Cependant, on peut quand même être à la recherche de « <em>showstoppers</em> », des graves problèmes qui gênent gravement l&#8217;utilisateur.
+De plus, tester un logiciel terminé permet toujours d&#8217;apprendre quelque chose pour les <em>releases</em> futures.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-08-13 20:13:08 UTC
+</div>
+</div>
+</body>
+</html>
