@@ -12,9 +12,9 @@ script:
   - ./docgen/docgen.py --html --input ${book}.adoc  --output index.html --outdir gh-pages --stylename ${stylename} --stylesdir sass --linkstyle
   - cp README.adoc ${exportdir}
   - cp -r resources ${exportdir}/resources
-  - cp "sass/stylesheets/${stylename}.css" "${exportdir}/${stylename}.css"
+  - cp "sass/${stylename}.css" "${exportdir}/${stylename}.css"
   - mkdir -p "${exportdir}/images";
-  - cp -r "sass/images/${stylename}" "${exportdir}/images/${stylename}";
+  - cp -r "asciidoctor-stylesheet-factory/images/${stylename}" "${exportdir}/images/${stylename}";
   - sed -i.tmp  -e "s/..\/images\/$stylename/.\/images\/$stylename/g" "${exportdir}/${stylename}.css";
   - rm "${exportdir}/${stylename}.css.tmp";
   - ./docgen/docgen.py --pdf  --input gh-pages/index.html --output ${book}.pdf   --outdir gh-pages
