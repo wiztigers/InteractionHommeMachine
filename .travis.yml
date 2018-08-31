@@ -10,11 +10,11 @@ before_install:
 
 script:
   - ./docgen/docgen.py --html --input core.adoc  --output index.html --outdir gh-pages --stylename ${stylename} --stylesdir sass --linkstyle
-  - ./docgen/docgen.py --pdf  --input gh-pages/index.html --output InteractionHommeMachine.pdf   --outdir gh-pages
   - cp -r ./docgen/www/* ${exportdir}
   - cp -r ./www/* ${exportdir}
   - cp -r resources ${exportdir}
   - cp README.adoc ${exportdir}
+  - ./docgen/docgen.py --pdf  --input gh-pages/index.html --output InteractionHommeMachine.pdf   --outdir gh-pages
 
 deploy:
   provider: pages
