@@ -7,8 +7,10 @@ image::https://upload.wikimedia.org/wikipedia/commons/f/f9/Universit%C3%A9_de_St
 
 == Description
 
-Ce document constitue un https://wiztigers.github.io/InteractionHommeMachine/[support de cours] d'Interaction Homme-Machine, enseigné depuis 2018 à l'https://www.unistra.fr/[Université de Strasbourg]. +
-Il est consultable *directement en ligne à l'aide des liens suivants*: [https://wiztigers.github.io/InteractionHommeMachine/[html]] [https://wiztigers.github.io/InteractionHommeMachine/InteractionHommeMachine.pdf[pdf]].
+Ce document constitue le https://wiztigers.github.io/InteractionHommeMachine/[support de cours] du module d'Interaction Homme-Machine, enseigné depuis 2017 à l'https://www.unistra.fr/[Université de Strasbourg]. +
+Pour le consulter *directement en ligne*, cliquez sur le format désiré : 
+image:https://cdn.rawgit.com/wiztigers/InteractionHommeMachine/gh-pages/resources/3rd/HTML5%20Logo.svg[Lire au format HTML,32,32,link=https://wiztigers.github.io/InteractionHommeMachine/,title="Lire au format HTML"]
+image:https://cdn.rawgit.com/wiztigers/InteractionHommeMachine/gh-pages/resources/3rd/PDF%20Logo.svg[Lire au format PDF,32,32,link=https://wiztigers.github.io/InteractionHommeMachine/pdf/,title="Lire au format PDF"]
 
 Si vous désirez contribuer à ce contenu, c'est link:CONTRIBUTING.adoc[par ici].
 
