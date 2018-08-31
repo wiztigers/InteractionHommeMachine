@@ -14,6 +14,36 @@ image:https://cdn.rawgit.com/wiztigers/InteractionHommeMachine/gh-pages/resource
 
 Si vous désirez contribuer à ce contenu, c'est link:CONTRIBUTING.adoc[par ici].
 
+== Objectifs
+
+Les objectifs en termes de connaissances et de compétences à acquérir par l'étudiant lors de ce cours sont les suivantes :
+
+* Comprendre l'origine et la raison d'être des designs d'IHM informatiques actuels.
+* Savoir reconnaître et appliquer de manière éclairée les grands principes de l'ergonomie.
+* Être capable de concevoir une interface graphique adaptée à des utilisateurs et des besoins spécifiques.
+* Être en mesure d'implémenter une interface graphique pérenne.
+
+En pratique, ce cours constitue une formation accélérée aux sujets suivants :
+
+* Historique de l'interaction Homme/Machine.
+* Éléments de psychologie appliqués aux systèmes interactifs.
+* Types et gestion des périphériques d'entrée/sortie, interdépendance avec une interface.
+* Styles d'interaction.
+* Ergonomie : principes et attributs.
+* Design d'interface graphique.
+** Approches de conception, profils d'utilisateurs, traduction du besoin en fonctionnalités.
+** Conception fonctionnelle, conception technique.
+** Vocabulaire, concepts.
+* Techniques d'implémentation.
+* Techniques de validation.
+* Composants d'une IHM.
+** Types de choix, types d'actions.
+** Systèmes de fenêtrage, librairies graphiques.
+* Dialogue et interaction homme/système : bonnes pratiques, mauvaises pratiques, études de cas.
+* Adaptive design, responsive design : définitions, mise en oeuvre.
+* Égalité vis à vis du contenu. Accessibilité. Localisation, Internationalisation.
+* Outils de développement, boîtes à outils, générateurs d'interfaces, outils graphiques. Qt, C++, HTML, CSS.
+
 == Mise en garde
 
 Comme je l'ai écrit, ce livre est un *support*, qui n'est pas destiné à _remplacer_ une présence assidue en cours ! +
