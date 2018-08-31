@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.7.1">
+<meta name="author" content="Régis WITZ">
+<title>TP IHM : Qt</title>
+<style>
+
+</style>
+</head>
+<body class="book">
+<div id="header">
+<h1>TP IHM : Qt</h1>
+<div class="details">
+<span id="author" class="author">Régis WITZ</span><br>
+<span id="email" class="email"><a href="mailto:rwitz@unistra.fr">rwitz@unistra.fr</a></span><br>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#intro">Introduction</a></li>
+<li><a href="#reference">Documentation</a></li>
+<li><a href="#build">Build</a></li>
+<li><a href="#exo01">Exercice 1 : Base</a></li>
+<li><a href="#exo02">Exercice 2 : Infobulles</a></li>
+<li><a href="#exo03">Exercice 3 : Polices</a></li>
+<li><a href="#exo04">Exercice 4 : Icônes</a></li>
+<li><a href="#exo05">Exercice 5 : Refactor</a></li>
+<li><a href="#exo06">Exercice 6 : Signaux &amp; slots</a></li>
+<li><a href="#exo07">Exercice 7 : Dialogs</a></li>
+<li><a href="#exo08">Exercice 8 : Internationalisation (système)</a></li>
+<li><a href="#exo09">Exercice 9 : Internationalisation (application)</a></li>
+<li><a href="#exo10">Exercice 10 : Pickers</a></li>
+<li><a href="#exo11">Exercice 11 : Fichiers</a></li>
+<li><a href="#exo12">Exercice 12 : Layouts</a></li>
+<li><a href="#exo13">Exercice 13 : Fenêtre principale</a></li>
+<li><a href="#exo14">Exercice 14 : Menus et actions</a></li>
+<li><a href="#exo15">Exercice 15 : Barre d&#8217;outils</a></li>
+<li><a href="#exo16">Exercice 16 : Documents multiples</a></li>
+<li><a href="#exo17">Exercice 17 : Affichage web</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="intro">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ce TP vise à vous faire développer avec la librairie Qt.
+Il poursuit les buts suivants :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Vous faire programmer en C++, qui est un langage orienté objet couramment utilisé.
+Oui, le C++ est plus « bas niveau » que d&#8217;autres langages que vous préférerez peut-être, comme Python, Java ou C#.
+Cependant, choisir de manière éclairée nécessite de connaître toutes les facettes d&#8217;une situation ; et dans le cas de la programmation cela signifie utiliser différents langages afin de pouvoir confirmer ses goûts ou préférences.</p>
+</li>
+<li>
+<p>Vous faire connaître Qt, qui est une des principales librairies d&#8217;interface graphique existantes.</p>
+</li>
+<li>
+<p>Les concepts de Qt sont utilisés de manière similaire par la majorité des API graphiques ; de plus, Qt offre des bindings avec de nombreux langages de programmation.
+Les connaissances que vous allez acquérir vous profiteront donc même si vous utilisez d&#8217;autres technologies -à divers degrés, bien évidemment.</p>
+</li>
+<li>
+<p>Qt ne se limite cependant pas aux IHM : elle propose aussi des composants audio, video, réseaux, de base de données, etc.
+Une « grosse » API qui fait plein de choses différentes, on peut voir cela comme un avantage ou un inconvénient.
+Cependant, cela signifie que vous pouvez rencontrer Qt dans bien d&#8217;autres contextes que les IHMs.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>De la même manière que, dans votre future carrière, vous aurez probablement à découvrir et à apprendre certaines technologies vous-même, le principe de ce TP est de vous laisser découvrir Qt à votre rythme.
+Il ne vous imposera pas de cadre strict.
+S&#8217;il vous propose de construire différents éléments d&#8217;IHM dans un ordre pédagogique, ne vous sentez pas limité par cet ordre, et explorez au fur et à mesure de vos envies ou intérêts !</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Ce TP part du principe que vous utilisez les stations de travail de la fac.</p>
+</div>
+<div class="paragraph">
+<p>Vous pouvez évidemment utiliser votre propre machine, mais c&#8217;est dans ce cas à vous d&#8217;assurer vous-même sa configuration (installation des librairies manquantes, config de votre IDE, &#8230;&#8203;).
+En effet, je dois consacrer mon crénau de TP à enseigner l&#8217;IHM au maximum d&#8217;entre vous, pas à regler vos problèmes de Windows ou la config de votre distro Linux.
+C&#8217;est votre environnement de travail, c&#8217;est à vous de le gérer !</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="reference">Documentation</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://doc.qt.io/">Documentation complète de Qt</a></p>
+</li>
+<li>
+<p>Vous recherchez une classe particulière ?
+Visitez <a href="https://doc.qt.io/qt-5/classes.html">la liste des classes</a>, <em>CTRL+F</em> l&#8217;expression que vous recherchez.
+Pareil pour <a href="https://doc.qt.io/qt-5/classes.html">la liste des fonctions</a>.<br>
+Outre les habituelles descriptions de champs et méthodes de chaque classe, je vous invite à faire attention, dans le tableau en haut de la page, à la ligne « Header », qui vous permet de connaître l&#8217;include dont vous avez besoin, ainsi qu&#8217;à la ligne « qmake », qui vous permet de connaître le module que vous avez besoin de rajouter à votre fichier projet (voir <a href="#build">section suivante</a>).</p>
+</li>
+<li>
+<p><a href="https://wiki.qt.io/Strings_and_encodings_in_Qt">Gérer l&#8217;UTF-8 en Qt</a></p>
+</li>
+<li>
+<p><a href="https://github.com/dysfunc/ascii-emoji">Liste d&#8217;emojis</a> ridicules utilisés dans ce TP.</p>
+</li>
+<li>
+<p><a href="https://doc.qt.io/qt-5/signalsandslots.html">Davantage d&#8217;explication sur les signaux et slots</a> (exercice 6).</p>
+</li>
+<li>
+<p><a href="https://doc.qt.io/qt-5/internationalization.html">Internationalisation avec Qt</a></p>
+</li>
+<li>
+<p><a href="https://standards.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html">Spécification des icônes système</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="build">Build</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Vous avez étudié les makefile durant vos études ?
+Vous en conservez un excellent souvenir ⸮
+Tant mieux !</p>
+</div>
+<div class="paragraph">
+<p>Qt propose en effet un utilitaire nommé <strong>qmake</strong>, qui vous permet de générer automatiquement un fichier <code>Makefile</code> adapté à la configuration que vous décrivez dans un fichier projet, porteur de l&#8217;extension <code>.pro</code>.
+Cela vous permet de ne pas avoir à vous préoccuper de détails comme l&#8217;odre de compilation, les flags de compilation, etc.</p>
+</div>
+<div class="paragraph">
+<p>Votre workflow est donc le suivant :</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Créez un fichier <code>nomdevotreappli.pro</code>.</p>
+</li>
+<li>
+<p>Renseignez dans ce fichier des directives génériques, comme le nom des fichiers sources de votre application à compiler, les modules Qt dont vous avez besoin, et ainsi de suite.</p>
+</li>
+<li>
+<p>Exécutez <code>qmake</code>.
+Remarquez qu&#8217;un fichier <code>Makefile</code> a été créé.</p>
+</li>
+<li>
+<p>Exécutez <code>make</code>.
+Si la compilation passe, les fichiers objet ainsi qu&#8217;un exécutable (à priori nommé <code>nomdevotreappli</code>) ont été créé.</p>
+</li>
+<li>
+<p>Vous n&#8217;avez plus qu&#8217;à exécuter votre programme.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Notez que <code>qmake</code> n&#8217;est pas uniquement là pour vous éviter d&#8217;avoir à écrire un fichier makefile.
+En fait, ce makefile est créé uniquement car vous êtes sur un système UNIX.
+Pour aller plus loin à la fin de ce TP, essayez qmake sur un autre OS, et il vous créera ce qu&#8217;il faut pour compiler votre application Qt <em>sur cet autre plateforme</em>.</p>
+</div>
+<div class="paragraph">
+<p>Pour débuter ce TP, je vous conseille de mettre le code source de votre application dans un fichier (par exemple <code>main.cpp</code>) que vous créez dans votre répertoire de travail, et de créer dans ce même répertoire un fichier projet (par exemple <code>main.pro</code>).</p>
+</div>
+<div class="paragraph">
+<p>Vous créerez bien évidemment d&#8217;autres fichiers sources au fur et à mesure des besoins, et mettrez de temps à autre votre fichier projet à jour (en fait, chaque fois que vous créerez un nouveau fichier source ou utiliserez un objet issu d&#8217;un nouveau module Qt : dans ce cas, n&#8217;oubliez pas de relancer la commande <code>qmake</code> pour re-générer votre makefile !).</p>
+</div>
+<div id="example_files" class="paragraph">
+<p>En attendant, voici des fichiers minimaux, histoire de débuter rapidement.</p>
+</div>
+<div class="listingblock">
+<div class="title">main.pro</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">QT += widgets
+
+SOURCES += \
+	main.cpp</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">main.cpp</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;QApplication&gt;
+
+int main(int argc, char *argv[]) {
+	QApplication app(argc, argv);
+
+	// c'est ici que vous allez commencer à bosser !
+
+	return app.exec();
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo01">Exercice 1 : Base</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Créez la fenêtre suivante :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/TP/Qt01.png" alt="Une simple fenêtre créée avec QApplication et comportant un QPushButton. Appelez QPushButton.show() pour afficher le bouton.">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo02">Exercice 2 : Infobulles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Créez la fenêtre suivante :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/TP/Qt02.png" alt="Utilisez setToolTip(QString) pour une infobulle.">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo03">Exercice 3 : Polices</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Créez la fenêtre suivante :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/TP/Qt03.png" alt="Utilisez setFont(QFont) pour changer la police utilisée.">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo04">Exercice 4 : Icônes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Créez la fenêtre suivante :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/TP/Qt04.png" alt="Utilisez setIcon(QIcon) pour rajouter une icône.">
+</div>
+</div>
+<div class="paragraph">
+<p>L&#8217;image que j&#8217;ai utilisé est celle-ci <span class="image"><img src="resources/TP/nyancat.png" alt="Image à afficher sur le bouton." title="nyan nyan nyan nyan"></span>, mais vous pouvez bien évidemment en utiliser une autre.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Pour que l&#8217;image s&#8217;affiche correctement, placez-là dans le répertoire courant de votre application.</p>
+</div>
+<div class="paragraph">
+<p>Si ça ne suffit pas, indiquez le chemin absolu vers l&#8217;image dans votre code.
+Vous pouvez obtenir le répertoire courant avec <code>QCoreApplication::applicationDirPath()</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo05">Exercice 5 : Refactor</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Si vous vous êtes jusque là contenté de compléter les fichiers de base donnés <a href="#example_files">dans l&#8217;introduction</a>, c&#8217;est le bon moment pour remanier votre code.
+En effet, comme vous devez vous en douter, vous ne pourrez décemment pas construire d&#8217;application Qt complexe en jetant toute votre IHM et son fonctionnement dans un <code>main()</code>.</p>
+</div>
+<div class="paragraph">
+<p>En conséquence, créez une nouvelle classe C++ qui représentera la fenêtre principale de votre application.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Elle doit hériter de <code>QWidget</code>.</p>
+</li>
+<li>
+<p>Un de ses champs doit être votre bouton.</p>
+</li>
+<li>
+<p>Dans son constructeur, créez votre bouton et <em>n&#8217;oubliez pas de l&#8217;ajouter à votre fenêtre</em> ; par exemple, regardez les arguments de constructeur de <code>QPushButton</code>.</p>
+</li>
+<li>
+<p>N&#8217;oubliez pas non plus de créer son destructeur, qui détruira votre bouton.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Étant donné que vous rajoutez un nouveau fichier, n&#8217;oubliez pas de compléter votre fichier projet et de réinvoquer <code>qmake</code> !</p>
+</div>
+<div class="paragraph">
+<p>Au final, votre fenêtre devrait ressembler à celle-ci :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/TP/Qt05.png" alt="Une fois votre fenêtre créée, vous pouvez par exemple la redimensionner avec setFixedSize(w,h), ou changer son titre avec setWindowTitle(title).">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo06">Exercice 6 : Signaux &amp; slots</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cet exercice est destiné à vous faire découvrir une des fonctionnalités les plus importantes de Qt : les signaux et les slots.
+Expliqué de manière conçise :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>un signal est un événement qui peut survenir sur un élement de l&#8217;IHM : le fait d&#8217;être cliqué, d&#8217;avoir sa valeur changée, etc.</p>
+</li>
+<li>
+<p>un slot est une fonction de callback qui peut être invoquée dans des circonstances particulières, en particulier lorsqu&#8217;un signal est émis.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>L&#8217;utilité de base est de pouvoir connecter un signal à un slot, à l&#8217;aide de la <a href="https://doc.qt.io/qt-5/qobject.html#connect">fonction statique connect</a>.
+On peut bien évidemment lier plusieurs slots à un même signal.
+On peut aussi lier un signal à un autre signal.</p>
+</div>
+<div class="paragraph">
+<p>À titre d&#8217;illustration, essayez de créer une fenêtre comportant un simple <code>QPushButton</code>, libellé « OFF ».
+Lorsque vous cliquez sur ce bouton, il doit afficher « ON ».
+Lorsque vous cliquez à nouveau, il doit ré-afficher « OFF », et ainsi de suite.</p>
+</div>
+<div class="paragraph">
+<p>Pour ce faire, connectez le bon signal émis par votre bouton à une fonction slot sans argument correctement déclarée dans votre fenêtre (ou votre bouton, si vous créez une classe spécifique héritant de <code>QPushButton</code> qui représentera votre bouton).</p>
+</div>
+<div class="paragraph">
+<p>Quelques recommandations pour que la connexion signal - slot fonctionne correctement.
+Il faut :</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>que le ou les objets à connecter implémentent la macro <code>Q_OBJECT</code> ;</p>
+</li>
+<li>
+<p>que, si <code>Q_OBJECT</code> est dans un fichier <code>.h</code> (ce qui est à priori le cas), ce <code>.h</code> soit ajouté à la variable <code>HEADERS</code> de votre fichier <code>.pro</code> ;</p>
+</li>
+<li>
+<p>que vous ayiez réinvoqué <code>qmake</code> après les étapes 1 et 2 ;</p>
+</li>
+<li>
+<p>que la fonction slot soit déclarée comme 'public slots:' : il s&#8217;agit d&#8217;une nouvelle section de classe propre à Qt, qui s&#8217;utilise de la même manière que les sections <code>public:</code> ou <code>private:</code>, habituelles en C++ ;</p>
+</li>
+<li>
+<p>que l&#8217;appel à <a href="https://doc.qt.io/qt-5/qobject.html#connect">QObject::connect</a> soit correct.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo07">Exercice 7 : Dialogs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Faites en sorte que, lorsque l&#8217;utilisateur appuie sur le bouton de votre simple fenêtre, un boîte de dialogue de confirmation apparaisse :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/TP/Qt07.png" alt="Les boîtes de dialogue simples n&#8217;ont pas besoin d&#8217;être implémentées à la main : QMessageBox fournit plusieurs méthodes statiques dédiées à cet usage. Ces boîtes de dialogues sont même capable d&#8217;afficher du texte enrichi par des balises HTML.">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo08">Exercice 8 : Internationalisation (système)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Les boîtes de dialogues permettent de recueillir la réponse de l&#8217;utilisateur à une question simple.
+Affichez une telle boîte de dialogue (type « Oui|Non ») lorsque l&#8217;utilisateur appuie sur un bouton.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/TP/Qt08.png" alt="Boîte de dialogue de type QMessageBox::question. Attention à la langue des boutons, qui doit être cohérente avec celle du texte affiché !">
+</div>
+</div>
+<div class="paragraph">
+<p>Attention, le texte de votre boîte de dialogue est en français, et les libellés des boutons doivent l&#8217;être aussi !
+Pour cela, utilisez un <code>QTranslator</code> qui chargera toutes les traductions déjà gérées par Qt.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo09">Exercice 9 : Internationalisation (application)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>À partir de l&#8217;exercice précédent, assurez-vous de supporter au moins deux langues dans votre application ; par exemple, le français et l&#8217;anglais.
+Pour cela, il vous faut gérer des fichiers de traduction (un par langue), qui référençeront tous les libellés spécifiques à votre application.
+Il est conseillé de ranger ces fichiers de traduction dans un dossier à part, nommé par exemple <code>i18n</code>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Mettez à jour la target <code>TRANSLATIONS</code> dans votre fichier projet.</p>
+</li>
+<li>
+<p>Marquez tous vos libellés applicatifs à traduire en utilisant la méthode <code>QWidget::tr()</code>.
+Alternativement, vous pouvez aussi utiliser un appel statique du genre <code>QMessageBox::tr()</code>.</p>
+</li>
+<li>
+<p>Générez les fichiers de traduction <code>.ts</code> grâce à l&#8217;utilitaire <code>lupdate</code>:<br>
+<code>lupdate [-verbose] main.pro</code></p>
+</li>
+<li>
+<p>Compléter vos fichiers <code>.ts</code> à la main (ce sont de simples fichiers XML) ou grâce à l&#8217;interface <code>linguist</code>.
+Par exemple : <code>linguist i18n/*.ts</code></p>
+</li>
+<li>
+<p>Générez les fichiers de langue <code>.qm</code> grâce à vos fichiers <code>.ts</code>.
+Cela peut se faire grâce à linguist ou à la commande suivante :<br>
+<code>lrelease main.pro</code></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo10">Exercice 10 : Pickers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Qt propose tout un assortiment de boîtes de dialogues « toutes faites » pour saisir différents types de valeur.
+Explorez les différentes possibilités :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/TP/Qt10-1.png" alt="QInputDialog::getText">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/TP/Qt10-2.png" alt="QInputDialog::getInteger">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/TP/Qt10-3.png" alt="QInputDialog::getItem">
+</div>
+</div>
+<div class="paragraph">
+<p>D&#8217;autres exemples, plus complexes, incluent <code>QFont::getFont</code> ou encore <code>QColorDialog::getColor</code>.
+Essayez-les, en vous entrainant à récupérer et à réutiliser la valeur à chaque fois !</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo11">Exercice 11 : Fichiers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Un autre exercice relativement important consiste à savoir gérer l&#8217;ouverture et la sauvegarde de fichiers.
+Par exemple, créez une interface qui permet à l&#8217;utilisateur :</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>d&#8217;ouvrir un fichier texte avec <code>QFileDialog::getOpenFileName</code> ; remarquez le paramètre de filtrage selon l&#8217;extension.</p>
+</li>
+<li>
+<p>de le modifier dans un champ de texte ; par exemple, un <code>QTextEdit</code>.</p>
+</li>
+<li>
+<p>de sauvegarder la version modifiée comme un fichier différent avec <code>QFileDialog::getSaveFileName</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Vous pouvez aussi jeter un coup d&#8217;œil du coté de <code>QFileDialog::getExistingDirectory</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo12">Exercice 12 : Layouts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Le meilleur moyen de disposer plusieurs éléments dans une fenêtre est d&#8217;utiliser des <strong>Layouts</strong>.
+Qt en propose plusieurs types, qui permettent de disposer correctement les éléments les uns par rapport aux autres.</p>
+</div>
+<div class="paragraph">
+<p>Le processus est toujours le même : on ajoute les éléments à une layout, puis on ajoute la layout à la fenêtre.
+Évidemment, une layout peut elle-même être ajoutée à une autre layout -c&#8217;est même le seul moyen de construire une fenêtre complexe proprement.</p>
+</div>
+<div class="paragraph">
+<p>Les principaux types de layout sont au nombre de quatre : <code>QVBoxLayout</code>, <code>QHBoxLayout</code>, <code>QGridLayout</code> et <code>QFormLayout</code>.
+Explorez-en les possibilités individuellement, puis combinez-les pour construire une fenêtre complexe !</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="resources/TP/Qt12-1.png" alt="Utilisation de QHBoxLayout pour positionner plusieurs boutons horizontalement."></span>
+<span class="image"><img src="resources/TP/Qt12-2.png" alt="Utilisation de QVBoxLayout pour positionner plusieurs boutons verticalement."></span>
+<span class="image"><img src="resources/TP/Qt12-3.png" alt="Utilisation de QGridLayout pour positionner plusieurs boutons au sein d&#8217;une grille."></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo13">Exercice 13 : Fenêtre principale</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>QMainWindow</code> sert le plus souvent pour créer la fenêtre principale d&#8217;une application.
+En effet, cette classe permet de simplifier la gestion, entre autres :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>de la barre de menu (celle qui comporte en général les choix «Fichier», «Édition», «Aide», etc)</p>
+</li>
+<li>
+<p>de la barre d&#8217;outils (des raccourcis vers les outils en général sous forme d&#8217;icônes placés sous la barre de menu)</p>
+</li>
+<li>
+<p>de la barre de statut (servant en général à afficher des informations textuelles de statut, tout en bas de la fenêtre)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Une <code>QMainWindow</code> est aussi caractérisée par une zone de travail centrale, qui peut gérer soit un seul document, soit plusieurs comme nous le verrons dans l'<a href="#exo16">exercice 16</a>.</p>
+</div>
+<div class="paragraph">
+<p>En reprenant ce que vous avez fait dans l'<a href="#exo11">exercice 11</a>, adaptez votre code de manière à utiliser <code>QMainWindow</code>.
+Le contenu du fichier texte, ainsi que les boutons d&#8217;ouverture et de sauvegarde sont pour l&#8217;instant à afficher en zone centrale.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/TP/Qt13.png" alt="La zone centrale est un unique QWidget, ajouté à votre fenêtre grâce à QMainWindow.setCentralWidget ; les éléments de la zone centrale sont ensuite ajoutés à ce QWidget de la manière habituelle.">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo14">Exercice 14 : Menus et actions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Retirez les deux boutons servant à ouvrir et à enregistrer un fichier de la zone de travail de votre fenêtre.
+À la place, créez une barre de menu (<code>QMenuBar</code>) incluant différent menus (<code>QMenu</code>) incluant à leur tour différentes actions (<code>QAction</code>).
+Par exemple, vous pouvez créer :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>un menu <em>Fichier</em>, permettant :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>d'<em>Ouvrir</em> un fichier</p>
+</li>
+<li>
+<p>de l'<em>Enregistrer sous</em> un nouveau nom</p>
+</li>
+<li>
+<p>de <em>Quitter</em> l&#8217;application</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>un menu <em>Aide</em>, permettant</p>
+<div class="ulist">
+<ul>
+<li>
+<p>de changer la langue de l&#8217;application</p>
+</li>
+<li>
+<p>d&#8217;afficher le sujet du TP sous forme d'<em>Aide en ligne</em> (jetez un coup d&#8217;œil du coté de <code>QDesktopServices.openUrl</code>)</p>
+</li>
+<li>
+<p>d&#8217;obtenir des infomations <em>À propos</em> de l&#8217;application ou de son développeur via une boîte de dialogue dédiée</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Il est évidemment possible, et même conseillé, d&#8217;affecter des raccoucis claviers aux différentes actions de votre application grâce à <code>QAction.setShortcut(QKeySequence)</code>.</p>
+</div>
+<div class="paragraph">
+<p>N&#8217;oubliez pas que vos menus doivent être traduits en plusieurs langues, et que cette internationalisation doit prendre en compte les raccourcis clavier !</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="resources/TP/Qt14-1.png" alt="Dans la barre d&#8217;outils, un QMenu « Fichier », avec trois éléments QAction : « Ouvrir&#8230;&#8203; », « Enregistrer sous&#8230;&#8203; », et « Quitter »."></span>
+<span class="image"><img src="resources/TP/Qt14-2.png" alt="Dans la même barre d&#8217;outils, un QMenu « Aide », avec trois éléments QAction : « Aide en ligne », et « À propos »."></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo15">Exercice 15 : Barre d&#8217;outils</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ajoutez une barre d&#8217;outils (<code>QToolBar</code>) à votre application.
+Cette barre d&#8217;outils doit contenir au moins deux commandes : <em>Ouvrir</em> et <em>Enregistrer</em>.
+Vous réutiliserez les <code>QActions</code> que vous avez créées à l&#8217;exercice précédent pour implémenter les commandes.</p>
+</div>
+<div class="paragraph">
+<p>Une barre d&#8217;outils rassemble en général les commandes sous forme d&#8217;icônes.
+Il est possible d&#8217;affecter une icône à une action de la même manière qu&#8217;à n&#8217;importe quel widget (voir <a href="#exo04">Exercice 4</a>).
+Pour un rendu cohérent, vous pouvez réutiliser les icônes système grâce à <code>QIcon.fromTheme</code> et à la <a href="#reference">documentation</a> de ce TP.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="resources/TP/Qt15.png" alt="Créez votre toolbar avec QMainWindow.addToolBar, puis ajoutez-lui vos QActions déjà créées grâce à QToolBar.addAction !"></span></p>
+</div>
+<div class="paragraph">
+<p>Hormis des <code>QAction</code>, vous pouvez aussi rajouter tout type de widget spécifique à votre barre d&#8217;outils (par exemple une zone de texte qui servira de barre de recherche, une combobox qui servira de sélecteur de mode, etc), de même que des separateurs (avec <code>QToolBar.addSeparator</code>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo16">Exercice 16 : Documents multiples</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La zone de travail centrale de votre <code>QMainWindow</code> fonctionnait jusqu&#8217;ici en mode « SDI » (ou <em>Single Document Interface</em>).
+Mais vous pouvez aussi gérer plusieurs documents à la fois en fonctionnant en mode « MDI » (ou <em>Multiple Document Interface</em>).
+Pour cela, il suffit de remplacer votre widget central actuel par une <code>QMdiArea</code>.</p>
+</div>
+<div class="paragraph">
+<p>Modifiez votre programme de manière à pouvoir ouvrir, modifier et sauvegarder un nombre indéfini de fichiers en même temps.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="resources/TP/Qt16.png" alt="Créez cette fois une QMdiArea, que vous passerez en argument à setCentralWidget. Ajoutez-lui un nombre indéfini de QMdiSubWindow avec QMdiArea.addSubWindow. Récupérez la QMdiSubWindow active avec QMdiArea.activeSubWindow."></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo17">Exercice 17 : Affichage web</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Cet exercice part du principe que la machine sur laquelle vous travaillez a les bonnes dépendances installées.
+En particulier, sur une distribution basée sur Debian, la dépendance nécessaire est le paquet <code>libqt5webkit5-dev</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Il est possible d&#8217;afficher une interface web au sein même d&#8217;une fenêtre Qt.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Définissez une instance de <code>QWebView</code> en tant que zone de travail centrale de votre <code>QMainWindow</code>.</p>
+</li>
+<li>
+<p>Retirez l&#8217;action d&#8217;enregistrement de votre barre d&#8217;outils ainsi que de votre barre de menu.</p>
+</li>
+<li>
+<p>Rajoutez une <code>QLineEdit</code> ainsi qu&#8217;un <code>QPushButton</code> à votre barre d&#8217;outils.</p>
+</li>
+<li>
+<p>Modifiez votre programme de manière à ce que :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>votre action d&#8217;ouverture de fichier permette d&#8217;afficher le contenu d&#8217;un fichier <code>.html</code> ou <code>.htm</code> dans votre zone centrale ;</p>
+</li>
+<li>
+<p>en saisissant une URL dans votre <code>QLineEdit</code>, puis en appuyant sur la touche <em>Enter</em> ou sur votre <code>QPushButton</code>, la page web correspondante soit affichée.</p>
+<div class="paragraph">
+<p>Ces deux actions peuvent se réaliser grâce à la méthode <code>QWebView.load</code>.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Pour utiliser <code>QWebView</code>, il vous faut ajouter le module suivant à la target <code>QT</code> de votre fichier projet :</p>
+</div>
+<div class="listingblock">
+<div class="title">main.pro</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">QT += webkitwidgets</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/TP/Qt17-1.png" alt="Une QMainWindow affichant le sujet du présent TP dans une QWebView.">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="resources/TP/Qt17-2.png" alt="Une QMainWindow affichant la page d&#8217;accueil de l&#8217;unistra dans une QWebView.">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-08-31 14:53:35 UTC
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>

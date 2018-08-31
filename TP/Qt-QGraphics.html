@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.7.1">
+<meta name="author" content="Régis WITZ">
+<title>TP IHM : QtGraphics</title>
+<style>
+
+</style>
+</head>
+<body class="book">
+<div id="header">
+<h1>TP IHM : QtGraphics</h1>
+<div class="details">
+<span id="author" class="author">Régis WITZ</span><br>
+<span id="email" class="email"><a href="mailto:rwitz@unistra.fr">rwitz@unistra.fr</a></span><br>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#reference">Documentation</a></li>
+<li><a href="#exo01">Exercice 1 : Affichage d&#8217;une image de fond</a></li>
+<li><a href="#exo02">Exercice 2 : Bouton personnalisé</a></li>
+<li><a href="#exo03">Exercice 3 : Machine à états</a></li>
+<li><a href="#exo04">Exercice 4 : Affichage d&#8217;une carte à jouer</a></li>
+<li><a href="#exo05">Exercice 5 : Animation</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="reference">Documentation</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://doc.qt.io/qt-5/properties.html">Documentation</a> de Q_PROPERTY.</p>
+</li>
+<li>
+<p>À peu près la même <a href="https://qt.developpez.com/doc/4.7/properties/">en français</a>.</p>
+</li>
+<li>
+<p>Des explications sur commen se passe la <a href="https://doc.qt.io/qt-5/why-moc.html">génération de code</a> de Qt.</p>
+</li>
+<li>
+<p>Le <a href="https://doc.qt.io/archives/qt-4.8/moc.html">manuel</a> de l&#8217;outil utilisé (<em>moc</em>) pour générer le code, si vraiment <code>qmake</code> ne veut pas vous générer vos fichiers <code>.moc</code>.</p>
+</li>
+<li>
+<p><a href="https://www.sketchuptextureclub.com/textures/materials/wallpaper/various-patterns/graffiti-wallpaper-texture-seamless-12217">Texture de fond utilisée</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo01">Exercice 1 : Affichage d&#8217;une image de fond</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Qt permet de créer des IHM intéressantes qui s&#8217;écartent grandement du look &amp; feel habituel des applications tournant sous un OS donné.
+Cette méthode demande davantage de travail car il est nécessaire de réimplémenter beaucoup de fonctionnel que Qt nous fournit d&#8217;habitude clés en main.
+Cependant, cela permet de donner un rendu unique à votre application.
+Cela est particulièrement intéressante si votre application a un coté ludique, s&#8217;il s&#8217;agit un jeu vidéo par exemple.
+Dans tous les cas, cela se fait en ajoutant différents objets (<em>sprites</em> héritant de <a href="https://doc.qt.io/qt-5/qgraphicsitem.html"><code>QGraphicsItem</code></a>) à une scène 2D.</p>
+</div>
+<div class="paragraph">
+<p>Pour commencer, affichez simplement une image de fond (<em>background image</em>) sans autre artifice.</p>
+</div>
+<div class="paragraph">
+<p>Plus en détails :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Importez votre image de fond sous forme d&#8217;une <a href="https://doc.qt.io/qt-5/qimage.html"><code>QImage</code></a> ou d&#8217;une <a href="https://doc.qt.io/qt-5/qpixmap.html"><code>QPixmap</code></a>.</p>
+</li>
+<li>
+<p>Créez une scène vide <a href="https://doc.qt.io/qt-5/qgraphicsscene.html"><code>QGraphicsScene</code></a>.</p>
+</li>
+<li>
+<p>Ajoutez votre scène à une vue <a href="https://doc.qt.io/qt-5/qgraphicsview.html"><code>QGraphicsView</code></a></p>
+</li>
+<li>
+<p>Définissez votre image comme image de fond de votre vue grâce à <a href="https://doc.qt.io/qt-5/qgraphicsview.html#backgroundBrush-prop"><code>QGraphicsView.setBackgroundBrush</code></a>.</p>
+</li>
+<li>
+<p>Affichez votre vue dans une fenêtre en appelant sa méthode <code>show</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>L&#8217;image que j&#8217;ai utilisé est celle-ci <span class="image"><img src="resources/TP/background.png" alt="Exemple d&#8217;image de fond ; il " title="Exemple d&#8217;image de fond"></span>, mais vous pouvez bien évidemment en utiliser une autre.
+Attention, quelle que soit l&#8217;image que vous utilisez, prenez garde à en choisir une qui peut servir de base à un pavage régulier (ie. <em>seamless tile</em>/<em>tesselation</em>) pour un rendu optimal.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo02">Exercice 2 : Bouton personnalisé</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Essayez de dessiner votre propre <em>sprite</em>.
+Ce sprite est destiné à servir de bouton dans la suite du TP.</p>
+</div>
+<div class="paragraph">
+<p>Plus en détails :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Votre bouton doit hériter de <a href="https://doc.qt.io/qt-5/qgraphicswidget.html"><code>QGraphicsWidget</code></a>.</p>
+</li>
+<li>
+<p>Prenez garde à correctement surcharger ses méthodes <code>boundingRect()</code> et <code>shape()</code>, en particulier si votre bouton n&#8217;est pas carré.</p>
+</li>
+<li>
+<p>Implémentez l&#8217;apparence de votre bouton en surchargeant sa méthode <code>paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)</code>.
+Pour cela, utilisez l&#8217;argument <a href="https://doc.qt.io/qt-5/qpainter.html"><code>QPainter</code></a>, et en particulier ses méthodes <code>setPen</code> et <code>setBrush</code> que vous utiliserez avant d&#8217;appelez une des ses méthodes de dessin de primitives graphiques commençant par <code>draw</code> (par exemple, <code>drawEllipse</code> vous permet de dessiner un rond, et <code>drawPixmap</code> d&#8217;afficher une image, par exemple un icône sur votre bouton).<br>
+Pour des effets d&#8217;ombre ou de dégradés, vous pouvez utiliser <code>setBrush(<a href="https://doc.qt.io/qt-5/qlineargradient.html">QLinearGradient</a>)</code> par exemple.</p>
+</li>
+<li>
+<p>N&#8217;oubliez pas d&#8217;ajouter votre bouton à votre scène grâce à <a href="https://doc.qt.io/qt-5/qgraphicsscene.html#addItem"><code>QGraphicsScene.addItem</code></a>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Dans cet exercice, vous risquez de tomber sur une erreur du style « <em>undefined reference to vtable</em> ».
+Si vous avez rajouté le <code>.h</code> correspondant dans la target <code>HEADERS</code> de votre fichier projet et que vous rencontrez malgré tout cette erreur, il peut être nécessaire d&#8217;ajouter une ligne du genre <code>#include "moc_monfichier.cpp"</code> à la fin du fichier ou se trouve l&#8217;implémentation de la fonction qui pose problème.
+Consultez les liens à propos de la génération de code données dans la <a href="#reference">documentation</a> pour mieux comprendre ce qu&#8217;il se passe.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo03">Exercice 3 : Machine à états</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Pour l&#8217;instant, votre bouton n&#8217;a que l&#8217;apparence d&#8217;un bouton.
+Il s&#8217;agit maintenant de lui donner la fonctionnalité d&#8217;un bouton : l&#8217;utilisateur doit pouvoir le presser, et quelque chose doit alors arriver.
+Par exemple, essayez de faire en sorte de faire de votre bouton un <em>toggle</em> : s&#8217;il est pressé une fois, son icône change, et s&#8217;il est pressé une seconde fois, son icône redevient celle qu&#8217;elle était au départ.</p>
+</div>
+<div class="paragraph">
+<p>Pour cela, créez une machine à états <a href="https://doc.qt.io/qt-5/qstatemachine.html"><code>QStateMachine</code></a>, à laquelle vous ajouterez deux états <a href="https://doc.qt.io/qt-5/qstate.html"><code>QState</code></a> grâce à la méthode <a href="https://doc.qt.io/qt-5/qstatemachine.html#addState"><code>QStateMachine.addState</code></a>.
+N&#8217;oubliez pas de définir l&#8217;état initial grâce à la méthode <a href="https://doc.qt.io/qt-5/qstatemachine.html#setInitialState"><code>QStateMachine.setInitialState</code></a>.</p>
+</div>
+<div class="paragraph">
+<p>Pour que votre bouton permette de voyager d&#8217;un état de cette machine à états à l&#8217;autre, utilisez la méthode <a href="https://doc.qt.io/qt-5/qstate.html#addTransition"><code>QState.addTransition</code></a>.
+Par exemple, vous pouvez faire <code>etatToggleInactif.addTransition(monBouton, &amp;TPButton::pressed, &amp;etatToggleActif);</code>.</p>
+</div>
+<div class="paragraph">
+<p>Enfin, pour que l&#8217;icône de votre bouton change lorsque vous voyagez d&#8217;un état à l&#8217;autre de votre machine à états en appuyant dessus bouton, utilisez la méthode <a href="https://doc.qt.io/qt-5/qstate.html#assignProperty"><code>QState.assignProperty</code></a>.
+Votre bouton doit pour cela rendre son icône accessible sous forme d&#8217;une propriété.
+Si vous n&#8217;êtes pas coutumier de la macro <code>Q_PROPERTY</code>, consultez la <a href="#reference">documentation</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo04">Exercice 4 : Affichage d&#8217;une carte à jouer</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Affichez une carte à jouer quelque part sur votre écran.
+Pour cela :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>créez votre propre classe héritant de <a href="https://doc.qt.io/qt-5/qgraphicspixmapitem.html"><code>QGraphicsPixmapItem</code></a></p>
+</li>
+<li>
+<p>en vous basant sur ce que vous avez appris à l&#8217;exercice précédent, donnez à votre classe une propriété <code>position</code> de type <a href="https://doc.qt.io/qt-5/qpointf.html"><code>QPointF</code></a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exo05">Exercice 5 : Animation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Maintenant, faite en sorte de pouvoir déplacer la carte à jouer que vous avez créée à l'<a href="#exo04">exercice 4</a> d&#8217;une position à une autre lorsque l&#8217;utilisateur clique sur le bouton <em>toggle</em> que vous avez créé aux exercices <a href="#exo02">2</a> et <a href="#exo03">3</a>.</p>
+</div>
+<div class="paragraph">
+<p>Pour cela, vous pouvez :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>définir une <a href="https://doc.qt.io/qt-5/qpropertyanimation.html"><code>QPropertyAnimation</code></a> dont le rôle sera d&#8217;altérer la valeur de la propriété <code>position</code> de votre carte.<br>
+Pour que l&#8217;animation soit la plus agréable et fluide possible, essayer les différents réglages possibles avec <a href="https://doc.qt.io/qt-5/qpropertyanimation.html#setDuration"><code>QPropertyAnimation.setDuration</code></a> et <a href="https://doc.qt.io/qt-5/qpropertyanimation.html#setEasingCurve"><code>QPropertyAnimation.setEasingCurve</code></a> ;</p>
+</li>
+<li>
+<p>utiliser la méthode <a href="https://doc.qt.io/qt-5/qstate.html#assignProperty"><code>QState.assignProperty</code></a> de chacun de vos deux états <a href="https://doc.qt.io/qt-5/qstate.html"><code>QState</code></a> de la même manière que vous l&#8217;avez fait pour changer l&#8217;icône affichée par votre bouton : cette fois, vous changerez la position de votre carte ;</p>
+</li>
+<li>
+<p>récupérer le retour de chacun de vos appels à <a href="https://doc.qt.io/qt-5/qstate.html#addTransition"><code>QState.addTransition</code></a>, et appeler <a href="https://doc.qt.io/qt-5/qabstracttransition.html#addAnimation"><code>QAbstractTransition.addAnimation</code></a> en lui donnant votre <a href="https://doc.qt.io/qt-5/qpropertyanimation.html"><code>QPropertyAnimation</code></a> en argument.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="resources/TP/QtGraphics-screencast.gif" alt="Exemple d&#8217;implémentation : lorsque l&#8217;utilisateur appuie sur le toggle en bas à droite, la carte se déplace depuis la gauche de l&#8217;écran vers la droite de l&#8217;écran. Si l&#8217;utilisateur réappuie (que le mouvement de la carte soit terminé ou pas), la carte retourne à sa position initiale."></span></p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-08-31 14:53:35 UTC
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>

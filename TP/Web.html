@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.7.1">
+<meta name="author" content="Régis WITZ">
+<title>TP IHM : Web</title>
+<style>
+
+</style>
+</head>
+<body class="book">
+<div id="header">
+<h1>TP IHM : Web</h1>
+<div class="details">
+<span id="author" class="author">Régis WITZ</span><br>
+<span id="email" class="email"><a href="mailto:rwitz@unistra.fr">rwitz@unistra.fr</a></span><br>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle"></div>
+<ul class="sectlevel1">
+<li><a href="#_appliquer_les_directives_de_style_css">Appliquer les directives de style CSS</a></li>
+<li><a href="#_tester">Tester</a></li>
+<li><a href="#selecteurs">Sélecteurs</a></li>
+<li><a href="#_couleurs">Couleurs</a></li>
+<li><a href="#_texte">Texte</a></li>
+<li><a href="#_unités">Unités</a></li>
+<li><a href="#_affichage">Affichage</a></li>
+<li><a href="#_positionnement">Positionnement</a></li>
+<li><a href="#_margins_padding_border">Margins, Padding, Border</a></li>
+<li><a href="#_conteneurs">Conteneurs</a></li>
+<li><a href="#_arrière_plans">Arrière-plans</a></li>
+<li><a href="#_ombres">Ombres</a></li>
+<li><a href="#_tableaux">Tableaux</a></li>
+<li><a href="#_listes">Listes</a></li>
+<li><a href="#pseudoelements">Pseudo-éléments</a></li>
+<li><a href="#fontface">Polices</a></li>
+<li><a href="#mediaqueries">Media queries</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_appliquer_les_directives_de_style_css">Appliquer les directives de style CSS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Il existe plusieurs manières d&#8217;appliquer des directives CSS à des éléments HTML.
+Cependant, rappelez-vous de l&#8217;importance de la différenciation entre le fond (HTML) et la forme (CSS) : un document HTML devrait toujours s&#8217;occuper uniquement du contenu, et aucunement de la forme à donner à ce contenu.
+Aussi, dans le cadre de cet enseignement, privilégiez systématiquement l&#8217;inclusion de fichiers CSS indépendants :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Exemple d'inclusion CSS&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Vous pouvez importer un fichier dans votre fichier CSS grâce à la règle <code>@import</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tester">Tester</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Souvenez-vous que ça n&#8217;est pas parce que votre interface est correctement affichée sur votre navigateur qu&#8217;elle sera correctement supportée partout.
+Dans la mesure du possible, comparez le rendu, le comportement et les performances de votre travail sur plusieurs navigateurs.
+Au mieux, il vous faudrait aussi tester sur différentes versions de ces navigateurs, voire sur différents systèmes d&#8217;exploitation.</p>
+</div>
+<div class="paragraph">
+<p>Pour vous donner une idée, vous pouvez avoir une bonne idée du <a href="https://caniuse.com/">support de certaines fonctionnalités sur les navigateurs</a>.</p>
+</div>
+<div class="paragraph">
+<p>Assurez-vous aussi de <a href="https://validator.w3.org/">tester que la syntaxe de vos page est valide</a>.
+Ça n&#8217;est pas parce qu&#8217;un résultat s&#8217;affiche correctement qu&#8217;il est sans erreur.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="selecteurs">Sélecteurs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Là où HTML utilise des tags, CSS utilise des <strong>sélecteurs</strong>.
+Ce sont ces sélecteurs qui vous permettent de sélectionner un élément particulier, ou un groupe d&#8217;éléments qui ont une même caractéristique, afin de leur appliquer une ou plusieurs directivers de style.</p>
+</div>
+<div class="paragraph">
+<p>Il est possible de faire des choses très avancées avec les sélecteurs.
+Pour en avoir une idée, consultez <a href="https://www.w3schools.com/cssref/css_selectors.asp">la documentation du W3C sur les sélecteurs</a> ou <a href="https://developer.mozilla.org/fr/docs/Web/CSS/S%C3%A9lecteurs_CSS">cette page du MDN sur les sélecteurs</a>.</p>
+</div>
+<div class="paragraph">
+<p>Si vous êtes impatient d&#8217;aller plus loin, reportez-vous à la <a href="#pseudoelements">section sur les pseudo-élements</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_couleurs">Couleurs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Il existe plusieurs manières d&#8217;exprimer une couleur donnée :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>#0000ff</code></p>
+</li>
+<li>
+<p><code>#00f</code></p>
+</li>
+<li>
+<p><code>rgb(0,0,255)</code></p>
+</li>
+<li>
+<p><code>rgb(0%,0%,100%)</code></p>
+</li>
+<li>
+<p><code>rgba(0,0,255,255)</code></p>
+</li>
+<li>
+<p><code>rgba(0%,0%,100%,100%)</code></p>
+</li>
+<li>
+<p><code>hsl(240, 100%, 50%)</code></p>
+</li>
+<li>
+<p><code>hsla(240, 100%, 50%, 1)</code></p>
+</li>
+<li>
+<p><code>blue</code> (un des <a href="https://www.w3schools.com/cssref/css_colors.asp">140 noms de couleurs supportés</a>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Changer la couleur du texte d&#8217;un élément se fait avec la directive <code>color</code>.
+En changer la couleur de fond se fait avec la directive <code>background-color</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_texte">Texte</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Essayez en particulier les différentes valeurs des directives <code>font-size</code>, <code>font-weight</code>, <code>text-decoration</code> ou encore <code>text-transform</code>.
+Attention, ça n&#8217;est pas parce que vous pouvez, par exemple, rendre n&#8217;importe quel texte arbitrairement gros et visible que vous pouvez en faire un titre en négligeant d&#8217;utiliser les balises appropriées dans votre document HTML, à savoir <code>h1</code> à <code>h6</code> !</p>
+</div>
+<div class="paragraph">
+<p>Au niveau paragraphe, étudiez aussi les directives <code>text-align</code>, <code>text-indent</code>, <code>line-height</code>, ou encore <code>word-spacing</code>/<code>letter-spacing</code>.</p>
+</div>
+<div class="paragraph">
+<p>Si vous voulez utiliser des police web, vous trouverez plus de détails dans la <a href="#fontface">section correspondante</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_emphase">Emphase</h3>
+<div class="paragraph">
+<p>HTML s&#8217;occupe de <em>donner du sens</em> au contenu.
+Mettre l&#8217;emphase sur un élément renforce ou altère ce sens.
+Il y a deux manières privilégiées d&#8217;utiliser les emphases en HTML5 :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>une emphase forte se matérialise grâce aux tags <code>&lt;strong&gt; &#8230;&#8203; &lt;/strong&gt;</code> ; par défaut, le texte emphasé sera rendu en <strong>gras</strong>.</p>
+</li>
+<li>
+<p>une emphase différente en utilisant les tags <code>&lt;em&gt; &#8230;&#8203; &lt;/em&gt;</code> ; par défaut, le texte emphasé sera rendu en <em>italique</em>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Attention cependant à ne pas considérer les tags <code>&lt;em&gt;</code> et <code>&lt;strong&gt;</code> comme des équivalents à la mise en italique ou en gras.
+En effet, ils s&#8217;occupent du <em>fond</em>, pas de la forme.
+Grâce aux directives CSS, vous restez maître de cette forme.</p>
+</div>
+<div class="paragraph">
+<p>Historiquement, c&#8217;étaient les tags <code>&lt;i&gt;</code> et <code>&lt;b&gt;</code> qui avaient le sens de « mise en italique » et de « mise en gras ».
+Cependant, la définition de ces tags historique à changé en HTML5 ; aussi, je vous en déconseille l&#8217;usage aujourd&#8217;hui.
+Il vaudra mieux utiliser <code>&lt;em&gt;</code> et <code>&lt;strong&gt;</code> dans l&#8217;immense majorité des cas.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_unités">Unités</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Il est possible d&#8217;utiliser pas mal d&#8217;unité différentes, relatives ou absolues, pour dimensionner des éléments.
+En particulier, je vous recommande de bien comprendre la signification de <strong>px</strong>, <strong>%</strong>, <strong>em</strong>, <strong>vw</strong>/<strong>vh</strong>.
+La <a href="https://www.w3schools.com/cssref/css_units.asp">documentation du W3C sur les unités</a> vous y aidera, de même que <a href="https://www.w3.org/Style/Examples/007/units.fr.html">cette page qui parle des unités</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_affichage">Affichage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La directive <code>display</code> permet de définir la manière dont chaque élément va être affiché.
+Elle peut prendre principalement trois valeurs :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>les éléments <code>display: block</code> s&#8217;affichent l&#8217;un en dessous de l&#8217;autre au sein de leur conteneur parent</p>
+</li>
+<li>
+<p>les éléments <code>display: inline</code> s&#8217;affichent l&#8217;un à coté de l&#8217;autre, en respectant un flow linéaire</p>
+</li>
+<li>
+<p>les éléments <code>display: none</code> ne sont pas affichés.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_positionnement">Positionnement</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La directive <code>position</code> permet de configurer la manière dont chaque élément va être positionné.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>static</code> laisse à l&#8217;élément son positionnement standard dans l&#8217;ordre de la page</p>
+</li>
+<li>
+<p><code>relative</code> permet en plus que l&#8217;élement soit « bousculé » grâce aux directives <code>top</code>, <code>right</code>, <code>bottom</code> et <code>left</code>.</p>
+</li>
+<li>
+<p><code>absolute</code> « sort » l&#8217;élément du flow standard des éléments de la page et permet de le positionner n&#8217;importe où dans la page grâce aux directives <code>top</code>, <code>right</code>, <code>bottom</code> et <code>left</code>.</p>
+</li>
+<li>
+<p><code>fixed</code> fonctionne comme <code>absolute</code>, mais positionne l&#8217;élément n&#8217;importe où dans le viewport ; en général, cela a pour effet de rendre l&#8217;élément indépendant du scrolling.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_margins_padding_border">Margins, Padding, Border</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Chaque élément est entouré de trois « zones » qui peuvent servir à le délimiter et à lui donner de l&#8217;espacement par rapport aux autres éléments.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>margin</code> permet de délimiter un espacement « extérieur » à l&#8217;élément ;</p>
+</li>
+<li>
+<p><code>padding</code> permet de définir un espacement « interne » à l&#8217;élément ;</p>
+</li>
+<li>
+<p><code>border</code> permet de définir une bordure.
+Des 3 directives, c&#8217;est la seule qui a vocation à être matérialisée visuellement.
+Cela peut même être fait assez finement, grâce aux « sous-directives » <code>border-style</code>, <code>border-width</code>, <code>border-radius</code> ou <code>border-color</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>margin</code>, <code>padding</code> et <code>border</code> se déclinent en quatre directions.
+Par exemple, il est possible de ne redéfinir que <code>margin-top</code>, <code>margin-right</code>, <code>margin-bottom</code> ou <code>margin-left</code>.</p>
+</div>
+<div class="paragraph">
+<p>Entre parenthèses, si vous voulez donner un peu d&#8217;espace libre au dessus d&#8217;un élément, faites-le avec sa propriété <code>margin-top</code>, <em>JAMAIS</em> en rajoutant des balises <code>&lt;br&gt;</code> dans le HTML !</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conteneurs">Conteneurs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Un document HTML étant par nature hiérarchique, il est constitué de tout un tas d&#8217;éléments contenus les uns dans les autres.
+Il est important d&#8217;utiliser le conteneur approprié à chaque usage.
+Parmi tous les conteneurs possibles, deux sont particuliers en cela qu&#8217;ils ne sont pas porteur d&#8217;une sémantique particulière : <code>&lt;div&gt;</code> et <code>&lt;span&gt;</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>&lt;div&gt;</code> est un conteneur abstrait de type bloc</p>
+</li>
+<li>
+<p><code>&lt;span&gt;</code> est un conteneur abstrait de type inline</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Chacun de ces conteneurs peut être spécialisé et acquérir du sens grâce à l&#8217;usage de classes CSS.
+Cependant, il vaut mieux, avant de les utiliser, déterminer s&#8217;il n&#8217;existe pas un autre conteneur de base plus approprié.
+<code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;nav&gt;</code> ou <code>&lt;p&gt;</code> sont en général de bons candidats.
+N&#8217;oubliez pas non plus <code>&lt;figure&gt;</code> qui, allié à <code>&lt;figcaption&gt;</code>, est totalement approprié pour contenir une image.</p>
+</div>
+<div class="paragraph">
+<p>Dans le doute, consultez une <a href="https://www.w3schools.com/html/html5_semantic_elements.asp">description des principaux conteneurs</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_citations">Citations</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>&lt;blockquote&gt;</code> est un conteneur destiné spécifiquement aux citations ;</p>
+</li>
+<li>
+<p><code>&lt;code&gt;</code> (éventuellement combiné avec <code>&lt;pre&gt;</code>) est destiné à contenir des snippets de code.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_arrière_plans">Arrière-plans</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La directive <code>background</code> permet de configurer de manière assez fine l&#8217;arrière-plan d&#8217;un élément.
+Vous pouvez définir un gradient, un motif répétable ou non, et ainsi de suite.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ombres">Ombres</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Les directives <code>box-shadow</code> et <code>text-shadow</code> permettent de donner un effet d&#8217;ombre à vos éléments ou à votre texte.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tableaux">Tableaux</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La manière de définir un tableau en HTML est globalement inchangée :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Un tableau est délimité par le tag <code>&lt;table&gt;</code>.</p>
+</li>
+<li>
+<p>Une ligne est délimitée par le tag <code>&lt;tr&gt;</code>  (<em>table row</em>).</p>
+</li>
+<li>
+<p>Une case du tableau est délimitée par le tag <code>&lt;td&gt;</code> (<em>table data</em>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cependant, HTML5 apporte les attributs <code>colspan</code> et <code>rowspan</code> du tag <code>&lt;td&gt;</code>, qui permet de créer des tableaux dont les cases ne font pas toutes la même taille.</p>
+</div>
+<div class="paragraph">
+<p>Une table peut aussi être subdivisée en un header (avec <code>&lt;thead&gt;</code>), un footer (avec <code>&lt;tfoot&gt;</code>) et un corps (avec <code>&lt;tbody&gt;</code>).</p>
+</div>
+<div class="paragraph">
+<p>Les colonnes peuvent être customisée plus avant grâce à <code>&lt;colgroup&gt;</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_listes">Listes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Vous connaissez certainement les conteneurs <code>&lt;ul&gt;</code> (<em>unordered list</em>, liste à points) et <code>&lt;ol&gt;</code> (<em>ordered list</em>, liste à numéros) qui contiennent des éléments <code>&lt;li&gt;</code> (<em>list item</em>).</p>
+</div>
+<div class="paragraph">
+<p>HTML5 apporte un troisième type de liste, <code>&lt;dl&gt;</code> (<em>description list</em>), spécialisé dans la création de glossaires ou de dictionnaires.
+Un élément <code>&lt;dl&gt;</code> contient une succession d&#8217;élements <code>&lt;dt&gt;</code> (termes) suivis d&#8217;élements <code>&lt;dd&gt;</code> (descriptions associées aux termes).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pseudoelements">Pseudo-éléments</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Les pseudo-éléments permettent de raffiner vos <a href="#selecteurs">sélections d&#8217;éléments</a> en CSS.
+Par exemple, <code>:hover</code> permet de configurer un élément sur lequel le pointeur de souris se déplace, tandis que <code>:before</code> et <code>:after</code> permettent (combinés avec la directive <code>content</code>) de créer systématiquement des pseudo-éléments avant ou après l&#8217;élément sélectionné (pour customiser les « bullets » d&#8217;une liste non ordonnée, par exemple).</p>
+</div>
+<div class="paragraph">
+<p>Consultez et expérimentez en vous aidant d&#8217;<a href="https://www.w3schools.com/css/css_pseudo_elements.asp">une liste des pseudo-éléments ainsi que leur signification</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="fontface">Polices</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La règle <code>@font-face</code> permet de définir une ou plusieurs polices d&#8217;écritures utilisées par votre interface :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-css hljs" data-lang="css">@font-face {
+  font-family: "Liberation Sans";
+  src: url("/fonts/LiberationSans-Regular-webfont.woff2") format("woff2"),
+       url("/fonts/LiberationSans-Regular-webfont.woff") format("woff"),
+       url("/fonts/LiberationSans-Regular-webfont.ttf") format('truetype');
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Cette police peut ensuite être utilisée via la directive <code>font-family</code>.
+Par exemple :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-css hljs" data-lang="css">p {
+  font-family: "Liberation Sans", Arial, sans-serif;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Plus d&#8217;informations sur <a href="https://developer.mozilla.org/fr/docs/Web/CSS/@font-face">cette page du MDN</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="mediaqueries">Media queries</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On appelle media query une technique qui consiste à combiner la règle CSS <code>@media</code> avec les sélecteurs CSS habituels pour ne déclencher certains changements que lorsque l&#8217;appareil qui affiche notre interface satisfait à certains critères :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Tout d&#8217;abord, les critères peuvent porter sur la nature de l&#8217;appareil elle-même: par exemple <code>@media screen</code> permet de ne faire certaines choses que lorsque le document HTML est affiché sur un écran, tandis que <code>@media print</code> permet de ne les faire que lorsque le document est imprimé.</p>
+</li>
+<li>
+<p>Ensuite, il est possible de filtrer suivant les dimensions de l&#8217;écran.
+C&#8217;est ce qui permet les mise en pages adaptives.
+Cela se fait de manière semblable à ceci :</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-css hljs" data-lang="css">@media screen and (max-width:  800px) {
+  ...
+}
+
+@media screen and (max-width: 1600px) {
+  ...
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Il est aussi possible de tester l&#8217;orientation de l&#8217;appareil, comme ceci :</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-css hljs" data-lang="css">@media screen and (orientation: landscape) {
+  ...
+}
+
+@media screen and (orientation: portrait) {
+  ...
+}</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cette liste n&#8217;est aucunement exhaustive.
+Consultez <a href="https://www.w3schools.com/cssref/css3_pr_mediaquery.asp">la documentation de la règle @media</a> pour un aperçu plus complet.
+<a href="https://developer.mozilla.org/fr/docs/Web/CSS/Requ%C3%AAtes_m%C3%A9dia/Utiliser_les_Media_queries">Cette page du MDN en français sur les media queries</a> entre quand à elle plus en détails sur cette technique.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-08-31 14:53:35 UTC
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>
