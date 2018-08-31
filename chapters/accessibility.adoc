@@ -62,14 +62,9 @@ Toutes ces sources ne sont bien souvent pas centrées sur l'accessibilité, mais
 
 
 
-=== Validation
+=== Principes
 
-Il existe différentes manières complémentaires pour valider l'accessibilité d'un logiciel :
 
-* Suivre un checklist basée sur les recommandations de la plateforme cible
-* Utiliser des lecteurs d'écrans et/ou d'autres outils, les mêmes utilisés par les utilisateurs en situation de handicap
-* Les interfaces web peuvent bénéficier de visualisations par un navigateur uniquement textuel, comme lynx
-* Faire appel directement à un panel approprié de testeurs en situation de handicap lors des tests d'utilisabilité.
 
 
 
@@ -128,3 +123,14 @@ En particulier, on peut citer comme exemple :
 * gerer correctement les *encodages* de chaînes de caractères produites en sortie et attendues en entrée.
 * détecter les *préférences culturelles* de l'utilisateur chaque fois que cela est possible, et les rendre configurables dans tous les cas.
 * *séparer le fond et le forme*, afin que la forme (constituée par l'interface) puisse être remplacée ou altérée par configuration ou par des outils tiers.
+
+
+
+=== Validation
+
+Il existe différentes manières complémentaires pour valider l'accessibilité d'un logiciel :
+
+* Suivre un checklist basée sur les recommandations de la plateforme cible
+* Utiliser des lecteurs d'écrans et/ou d'autres outils, les mêmes utilisés par les utilisateurs en situation de handicap
+* Les interfaces web peuvent bénéficier de visualisations par un navigateur uniquement textuel, comme lynx
+* Faire appel directement à un panel approprié de testeurs en situation de handicap lors des tests d'utilisabilité.

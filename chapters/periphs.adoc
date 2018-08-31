@@ -21,7 +21,7 @@ Il est possible de classer les périphériques d'entrée de différentes manièr
 
 * ceux à *coordonnées absolues* (x,y) comme la tablette ou l'écran tactile donnent la position pointée ;
   d'un autre coté, ceux à *coordonnées relatives* (dx,dy) comme la souris ou le touchpad donnent le déplacement depuis la dernière position connue.
-* les périphériques d'entrées peuvent être *directs* (par exemple l'écran tactile) ou *indirects* (comme le touchpad).
+* les périphériques d'entrée peuvent être *directs* (par exemple l'écran tactile) ou *indirects* (comme le touchpad).
 * leur *mode d'entrée* :
 ** en mode *requête* : l'attente est bloquante.
 ** en mode *échantillonage* : la réponse est immédiate
