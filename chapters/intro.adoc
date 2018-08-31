@@ -8,8 +8,6 @@ Cependant, certaines dispositions d'objets affichées sur un écran peuvent êtr
 
 image::resources/intro/illusion_akiyoshi9.png[caption="Exemple d'illusion d'optique :", title="© Akiyoshi Kitaoka, « Trick eyes ».", link=http://ophtasurf.free.fr/illusions_extraordinaires2.htm]
 
-image::resources/intro/triangle_de_curry.jpg[caption="Exemple d'illusion mathématique :", title="Triangle de Curry"]
-
 
 
 === Caractéristiques
