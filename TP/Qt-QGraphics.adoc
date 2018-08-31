@@ -1,0 +1,105 @@
+:source-highlighter: prettify
+:source-highlighter: highlightjs
+
+= TP IHM : QtGraphics
+Régis WITZ <rwitz@unistra.fr>
+:doctype: book
+:toc:
+:toc-title:
+:toclevels: 1
+
+[[reference]]
+== Documentation
+
+* https://doc.qt.io/qt-5/properties.html[Documentation] de Q_PROPERTY.
+* À peu près la même https://qt.developpez.com/doc/4.7/properties/[en français].
+* Des explications sur commen se passe la https://doc.qt.io/qt-5/why-moc.html[génération de code] de Qt.
+* Le https://doc.qt.io/archives/qt-4.8/moc.html[manuel] de l'outil utilisé (_moc_) pour générer le code, si vraiment `qmake` ne veut pas vous générer vos fichiers `.moc`.
+* https://www.sketchuptextureclub.com/textures/materials/wallpaper/various-patterns/graffiti-wallpaper-texture-seamless-12217[Texture de fond utilisée]
+
+[[exo01]]
+== Exercice 1 : Affichage d'une image de fond
+
+Qt permet de créer des IHM intéressantes qui s'écartent grandement du look & feel habituel des applications tournant sous un OS donné.
+Cette méthode demande davantage de travail car il est nécessaire de réimplémenter beaucoup de fonctionnel que Qt nous fournit d'habitude clés en main.
+Cependant, cela permet de donner un rendu unique à votre application.
+Cela est particulièrement intéressante si votre application a un coté ludique, s'il s'agit un jeu vidéo par exemple.
+Dans tous les cas, cela se fait en ajoutant différents objets (_sprites_ héritant de https://doc.qt.io/qt-5/qgraphicsitem.html[`QGraphicsItem`]) à une scène 2D.
+
+Pour commencer, affichez simplement une image de fond (_background image_) sans autre artifice.
+
+Plus en détails :
+
+* Importez votre image de fond sous forme d'une https://doc.qt.io/qt-5/qimage.html[`QImage`] ou d'une https://doc.qt.io/qt-5/qpixmap.html[`QPixmap`].
+* Créez une scène vide https://doc.qt.io/qt-5/qgraphicsscene.html[`QGraphicsScene`].
+* Ajoutez votre scène à une vue https://doc.qt.io/qt-5/qgraphicsview.html[`QGraphicsView`]
+* Définissez votre image comme image de fond de votre vue grâce à https://doc.qt.io/qt-5/qgraphicsview.html#backgroundBrush-prop[`QGraphicsView.setBackgroundBrush`].
+* Affichez votre vue dans une fenêtre en appelant sa méthode `show`.
+
+L'image que j'ai utilisé est celle-ci image:resources/TP/background.png[title="Exemple d'image de fond", alt="Exemple d'image de fond ; il "], mais vous pouvez bien évidemment en utiliser une autre.
+Attention, quelle que soit l'image que vous utilisez, prenez garde à en choisir une qui peut servir de base à un pavage régulier (ie. _seamless tile_/_tesselation_) pour un rendu optimal.
+
+[[exo02]]
+== Exercice 2 : Bouton personnalisé
+
+Essayez de dessiner votre propre _sprite_.
+Ce sprite est destiné à servir de bouton dans la suite du TP.
+
+Plus en détails :
+
+* Votre bouton doit hériter de https://doc.qt.io/qt-5/qgraphicswidget.html[`QGraphicsWidget`].
+* Prenez garde à correctement surcharger ses méthodes `boundingRect()` et `shape()`, en particulier si votre bouton n'est pas carré.
+* Implémentez l'apparence de votre bouton en surchargeant sa méthode `paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)`.
+  Pour cela, utilisez l'argument https://doc.qt.io/qt-5/qpainter.html[`QPainter`], et en particulier ses méthodes `setPen` et `setBrush` que vous utiliserez avant d'appelez une des ses méthodes de dessin de primitives graphiques commençant par `draw` (par exemple, `drawEllipse` vous permet de dessiner un rond, et `drawPixmap` d'afficher une image, par exemple un icône sur votre bouton). +
+  Pour des effets d'ombre ou de dégradés, vous pouvez utiliser `setBrush(https://doc.qt.io/qt-5/qlineargradient.html[QLinearGradient])` par exemple.
+* N'oubliez pas d'ajouter votre bouton à votre scène grâce à https://doc.qt.io/qt-5/qgraphicsscene.html#addItem[`QGraphicsScene.addItem`].
+
+[NOTE]
+====
+Dans cet exercice, vous risquez de tomber sur une erreur du style « _undefined reference to vtable_ ».
+Si vous avez rajouté le `.h` correspondant dans la target `HEADERS` de votre fichier projet et que vous rencontrez malgré tout cette erreur, il peut être nécessaire d'ajouter une ligne du genre `#include "moc_monfichier.cpp"` à la fin du fichier ou se trouve l'implémentation de la fonction qui pose problème.
+Consultez les liens à propos de la génération de code données dans la <<reference,documentation>> pour mieux comprendre ce qu'il se passe.
+
+====
+
+[[exo03]]
+== Exercice 3 : Machine à états
+
+Pour l'instant, votre bouton n'a que l'apparence d'un bouton.
+Il s'agit maintenant de lui donner la fonctionnalité d'un bouton : l'utilisateur doit pouvoir le presser, et quelque chose doit alors arriver.
+Par exemple, essayez de faire en sorte de faire de votre bouton un _toggle_ : s'il est pressé une fois, son icône change, et s'il est pressé une seconde fois, son icône redevient celle qu'elle était au départ.
+
+Pour cela, créez une machine à états https://doc.qt.io/qt-5/qstatemachine.html[`QStateMachine`], à laquelle vous ajouterez deux états https://doc.qt.io/qt-5/qstate.html[`QState`] grâce à la méthode https://doc.qt.io/qt-5/qstatemachine.html#addState[`QStateMachine.addState`].
+N'oubliez pas de définir l'état initial grâce à la méthode https://doc.qt.io/qt-5/qstatemachine.html#setInitialState[`QStateMachine.setInitialState`].
+
+Pour que votre bouton permette de voyager d'un état de cette machine à états à l'autre, utilisez la méthode https://doc.qt.io/qt-5/qstate.html#addTransition[`QState.addTransition`].
+Par exemple, vous pouvez faire `etatToggleInactif.addTransition(monBouton, &TPButton::pressed, &etatToggleActif);`.
+
+Enfin, pour que l'icône de votre bouton change lorsque vous voyagez d'un état à l'autre de votre machine à états en appuyant dessus bouton, utilisez la méthode https://doc.qt.io/qt-5/qstate.html#assignProperty[`QState.assignProperty`].
+Votre bouton doit pour cela rendre son icône accessible sous forme d'une propriété.
+Si vous n'êtes pas coutumier de la macro `Q_PROPERTY`, consultez la <<reference,documentation>>.
+
+[[exo04]]
+== Exercice 4 : Affichage d'une carte à jouer
+
+Affichez une carte à jouer quelque part sur votre écran.
+Pour cela :
+
+* créez votre propre classe héritant de https://doc.qt.io/qt-5/qgraphicspixmapitem.html[`QGraphicsPixmapItem`]
+* en vous basant sur ce que vous avez appris à l'exercice précédent, donnez à votre classe une propriété `position` de type https://doc.qt.io/qt-5/qpointf.html[`QPointF`].
+
+[[exo05]]
+== Exercice 5 : Animation
+
+Maintenant, faite en sorte de pouvoir déplacer la carte à jouer que vous avez créée à l'<<exo04,exercice 4>> d'une position à une autre lorsque l'utilisateur clique sur le bouton _toggle_ que vous avez créé aux exercices <<exo02,2>> et <<exo03,3>>.
+
+Pour cela, vous pouvez :
+
+* définir une https://doc.qt.io/qt-5/qpropertyanimation.html[`QPropertyAnimation`] dont le rôle sera d'altérer la valeur de la propriété `position` de votre carte. +
+  Pour que l'animation soit la plus agréable et fluide possible, essayer les différents réglages possibles avec https://doc.qt.io/qt-5/qpropertyanimation.html#setDuration[`QPropertyAnimation.setDuration`] et https://doc.qt.io/qt-5/qpropertyanimation.html#setEasingCurve[`QPropertyAnimation.setEasingCurve`] ;
+* utiliser la méthode https://doc.qt.io/qt-5/qstate.html#assignProperty[`QState.assignProperty`] de chacun de vos deux états https://doc.qt.io/qt-5/qstate.html[`QState`] de la même manière que vous l'avez fait pour changer l'icône affichée par votre bouton : cette fois, vous changerez la position de votre carte ;
+* récupérer le retour de chacun de vos appels à https://doc.qt.io/qt-5/qstate.html#addTransition[`QState.addTransition`], et appeler https://doc.qt.io/qt-5/qabstracttransition.html#addAnimation[`QAbstractTransition.addAnimation`] en lui donnant votre https://doc.qt.io/qt-5/qpropertyanimation.html[`QPropertyAnimation`] en argument.
+
+
+
+image:resources/TP/QtGraphics-screencast.gif[alt="Exemple d'implémentation : lorsque l'utilisateur appuie sur le toggle en bas à droite, la carte se déplace depuis la gauche de l'écran vers la droite de l'écran. Si l'utilisateur réappuie (que le mouvement de la carte soit terminé ou pas), la carte retourne à sa position initiale."]

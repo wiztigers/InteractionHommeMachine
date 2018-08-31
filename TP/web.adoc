@@ -1,0 +1,284 @@
+﻿:source-highlighter: prettify
+:source-highlighter: highlightjs
+
+= TP IHM : Web
+Régis WITZ <rwitz@unistra.fr>
+:doctype: book
+:toc:
+:toc-title:
+:toclevels: 1
+
+
+
+== Appliquer les directives de style CSS
+
+Il existe plusieurs manières d'appliquer des directives CSS à des éléments HTML.
+Cependant, rappelez-vous de l'importance de la différenciation entre le fond (HTML) et la forme (CSS) : un document HTML devrait toujours s'occuper uniquement du contenu, et aucunement de la forme à donner à ce contenu.
+Aussi, dans le cadre de cet enseignement, privilégiez systématiquement l'inclusion de fichiers CSS indépendants :
+[source,html]
+----
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exemple d'inclusion CSS</title>
+    <link rel="stylesheet" href="style.css">
+...
+----
+
+Vous pouvez importer un fichier dans votre fichier CSS grâce à la règle `@import`.
+
+
+== Tester
+
+Souvenez-vous que ça n'est pas parce que votre interface est correctement affichée sur votre navigateur qu'elle sera correctement supportée partout.
+Dans la mesure du possible, comparez le rendu, le comportement et les performances de votre travail sur plusieurs navigateurs.
+Au mieux, il vous faudrait aussi tester sur différentes versions de ces navigateurs, voire sur différents systèmes d'exploitation.
+
+Pour vous donner une idée, vous pouvez avoir une bonne idée du https://caniuse.com/[support de certaines fonctionnalités sur les navigateurs].
+
+Assurez-vous aussi de https://validator.w3.org/[tester que la syntaxe de vos page est valide].
+Ça n'est pas parce qu'un résultat s'affiche correctement qu'il est sans erreur.
+
+
+
+[[selecteurs]]
+== Sélecteurs
+
+Là où HTML utilise des tags, CSS utilise des *sélecteurs*.
+Ce sont ces sélecteurs qui vous permettent de sélectionner un élément particulier, ou un groupe d'éléments qui ont une même caractéristique, afin de leur appliquer une ou plusieurs directivers de style.
+
+Il est possible de faire des choses très avancées avec les sélecteurs.
+Pour en avoir une idée, consultez https://www.w3schools.com/cssref/css_selectors.asp[la documentation du W3C sur les sélecteurs] ou https://developer.mozilla.org/fr/docs/Web/CSS/S%C3%A9lecteurs_CSS[cette page du MDN sur les sélecteurs].
+
+Si vous êtes impatient d'aller plus loin, reportez-vous à la <<pseudoelements,section sur les pseudo-élements>>.
+
+
+== Couleurs
+
+Il existe plusieurs manières d'exprimer une couleur donnée :
+
+* `#0000ff`
+* `#00f`
+* `rgb(0,0,255)`
+* `rgb(0%,0%,100%)`
+* `rgba(0,0,255,255)`
+* `rgba(0%,0%,100%,100%)`
+* `hsl(240, 100%, 50%)`
+* `hsla(240, 100%, 50%, 1)`
+* `blue` (un des https://www.w3schools.com/cssref/css_colors.asp[140 noms de couleurs supportés])
+
+Changer la couleur du texte d'un élément se fait avec la directive `color`.
+En changer la couleur de fond se fait avec la directive `background-color`.
+
+
+
+== Texte
+
+Essayez en particulier les différentes valeurs des directives `font-size`, `font-weight`, `text-decoration` ou encore `text-transform`.
+Attention, ça n'est pas parce que vous pouvez, par exemple, rendre n'importe quel texte arbitrairement gros et visible que vous pouvez en faire un titre en négligeant d'utiliser les balises appropriées dans votre document HTML, à savoir `h1` à `h6` !
+
+Au niveau paragraphe, étudiez aussi les directives `text-align`, `text-indent`, `line-height`, ou encore `word-spacing`/`letter-spacing`.
+
+Si vous voulez utiliser des police web, vous trouverez plus de détails dans la <<fontface,section correspondante>>.
+
+
+=== Emphase
+
+HTML s'occupe de _donner du sens_ au contenu.
+Mettre l'emphase sur un élément renforce ou altère ce sens.
+Il y a deux manières privilégiées d'utiliser les emphases en HTML5 :
+
+* une emphase forte se matérialise grâce aux tags `<strong> ... </strong>` ; par défaut, le texte emphasé sera rendu en *gras*.
+* une emphase différente en utilisant les tags `<em> ... </em>` ; par défaut, le texte emphasé sera rendu en _italique_.
+
+Attention cependant à ne pas considérer les tags `<em>` et `<strong>` comme des équivalents à la mise en italique ou en gras.
+En effet, ils s'occupent du _fond_, pas de la forme.
+Grâce aux directives CSS, vous restez maître de cette forme.
+
+Historiquement, c'étaient les tags `<i>` et `<b>` qui avaient le sens de « mise en italique » et de « mise en gras ».
+Cependant, la définition de ces tags historique à changé en HTML5 ; aussi, je vous en déconseille l'usage aujourd'hui.
+Il vaudra mieux utiliser `<em>` et `<strong>` dans l'immense majorité des cas.
+
+
+
+== Unités
+
+Il est possible d'utiliser pas mal d'unité différentes, relatives ou absolues, pour dimensionner des éléments.
+En particulier, je vous recommande de bien comprendre la signification de *px*, *%*, *em*, *vw*/*vh*.
+La https://www.w3schools.com/cssref/css_units.asp[documentation du W3C sur les unités] vous y aidera, de même que https://www.w3.org/Style/Examples/007/units.fr.html[cette page qui parle des unités].
+
+
+
+== Affichage
+
+La directive `display` permet de définir la manière dont chaque élément va être affiché.
+Elle peut prendre principalement trois valeurs :
+
+* les éléments `display: block` s'affichent l'un en dessous de l'autre au sein de leur conteneur parent
+* les éléments `display: inline` s'affichent l'un à coté de l'autre, en respectant un flow linéaire
+* les éléments `display: none` ne sont pas affichés.
+
+
+
+== Positionnement
+
+La directive `position` permet de configurer la manière dont chaque élément va être positionné.
+
+* `static` laisse à l'élément son positionnement standard dans l'ordre de la page
+* `relative` permet en plus que l'élement soit « bousculé » grâce aux directives `top`, `right`, `bottom` et `left`.
+* `absolute` « sort » l'élément du flow standard des éléments de la page et permet de le positionner n'importe où dans la page grâce aux directives `top`, `right`, `bottom` et `left`.
+* `fixed` fonctionne comme `absolute`, mais positionne l'élément n'importe où dans le viewport ; en général, cela a pour effet de rendre l'élément indépendant du scrolling.
+
+
+
+
+== Margins, Padding, Border
+
+Chaque élément est entouré de trois « zones » qui peuvent servir à le délimiter et à lui donner de l'espacement par rapport aux autres éléments.
+
+* `margin` permet de délimiter un espacement « extérieur » à l'élément ;
+* `padding` permet de définir un espacement « interne » à l'élément ;
+* `border` permet de définir une bordure.
+  Des 3 directives, c'est la seule qui a vocation à être matérialisée visuellement.
+  Cela peut même être fait assez finement, grâce aux « sous-directives » `border-style`, `border-width`, `border-radius` ou `border-color`.
+
+`margin`, `padding` et `border` se déclinent en quatre directions.
+Par exemple, il est possible de ne redéfinir que `margin-top`, `margin-right`, `margin-bottom` ou `margin-left`.
+
+Entre parenthèses, si vous voulez donner un peu d'espace libre au dessus d'un élément, faites-le avec sa propriété `margin-top`, _JAMAIS_ en rajoutant des balises `<br>` dans le HTML !
+
+
+
+== Conteneurs
+
+Un document HTML étant par nature hiérarchique, il est constitué de tout un tas d'éléments contenus les uns dans les autres.
+Il est important d'utiliser le conteneur approprié à chaque usage.
+Parmi tous les conteneurs possibles, deux sont particuliers en cela qu'ils ne sont pas porteur d'une sémantique particulière : `<div>` et `<span>`.
+
+* `<div>` est un conteneur abstrait de type bloc 
+* `<span>` est un conteneur abstrait de type inline
+
+Chacun de ces conteneurs peut être spécialisé et acquérir du sens grâce à l'usage de classes CSS.
+Cependant, il vaut mieux, avant de les utiliser, déterminer s'il n'existe pas un autre conteneur de base plus approprié.
+`<article>`, `<section>`, `<header>`, `<footer>`, `<aside>`, `<nav>` ou `<p>` sont en général de bons candidats.
+N'oubliez pas non plus `<figure>` qui, allié à `<figcaption>`, est totalement approprié pour contenir une image.
+
+Dans le doute, consultez une https://www.w3schools.com/html/html5_semantic_elements.asp[description des principaux conteneurs].
+
+=== Citations
+
+* `<blockquote>` est un conteneur destiné spécifiquement aux citations ;
+* `<code>` (éventuellement combiné avec `<pre>`) est destiné à contenir des snippets de code.
+
+
+
+== Arrière-plans
+
+La directive `background` permet de configurer de manière assez fine l'arrière-plan d'un élément.
+Vous pouvez définir un gradient, un motif répétable ou non, et ainsi de suite.
+
+
+
+== Ombres
+
+Les directives `box-shadow` et `text-shadow` permettent de donner un effet d'ombre à vos éléments ou à votre texte.
+
+
+
+== Tableaux
+
+La manière de définir un tableau en HTML est globalement inchangée :
+
+* Un tableau est délimité par le tag `<table>`.
+* Une ligne est délimitée par le tag `<tr>`  (_table row_).
+* Une case du tableau est délimitée par le tag `<td>` (_table data_).
+
+Cependant, HTML5 apporte les attributs `colspan` et `rowspan` du tag `<td>`, qui permet de créer des tableaux dont les cases ne font pas toutes la même taille.
+
+Une table peut aussi être subdivisée en un header (avec `<thead>`), un footer (avec `<tfoot>`) et un corps (avec `<tbody>`).
+
+Les colonnes peuvent être customisée plus avant grâce à `<colgroup>`.
+
+
+== Listes
+
+Vous connaissez certainement les conteneurs `<ul>` (_unordered list_, liste à points) et `<ol>` (_ordered list_, liste à numéros) qui contiennent des éléments `<li>` (_list item_).
+
+HTML5 apporte un troisième type de liste, `<dl>` (_description list_), spécialisé dans la création de glossaires ou de dictionnaires.
+Un élément `<dl>` contient une succession d'élements `<dt>` (termes) suivis d'élements `<dd>` (descriptions associées aux termes).
+
+
+
+[[pseudoelements]]
+== Pseudo-éléments
+
+Les pseudo-éléments permettent de raffiner vos <<selecteurs,sélections d'éléments>> en CSS.
+Par exemple, `:hover` permet de configurer un élément sur lequel le pointeur de souris se déplace, tandis que `:before` et `:after` permettent (combinés avec la directive `content`) de créer systématiquement des pseudo-éléments avant ou après l'élément sélectionné (pour customiser les « bullets » d'une liste non ordonnée, par exemple).
+
+Consultez et expérimentez en vous aidant d'https://www.w3schools.com/css/css_pseudo_elements.asp[une liste des pseudo-éléments ainsi que leur signification].
+
+
+
+[[fontface]]
+== Polices
+
+La règle `@font-face` permet de définir une ou plusieurs polices d'écritures utilisées par votre interface :
+[source,css]
+----
+@font-face {
+  font-family: "Liberation Sans";
+  src: url("/fonts/LiberationSans-Regular-webfont.woff2") format("woff2"),
+       url("/fonts/LiberationSans-Regular-webfont.woff") format("woff"),
+       url("/fonts/LiberationSans-Regular-webfont.ttf") format('truetype');
+}
+----
+
+Cette police peut ensuite être utilisée via la directive `font-family`.
+Par exemple :
+[source,css]
+----
+p {
+  font-family: "Liberation Sans", Arial, sans-serif;
+}
+----
+
+Plus d'informations sur https://developer.mozilla.org/fr/docs/Web/CSS/@font-face[cette page du MDN].
+
+
+[[mediaqueries]]
+== Media queries
+
+On appelle media query une technique qui consiste à combiner la règle CSS `@media` avec les sélecteurs CSS habituels pour ne déclencher certains changements que lorsque l'appareil qui affiche notre interface satisfait à certains critères :
+
+* Tout d'abord, les critères peuvent porter sur la nature de l'appareil elle-même: par exemple `@media screen` permet de ne faire certaines choses que lorsque le document HTML est affiché sur un écran, tandis que `@media print` permet de ne les faire que lorsque le document est imprimé.
+* Ensuite, il est possible de filtrer suivant les dimensions de l'écran.
+  C'est ce qui permet les mise en pages adaptives.
+  Cela se fait de manière semblable à ceci :
++
+[source,css]
+----
+@media screen and (max-width:  800px) {
+  ...
+}
+
+@media screen and (max-width: 1600px) {
+  ...
+}
+----
+
+* Il est aussi possible de tester l'orientation de l'appareil, comme ceci :
++
+[source,css]
+----
+@media screen and (orientation: landscape) {
+  ...
+}
+
+@media screen and (orientation: portrait) {
+  ...
+}
+----
+
+Cette liste n'est aucunement exhaustive.
+Consultez https://www.w3schools.com/cssref/css3_pr_mediaquery.asp[la documentation de la règle @media] pour un aperçu plus complet.
+https://developer.mozilla.org/fr/docs/Web/CSS/Requ%C3%AAtes_m%C3%A9dia/Utiliser_les_Media_queries[Cette page du MDN en français sur les media queries] entre quand à elle plus en détails sur cette technique.

@@ -1,0 +1,367 @@
+:source-highlighter: prettify
+:source-highlighter: highlightjs
+
+= TP IHM : Qt
+Régis WITZ <rwitz@unistra.fr>
+:doctype: book
+:toc:
+:toc-title:
+:toclevels: 1
+
+[[intro]]
+== Introduction
+
+Ce TP vise à vous faire développer avec la librairie Qt.
+Il poursuit les buts suivants :
+
+* Vous faire programmer en {cpp}, qui est un langage orienté objet couramment utilisé.
+  Oui, le {cpp} est plus « bas niveau » que d'autres langages que vous préférerez peut-être, comme Python, Java ou C#.
+  Cependant, choisir de manière éclairée nécessite de connaître toutes les facettes d'une situation ; et dans le cas de la programmation cela signifie utiliser différents langages afin de pouvoir confirmer ses goûts ou préférences.
+* Vous faire connaître Qt, qui est une des principales librairies d'interface graphique existantes.
+* Les concepts de Qt sont utilisés de manière similaire par la majorité des API graphiques ; de plus, Qt offre des bindings avec de nombreux langages de programmation.
+  Les connaissances que vous allez acquérir vous profiteront donc même si vous utilisez d'autres technologies -à divers degrés, bien évidemment.
+* Qt ne se limite cependant pas aux IHM : elle propose aussi des composants audio, video, réseaux, de base de données, etc.
+  Une « grosse » API qui fait plein de choses différentes, on peut voir cela comme un avantage ou un inconvénient.
+  Cependant, cela signifie que vous pouvez rencontrer Qt dans bien d'autres contextes que les IHMs.
+
+De la même manière que, dans votre future carrière, vous aurez probablement à découvrir et à apprendre certaines technologies vous-même, le principe de ce TP est de vous laisser découvrir Qt à votre rythme.
+Il ne vous imposera pas de cadre strict.
+S'il vous propose de construire différents éléments d'IHM dans un ordre pédagogique, ne vous sentez pas limité par cet ordre, et explorez au fur et à mesure de vos envies ou intérêts !
+
+[NOTE]
+====
+Ce TP part du principe que vous utilisez les stations de travail de la fac.
+
+Vous pouvez évidemment utiliser votre propre machine, mais c'est dans ce cas à vous d'assurer vous-même sa configuration (installation des librairies manquantes, config de votre IDE, ...).
+En effet, je dois consacrer mon crénau de TP à enseigner l'IHM au maximum d'entre vous, pas à regler vos problèmes de Windows ou la config de votre distro Linux.
+C'est votre environnement de travail, c'est à vous de le gérer !
+
+====
+
+[[reference]]
+== Documentation
+
+* https://doc.qt.io/[Documentation complète de Qt]
+* Vous recherchez une classe particulière ?
+  Visitez https://doc.qt.io/qt-5/classes.html[la liste des classes], _CTRL+F_ l'expression que vous recherchez.
+  Pareil pour https://doc.qt.io/qt-5/classes.html[la liste des fonctions]. +
+  Outre les habituelles descriptions de champs et méthodes de chaque classe, je vous invite à faire attention, dans le tableau en haut de la page, à la ligne « Header », qui vous permet de connaître l'include dont vous avez besoin, ainsi qu'à la ligne « qmake », qui vous permet de connaître le module que vous avez besoin de rajouter à votre fichier projet (voir <<build,section suivante>>).
+* https://wiki.qt.io/Strings_and_encodings_in_Qt[Gérer l'UTF-8 en Qt]
+* https://github.com/dysfunc/ascii-emoji[Liste d'emojis] ridicules utilisés dans ce TP.
+* https://doc.qt.io/qt-5/signalsandslots.html[Davantage d'explication sur les signaux et slots] (exercice 6).
+* https://doc.qt.io/qt-5/internationalization.html[Internationalisation avec Qt]
+* https://standards.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html[Spécification des icônes système]
+
+[[build]]
+== Build
+
+Vous avez étudié les makefile durant vos études ?
+Vous en conservez un excellent souvenir ⸮
+Tant mieux !
+
+Qt propose en effet un utilitaire nommé *qmake*, qui vous permet de générer automatiquement un fichier `Makefile` adapté à la configuration que vous décrivez dans un fichier projet, porteur de l'extension `.pro`.
+Cela vous permet de ne pas avoir à vous préoccuper de détails comme l'odre de compilation, les flags de compilation, etc.
+
+Votre workflow est donc le suivant :
+
+. Créez un fichier `nomdevotreappli.pro`.
+. Renseignez dans ce fichier des directives génériques, comme le nom des fichiers sources de votre application à compiler, les modules Qt dont vous avez besoin, et ainsi de suite.
+. Exécutez `qmake`.
+  Remarquez qu'un fichier `Makefile` a été créé.
+. Exécutez `make`.
+  Si la compilation passe, les fichiers objet ainsi qu'un exécutable (à priori nommé `nomdevotreappli`) ont été créé.
+. Vous n'avez plus qu'à exécuter votre programme.
+
+Notez que `qmake` n'est pas uniquement là pour vous éviter d'avoir à écrire un fichier makefile.
+En fait, ce makefile est créé uniquement car vous êtes sur un système UNIX.
+Pour aller plus loin à la fin de ce TP, essayez qmake sur un autre OS, et il vous créera ce qu'il faut pour compiler votre application Qt _sur cet autre plateforme_.
+
+Pour débuter ce TP, je vous conseille de mettre le code source de votre application dans un fichier (par exemple `main.cpp`) que vous créez dans votre répertoire de travail, et de créer dans ce même répertoire un fichier projet (par exemple `main.pro`).
+
+Vous créerez bien évidemment d'autres fichiers sources au fur et à mesure des besoins, et mettrez de temps à autre votre fichier projet à jour (en fait, chaque fois que vous créerez un nouveau fichier source ou utiliserez un objet issu d'un nouveau module Qt : dans ce cas, n'oubliez pas de relancer la commande `qmake` pour re-générer votre makefile !).
+
+[[example_files]]
+En attendant, voici des fichiers minimaux, histoire de débuter rapidement.
+
+[source,bash]
+.main.pro
+----
+QT += widgets
+
+SOURCES += \
+	main.cpp
+----
+
+[source,cpp]
+.main.cpp
+----
+#include <QApplication>
+
+int main(int argc, char *argv[]) {
+	QApplication app(argc, argv);
+
+	// c'est ici que vous allez commencer à bosser !
+
+	return app.exec();
+}
+----
+
+[[exo01]]
+== Exercice 1 : Base
+
+Créez la fenêtre suivante :
+
+image::resources/TP/Qt01.png[alt="Une simple fenêtre créée avec QApplication et comportant un QPushButton. Appelez QPushButton.show() pour afficher le bouton."]
+
+[[exo02]]
+== Exercice 2 : Infobulles
+
+Créez la fenêtre suivante :
+
+image::resources/TP/Qt02.png[alt="Utilisez setToolTip(QString) pour une infobulle."]
+
+[[exo03]]
+== Exercice 3 : Polices
+
+Créez la fenêtre suivante :
+
+image::resources/TP/Qt03.png[alt="Utilisez setFont(QFont) pour changer la police utilisée."]
+
+[[exo04]]
+== Exercice 4 : Icônes
+
+Créez la fenêtre suivante :
+
+image::resources/TP/Qt04.png[alt="Utilisez setIcon(QIcon) pour rajouter une icône."]
+
+L'image que j'ai utilisé est celle-ci image:resources/TP/nyancat.png[title="nyan nyan nyan nyan", alt="Image à afficher sur le bouton."], mais vous pouvez bien évidemment en utiliser une autre.
+
+[NOTE]
+====
+Pour que l'image s'affiche correctement, placez-là dans le répertoire courant de votre application.
+
+Si ça ne suffit pas, indiquez le chemin absolu vers l'image dans votre code.
+Vous pouvez obtenir le répertoire courant avec `QCoreApplication::applicationDirPath()`.
+
+====
+
+[[exo05]]
+== Exercice 5 : Refactor
+
+Si vous vous êtes jusque là contenté de compléter les fichiers de base donnés <<example_files,dans l'introduction>>, c'est le bon moment pour remanier votre code.
+En effet, comme vous devez vous en douter, vous ne pourrez décemment pas construire d'application Qt complexe en jetant toute votre IHM et son fonctionnement dans un `main()`.
+
+En conséquence, créez une nouvelle classe {cpp} qui représentera la fenêtre principale de votre application.
+
+* Elle doit hériter de `QWidget`.
+* Un de ses champs doit être votre bouton.
+* Dans son constructeur, créez votre bouton et _n'oubliez pas de l'ajouter à votre fenêtre_ ; par exemple, regardez les arguments de constructeur de `QPushButton`.
+* N'oubliez pas non plus de créer son destructeur, qui détruira votre bouton.
+
+Étant donné que vous rajoutez un nouveau fichier, n'oubliez pas de compléter votre fichier projet et de réinvoquer `qmake` !
+
+Au final, votre fenêtre devrait ressembler à celle-ci :
+
+image::resources/TP/Qt05.png[alt="Une fois votre fenêtre créée, vous pouvez par exemple la redimensionner avec setFixedSize(w,h), ou changer son titre avec setWindowTitle(title)."]
+
+[[exo06]]
+== Exercice 6 : Signaux & slots
+
+Cet exercice est destiné à vous faire découvrir une des fonctionnalités les plus importantes de Qt : les signaux et les slots.
+Expliqué de manière conçise :
+
+* un signal est un événement qui peut survenir sur un élement de l'IHM : le fait d'être cliqué, d'avoir sa valeur changée, etc.
+* un slot est une fonction de callback qui peut être invoquée dans des circonstances particulières, en particulier lorsqu'un signal est émis.
+
+L'utilité de base est de pouvoir connecter un signal à un slot, à l'aide de la https://doc.qt.io/qt-5/qobject.html#connect[fonction statique connect].
+On peut bien évidemment lier plusieurs slots à un même signal.
+On peut aussi lier un signal à un autre signal.
+
+À titre d'illustration, essayez de créer une fenêtre comportant un simple `QPushButton`, libellé « OFF ».
+Lorsque vous cliquez sur ce bouton, il doit afficher « ON ».
+Lorsque vous cliquez à nouveau, il doit ré-afficher « OFF », et ainsi de suite.
+
+Pour ce faire, connectez le bon signal émis par votre bouton à une fonction slot sans argument correctement déclarée dans votre fenêtre (ou votre bouton, si vous créez une classe spécifique héritant de `QPushButton` qui représentera votre bouton).
+
+Quelques recommandations pour que la connexion signal - slot fonctionne correctement.
+Il faut :
+
+. que le ou les objets à connecter implémentent la macro `Q_OBJECT` ;
+. que, si `Q_OBJECT` est dans un fichier `.h` (ce qui est à priori le cas), ce `.h` soit ajouté à la variable `HEADERS` de votre fichier `.pro` ;
+. que vous ayiez réinvoqué `qmake` après les étapes 1 et 2 ;
+. que la fonction slot soit déclarée comme 'public slots:' : il s'agit d'une nouvelle section de classe propre à Qt, qui s'utilise de la même manière que les sections `public:` ou `private:`, habituelles en {cpp} ;
+. que l'appel à https://doc.qt.io/qt-5/qobject.html#connect[QObject::connect] soit correct.
+
+[[exo07]]
+== Exercice 7 : Dialogs
+
+Faites en sorte que, lorsque l'utilisateur appuie sur le bouton de votre simple fenêtre, un boîte de dialogue de confirmation apparaisse :
+
+image::resources/TP/Qt07.png[alt="Les boîtes de dialogue simples n'ont pas besoin d'être implémentées à la main : QMessageBox fournit plusieurs méthodes statiques dédiées à cet usage. Ces boîtes de dialogues sont même capable d'afficher du texte enrichi par des balises HTML."]
+
+[[exo08]]
+== Exercice 8 : Internationalisation (système)
+
+Les boîtes de dialogues permettent de recueillir la réponse de l'utilisateur à une question simple.
+Affichez une telle boîte de dialogue (type « Oui|Non ») lorsque l'utilisateur appuie sur un bouton.
+
+image::resources/TP/Qt08.png[alt="Boîte de dialogue de type QMessageBox::question. Attention à la langue des boutons, qui doit être cohérente avec celle du texte affiché !"]
+
+Attention, le texte de votre boîte de dialogue est en français, et les libellés des boutons doivent l'être aussi !
+Pour cela, utilisez un `QTranslator` qui chargera toutes les traductions déjà gérées par Qt.
+
+[[exo09]]
+== Exercice 9 : Internationalisation (application)
+
+À partir de l'exercice précédent, assurez-vous de supporter au moins deux langues dans votre application ; par exemple, le français et l'anglais.
+Pour cela, il vous faut gérer des fichiers de traduction (un par langue), qui référençeront tous les libellés spécifiques à votre application.
+Il est conseillé de ranger ces fichiers de traduction dans un dossier à part, nommé par exemple `i18n`.
+
+. Mettez à jour la target `TRANSLATIONS` dans votre fichier projet.
+. Marquez tous vos libellés applicatifs à traduire en utilisant la méthode `QWidget::tr()`.
+  Alternativement, vous pouvez aussi utiliser un appel statique du genre `QMessageBox::tr()`.
+. Générez les fichiers de traduction `.ts` grâce à l'utilitaire `lupdate`: +
+  `lupdate [-verbose] main.pro`
+. Compléter vos fichiers `.ts` à la main (ce sont de simples fichiers XML) ou grâce à l'interface `linguist`.
+  Par exemple : `linguist i18n/*.ts`
+. Générez les fichiers de langue `.qm` grâce à vos fichiers `.ts`.
+  Cela peut se faire grâce à linguist ou à la commande suivante : +
+  `lrelease main.pro`
+
+[[exo10]]
+== Exercice 10 : Pickers
+
+Qt propose tout un assortiment de boîtes de dialogues « toutes faites » pour saisir différents types de valeur.
+Explorez les différentes possibilités :
+
+image::resources/TP/Qt10-1.png[alt="QInputDialog::getText"]
+image::resources/TP/Qt10-2.png[alt="QInputDialog::getInteger"]
+image::resources/TP/Qt10-3.png[alt="QInputDialog::getItem"]
+
+D'autres exemples, plus complexes, incluent `QFont::getFont` ou encore `QColorDialog::getColor`.
+Essayez-les, en vous entrainant à récupérer et à réutiliser la valeur à chaque fois !
+
+[[exo11]]
+== Exercice 11 : Fichiers
+
+Un autre exercice relativement important consiste à savoir gérer l'ouverture et la sauvegarde de fichiers.
+Par exemple, créez une interface qui permet à l'utilisateur :
+
+. d'ouvrir un fichier texte avec `QFileDialog::getOpenFileName` ; remarquez le paramètre de filtrage selon l'extension.
+. de le modifier dans un champ de texte ; par exemple, un `QTextEdit`.
+. de sauvegarder la version modifiée comme un fichier différent avec `QFileDialog::getSaveFileName`.
+
+Vous pouvez aussi jeter un coup d'œil du coté de `QFileDialog::getExistingDirectory`.
+
+[[exo12]]
+== Exercice 12 : Layouts
+
+Le meilleur moyen de disposer plusieurs éléments dans une fenêtre est d'utiliser des *Layouts*.
+Qt en propose plusieurs types, qui permettent de disposer correctement les éléments les uns par rapport aux autres.
+
+Le processus est toujours le même : on ajoute les éléments à une layout, puis on ajoute la layout à la fenêtre.
+Évidemment, une layout peut elle-même être ajoutée à une autre layout -c'est même le seul moyen de construire une fenêtre complexe proprement.
+
+Les principaux types de layout sont au nombre de quatre : `QVBoxLayout`, `QHBoxLayout`, `QGridLayout` et `QFormLayout`.
+Explorez-en les possibilités individuellement, puis combinez-les pour construire une fenêtre complexe !
+
+image:resources/TP/Qt12-1.png[alt="Utilisation de QHBoxLayout pour positionner plusieurs boutons horizontalement."]
+image:resources/TP/Qt12-2.png[alt="Utilisation de QVBoxLayout pour positionner plusieurs boutons verticalement."]
+image:resources/TP/Qt12-3.png[alt="Utilisation de QGridLayout pour positionner plusieurs boutons au sein d'une grille."]
+
+[[exo13]]
+== Exercice 13 : Fenêtre principale
+
+`QMainWindow` sert le plus souvent pour créer la fenêtre principale d'une application.
+En effet, cette classe permet de simplifier la gestion, entre autres :
+
+* de la barre de menu (celle qui comporte en général les choix «Fichier», «Édition», «Aide», etc)
+* de la barre d'outils (des raccourcis vers les outils en général sous forme d'icônes placés sous la barre de menu)
+* de la barre de statut (servant en général à afficher des informations textuelles de statut, tout en bas de la fenêtre)
+
+Une `QMainWindow` est aussi caractérisée par une zone de travail centrale, qui peut gérer soit un seul document, soit plusieurs comme nous le verrons dans l'<<exo16,exercice 16>>.
+
+En reprenant ce que vous avez fait dans l'<<exo11,exercice 11>>, adaptez votre code de manière à utiliser `QMainWindow`.
+Le contenu du fichier texte, ainsi que les boutons d'ouverture et de sauvegarde sont pour l'instant à afficher en zone centrale.
+
+image::resources/TP/Qt13.png[alt="La zone centrale est un unique QWidget, ajouté à votre fenêtre grâce à QMainWindow.setCentralWidget ; les éléments de la zone centrale sont ensuite ajoutés à ce QWidget de la manière habituelle."]
+
+[[exo14]]
+== Exercice 14 : Menus et actions
+
+Retirez les deux boutons servant à ouvrir et à enregistrer un fichier de la zone de travail de votre fenêtre.
+À la place, créez une barre de menu (`QMenuBar`) incluant différent menus (`QMenu`) incluant à leur tour différentes actions (`QAction`).
+Par exemple, vous pouvez créer :
+
+* un menu _Fichier_, permettant :
+** d'_Ouvrir_ un fichier
+** de l'_Enregistrer sous_ un nouveau nom
+** de _Quitter_ l'application
+* un menu _Aide_, permettant
+** de changer la langue de l'application
+** d'afficher le sujet du TP sous forme d'_Aide en ligne_ (jetez un coup d'œil du coté de `QDesktopServices.openUrl`)
+** d'obtenir des infomations _À propos_ de l'application ou de son développeur via une boîte de dialogue dédiée
+
+Il est évidemment possible, et même conseillé, d'affecter des raccoucis claviers aux différentes actions de votre application grâce à `QAction.setShortcut(QKeySequence)`.
+
+N'oubliez pas que vos menus doivent être traduits en plusieurs langues, et que cette internationalisation doit prendre en compte les raccourcis clavier !
+
+image:resources/TP/Qt14-1.png[alt="Dans la barre d'outils, un QMenu « Fichier », avec trois éléments QAction : « Ouvrir... », « Enregistrer sous... », et « Quitter »."]
+image:resources/TP/Qt14-2.png[alt="Dans la même barre d'outils, un QMenu « Aide », avec trois éléments QAction : « Aide en ligne », et « À propos »."]
+
+[[exo15]]
+== Exercice 15 : Barre d'outils
+
+Ajoutez une barre d'outils (`QToolBar`) à votre application.
+Cette barre d'outils doit contenir au moins deux commandes : _Ouvrir_ et _Enregistrer_.
+Vous réutiliserez les `QActions` que vous avez créées à l'exercice précédent pour implémenter les commandes.
+
+Une barre d'outils rassemble en général les commandes sous forme d'icônes.
+Il est possible d'affecter une icône à une action de la même manière qu'à n'importe quel widget (voir <<exo04,Exercice 4>>).
+Pour un rendu cohérent, vous pouvez réutiliser les icônes système grâce à `QIcon.fromTheme` et à la <<reference,documentation>> de ce TP.
+
+image:resources/TP/Qt15.png[alt="Créez votre toolbar avec QMainWindow.addToolBar, puis ajoutez-lui vos QActions déjà créées grâce à QToolBar.addAction !"]
+
+Hormis des `QAction`, vous pouvez aussi rajouter tout type de widget spécifique à votre barre d'outils (par exemple une zone de texte qui servira de barre de recherche, une combobox qui servira de sélecteur de mode, etc), de même que des separateurs (avec `QToolBar.addSeparator`).
+
+[[exo16]]
+== Exercice 16 : Documents multiples
+
+La zone de travail centrale de votre `QMainWindow` fonctionnait jusqu'ici en mode « SDI » (ou _Single Document Interface_).
+Mais vous pouvez aussi gérer plusieurs documents à la fois en fonctionnant en mode « MDI » (ou _Multiple Document Interface_).
+Pour cela, il suffit de remplacer votre widget central actuel par une `QMdiArea`.
+
+Modifiez votre programme de manière à pouvoir ouvrir, modifier et sauvegarder un nombre indéfini de fichiers en même temps.
+
+image:resources/TP/Qt16.png[alt="Créez cette fois une QMdiArea, que vous passerez en argument à setCentralWidget. Ajoutez-lui un nombre indéfini de QMdiSubWindow avec QMdiArea.addSubWindow. Récupérez la QMdiSubWindow active avec QMdiArea.activeSubWindow."]
+
+[[exo17]]
+== Exercice 17 : Affichage web
+
+[NOTE]
+====
+Cet exercice part du principe que la machine sur laquelle vous travaillez a les bonnes dépendances installées.
+En particulier, sur une distribution basée sur Debian, la dépendance nécessaire est le paquet `libqt5webkit5-dev`.
+
+====
+
+Il est possible d'afficher une interface web au sein même d'une fenêtre Qt.
+
+* Définissez une instance de `QWebView` en tant que zone de travail centrale de votre `QMainWindow`.
+* Retirez l'action d'enregistrement de votre barre d'outils ainsi que de votre barre de menu.
+* Rajoutez une `QLineEdit` ainsi qu'un `QPushButton` à votre barre d'outils.
+* Modifiez votre programme de manière à ce que :
+** votre action d'ouverture de fichier permette d'afficher le contenu d'un fichier `.html` ou `.htm` dans votre zone centrale ;
+** en saisissant une URL dans votre `QLineEdit`, puis en appuyant sur la touche _Enter_ ou sur votre `QPushButton`, la page web correspondante soit affichée.
++
+Ces deux actions peuvent se réaliser grâce à la méthode `QWebView.load`.
+
+Pour utiliser `QWebView`, il vous faut ajouter le module suivant à la target `QT` de votre fichier projet :
+[source,bash]
+.main.pro
+----
+QT += webkitwidgets
+----
+
+image::resources/TP/Qt17-1.png[alt="Une QMainWindow affichant le sujet du présent TP dans une QWebView."]
+image::resources/TP/Qt17-2.png[alt="Une QMainWindow affichant la page d'accueil de l'unistra dans une QWebView."]

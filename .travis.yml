@@ -9,12 +9,16 @@ before_install:
   - ./docgen/setup.sh sass ${stylename}
 
 script:
-  - ./docgen/docgen.py --html --input core.adoc  --output index.html --outdir gh-pages --stylename ${stylename} --stylesdir sass --linkstyle
+  - mkdir ${exportdir}
   - cp -r ./docgen/www/* ${exportdir}
   - cp -r ./www/* ${exportdir}
   - cp -r resources ${exportdir}
   - cp README.adoc ${exportdir}
-  - ./docgen/docgen.py --pdf  --input gh-pages/index.html --output InteractionHommeMachine.pdf   --outdir gh-pages
+  - ./docgen/docgen.py --html --input core.adoc               --output index.html                  --outdir ${exportdir}    --stylename ${stylename} --stylesdir sass --linkstyle
+  - ./docgen/docgen.py --pdf  --input ${exportdir}/index.html --output InteractionHommeMachine.pdf --outdir ${exportdir}
+  - ./docgen/docgen.py --html --input Qt.adoc                 --output TP-Qt.html                  --outdir ${exportdir}/TP --stylename ${stylename} --stylesdir sass
+  - ./docgen/docgen.py --html --input Qt-QGraphics.adoc       --output TP-Qt-QGraphics.html        --outdir ${exportdir}/TP --stylename ${stylename} --stylesdir sass
+  - ./docgen/docgen.py --html --input web.adoc                --output TP-web.html                 --outdir ${exportdir}/TP --stylename ${stylename} --stylesdir sass
 
 deploy:
   provider: pages
