@@ -7,6 +7,7 @@ Régis WITZ <rwitz@unistra.fr>
 :toc:
 :toc-title:
 :toclevels: 1
+:stylesdir: ../gh-pages
 
 [[reference]]
 == Documentation

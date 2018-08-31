@@ -16,9 +16,9 @@ script:
   - cp README.adoc ${exportdir}
   - ./docgen/docgen.py --html --input core.adoc               --output index.html                  --outdir ${exportdir}    --stylename ${stylename} --stylesdir sass --linkstyle
   - ./docgen/docgen.py --pdf  --input ${exportdir}/index.html --output InteractionHommeMachine.pdf --outdir ${exportdir}
-  - ./docgen/docgen.py --html --input TP/Qt.adoc              --output Qt.html                     --outdir ${exportdir}/TP --stylename ../${stylename} --linkstyle
-  - ./docgen/docgen.py --html --input TP/Qt-QGraphics.adoc    --output Qt-QGraphics.html           --outdir ${exportdir}/TP --stylename ../${stylename} --linkstyle
-  - ./docgen/docgen.py --html --input TP/web.adoc             --output Web.html                    --outdir ${exportdir}/TP --stylename ../${stylename} --linkstyle
+  - ./docgen/docgen.py --html --input TP/Qt.adoc              --output Qt.html                     --outdir ${exportdir}/TP --stylename ${stylename}
+  - ./docgen/docgen.py --html --input TP/Qt-QGraphics.adoc    --output Qt-QGraphics.html           --outdir ${exportdir}/TP --stylename ${stylename}
+  - ./docgen/docgen.py --html --input TP/web.adoc             --output Web.html                    --outdir ${exportdir}/TP --stylename ${stylename}
 
 deploy:
   provider: pages
