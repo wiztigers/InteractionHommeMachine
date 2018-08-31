@@ -19,6 +19,7 @@ script:
   - ./docgen/docgen.py --html --input TP/Qt.adoc              --output Qt.html                     --outdir ${exportdir}/TP --stylename ${stylename}
   - ./docgen/docgen.py --html --input TP/Qt-QGraphics.adoc    --output Qt-QGraphics.html           --outdir ${exportdir}/TP --stylename ${stylename}
   - ./docgen/docgen.py --html --input TP/web.adoc             --output Web.html                    --outdir ${exportdir}/TP --stylename ${stylename}
+  - cp -r TP/resources ${exportdir}/TP
 
 deploy:
   provider: pages

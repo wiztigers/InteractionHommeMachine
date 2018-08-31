@@ -37,8 +37,7 @@ Plus en détails :
 * Définissez votre image comme image de fond de votre vue grâce à https://doc.qt.io/qt-5/qgraphicsview.html#backgroundBrush-prop[`QGraphicsView.setBackgroundBrush`].
 * Affichez votre vue dans une fenêtre en appelant sa méthode `show`.
 
-L'image que j'ai utilisé est celle-ci image:resources/TP/background.png[title="Exemple d'image de fond", alt="Exemple d'image de fond ; il "], mais vous pouvez bien évidemment en utiliser une autre.
-Attention, quelle que soit l'image que vous utilisez, prenez garde à en choisir une qui peut servir de base à un pavage régulier (ie. _seamless tile_/_tesselation_) pour un rendu optimal.
+Attention, quelle que soit l'image de fond que vous utilisez, prenez garde à en choisir une qui peut servir de base à un pavage régulier (ie. _seamless tile_/_tesselation_) pour un rendu optimal.
 
 [[exo02]]
 == Exercice 2 : Bouton personnalisé
@@ -103,4 +102,4 @@ Pour cela, vous pouvez :
 
 
 
-image:resources/TP/QtGraphics-screencast.gif[alt="Exemple d'implémentation : lorsque l'utilisateur appuie sur le toggle en bas à droite, la carte se déplace depuis la gauche de l'écran vers la droite de l'écran. Si l'utilisateur réappuie (que le mouvement de la carte soit terminé ou pas), la carte retourne à sa position initiale."]
+image:resources/QtGraphics-screencast.gif[alt="Exemple d'implémentation : lorsque l'utilisateur appuie sur le toggle en bas à droite, la carte se déplace depuis la gauche de l'écran vers la droite de l'écran. Si l'utilisateur réappuie (que le mouvement de la carte soit terminé ou pas), la carte retourne à sa position initiale."]

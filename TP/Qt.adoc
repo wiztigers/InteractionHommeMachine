@@ -112,30 +112,30 @@ int main(int argc, char *argv[]) {
 
 Créez la fenêtre suivante :
 
-image::resources/TP/Qt01.png[alt="Une simple fenêtre créée avec QApplication et comportant un QPushButton. Appelez QPushButton.show() pour afficher le bouton."]
+image::resources/Qt01.png[alt="Une simple fenêtre créée avec QApplication et comportant un QPushButton. Appelez QPushButton.show() pour afficher le bouton."]
 
 [[exo02]]
 == Exercice 2 : Infobulles
 
 Créez la fenêtre suivante :
 
-image::resources/TP/Qt02.png[alt="Utilisez setToolTip(QString) pour une infobulle."]
+image::resources/Qt02.png[alt="Utilisez setToolTip(QString) pour une infobulle."]
 
 [[exo03]]
 == Exercice 3 : Polices
 
 Créez la fenêtre suivante :
 
-image::resources/TP/Qt03.png[alt="Utilisez setFont(QFont) pour changer la police utilisée."]
+image::resources/Qt03.png[alt="Utilisez setFont(QFont) pour changer la police utilisée."]
 
 [[exo04]]
 == Exercice 4 : Icônes
 
 Créez la fenêtre suivante :
 
-image::resources/TP/Qt04.png[alt="Utilisez setIcon(QIcon) pour rajouter une icône."]
+image::resources/Qt04.png[alt="Utilisez setIcon(QIcon) pour rajouter une icône."]
 
-L'image que j'ai utilisé est celle-ci image:resources/TP/nyancat.png[title="nyan nyan nyan nyan", alt="Image à afficher sur le bouton."], mais vous pouvez bien évidemment en utiliser une autre.
+L'image que j'ai utilisé est celle-ci image:resources/nyancat.png[title="nyan nyan nyan nyan", alt="Image à afficher sur le bouton."], mais vous pouvez bien évidemment en utiliser une autre.
 
 [NOTE]
 ====
@@ -163,7 +163,7 @@ En conséquence, créez une nouvelle classe {cpp} qui représentera la fenêtre 
 
 Au final, votre fenêtre devrait ressembler à celle-ci :
 
-image::resources/TP/Qt05.png[alt="Une fois votre fenêtre créée, vous pouvez par exemple la redimensionner avec setFixedSize(w,h), ou changer son titre avec setWindowTitle(title)."]
+image::resources/Qt05.png[alt="Une fois votre fenêtre créée, vous pouvez par exemple la redimensionner avec setFixedSize(w,h), ou changer son titre avec setWindowTitle(title)."]
 
 [[exo06]]
 == Exercice 6 : Signaux & slots
@@ -198,7 +198,7 @@ Il faut :
 
 Faites en sorte que, lorsque l'utilisateur appuie sur le bouton de votre simple fenêtre, un boîte de dialogue de confirmation apparaisse :
 
-image::resources/TP/Qt07.png[alt="Les boîtes de dialogue simples n'ont pas besoin d'être implémentées à la main : QMessageBox fournit plusieurs méthodes statiques dédiées à cet usage. Ces boîtes de dialogues sont même capable d'afficher du texte enrichi par des balises HTML."]
+image::resources/Qt07.png[alt="Les boîtes de dialogue simples n'ont pas besoin d'être implémentées à la main : QMessageBox fournit plusieurs méthodes statiques dédiées à cet usage. Ces boîtes de dialogues sont même capable d'afficher du texte enrichi par des balises HTML."]
 
 [[exo08]]
 == Exercice 8 : Internationalisation (système)
@@ -206,7 +206,7 @@ image::resources/TP/Qt07.png[alt="Les boîtes de dialogue simples n'ont pas beso
 Les boîtes de dialogues permettent de recueillir la réponse de l'utilisateur à une question simple.
 Affichez une telle boîte de dialogue (type « Oui|Non ») lorsque l'utilisateur appuie sur un bouton.
 
-image::resources/TP/Qt08.png[alt="Boîte de dialogue de type QMessageBox::question. Attention à la langue des boutons, qui doit être cohérente avec celle du texte affiché !"]
+image::resources/Qt08.png[alt="Boîte de dialogue de type QMessageBox::question. Attention à la langue des boutons, qui doit être cohérente avec celle du texte affiché !"]
 
 Attention, le texte de votre boîte de dialogue est en français, et les libellés des boutons doivent l'être aussi !
 Pour cela, utilisez un `QTranslator` qui chargera toutes les traductions déjà gérées par Qt.
@@ -235,9 +235,9 @@ Il est conseillé de ranger ces fichiers de traduction dans un dossier à part, 
 Qt propose tout un assortiment de boîtes de dialogues « toutes faites » pour saisir différents types de valeur.
 Explorez les différentes possibilités :
 
-image::resources/TP/Qt10-1.png[alt="QInputDialog::getText"]
-image::resources/TP/Qt10-2.png[alt="QInputDialog::getInteger"]
-image::resources/TP/Qt10-3.png[alt="QInputDialog::getItem"]
+image::resources/Qt10-1.png[alt="QInputDialog::getText"]
+image::resources/Qt10-2.png[alt="QInputDialog::getInteger"]
+image::resources/Qt10-3.png[alt="QInputDialog::getItem"]
 
 D'autres exemples, plus complexes, incluent `QFont::getFont` ou encore `QColorDialog::getColor`.
 Essayez-les, en vous entrainant à récupérer et à réutiliser la valeur à chaque fois !
@@ -266,9 +266,9 @@ Le processus est toujours le même : on ajoute les éléments à une layout, pui
 Les principaux types de layout sont au nombre de quatre : `QVBoxLayout`, `QHBoxLayout`, `QGridLayout` et `QFormLayout`.
 Explorez-en les possibilités individuellement, puis combinez-les pour construire une fenêtre complexe !
 
-image:resources/TP/Qt12-1.png[alt="Utilisation de QHBoxLayout pour positionner plusieurs boutons horizontalement."]
-image:resources/TP/Qt12-2.png[alt="Utilisation de QVBoxLayout pour positionner plusieurs boutons verticalement."]
-image:resources/TP/Qt12-3.png[alt="Utilisation de QGridLayout pour positionner plusieurs boutons au sein d'une grille."]
+image:resources/Qt12-1.png[alt="Utilisation de QHBoxLayout pour positionner plusieurs boutons horizontalement."]
+image:resources/Qt12-2.png[alt="Utilisation de QVBoxLayout pour positionner plusieurs boutons verticalement."]
+image:resources/Qt12-3.png[alt="Utilisation de QGridLayout pour positionner plusieurs boutons au sein d'une grille."]
 
 [[exo13]]
 == Exercice 13 : Fenêtre principale
@@ -285,7 +285,7 @@ Une `QMainWindow` est aussi caractérisée par une zone de travail centrale, qui
 En reprenant ce que vous avez fait dans l'<<exo11,exercice 11>>, adaptez votre code de manière à utiliser `QMainWindow`.
 Le contenu du fichier texte, ainsi que les boutons d'ouverture et de sauvegarde sont pour l'instant à afficher en zone centrale.
 
-image::resources/TP/Qt13.png[alt="La zone centrale est un unique QWidget, ajouté à votre fenêtre grâce à QMainWindow.setCentralWidget ; les éléments de la zone centrale sont ensuite ajoutés à ce QWidget de la manière habituelle."]
+image::resources/Qt13.png[alt="La zone centrale est un unique QWidget, ajouté à votre fenêtre grâce à QMainWindow.setCentralWidget ; les éléments de la zone centrale sont ensuite ajoutés à ce QWidget de la manière habituelle."]
 
 [[exo14]]
 == Exercice 14 : Menus et actions
@@ -307,8 +307,8 @@ Il est évidemment possible, et même conseillé, d'affecter des raccoucis clavi
 
 N'oubliez pas que vos menus doivent être traduits en plusieurs langues, et que cette internationalisation doit prendre en compte les raccourcis clavier !
 
-image:resources/TP/Qt14-1.png[alt="Dans la barre d'outils, un QMenu « Fichier », avec trois éléments QAction : « Ouvrir... », « Enregistrer sous... », et « Quitter »."]
-image:resources/TP/Qt14-2.png[alt="Dans la même barre d'outils, un QMenu « Aide », avec trois éléments QAction : « Aide en ligne », et « À propos »."]
+image:resources/Qt14-1.png[alt="Dans la barre d'outils, un QMenu « Fichier », avec trois éléments QAction : « Ouvrir... », « Enregistrer sous... », et « Quitter »."]
+image:resources/Qt14-2.png[alt="Dans la même barre d'outils, un QMenu « Aide », avec trois éléments QAction : « Aide en ligne », et « À propos »."]
 
 [[exo15]]
 == Exercice 15 : Barre d'outils
@@ -321,7 +321,7 @@ Une barre d'outils rassemble en général les commandes sous forme d'icônes.
 Il est possible d'affecter une icône à une action de la même manière qu'à n'importe quel widget (voir <<exo04,Exercice 4>>).
 Pour un rendu cohérent, vous pouvez réutiliser les icônes système grâce à `QIcon.fromTheme` et à la <<reference,documentation>> de ce TP.
 
-image:resources/TP/Qt15.png[alt="Créez votre toolbar avec QMainWindow.addToolBar, puis ajoutez-lui vos QActions déjà créées grâce à QToolBar.addAction !"]
+image:resources/Qt15.png[alt="Créez votre toolbar avec QMainWindow.addToolBar, puis ajoutez-lui vos QActions déjà créées grâce à QToolBar.addAction !"]
 
 Hormis des `QAction`, vous pouvez aussi rajouter tout type de widget spécifique à votre barre d'outils (par exemple une zone de texte qui servira de barre de recherche, une combobox qui servira de sélecteur de mode, etc), de même que des separateurs (avec `QToolBar.addSeparator`).
 
@@ -334,7 +334,7 @@ Pour cela, il suffit de remplacer votre widget central actuel par une `QMdiArea`
 
 Modifiez votre programme de manière à pouvoir ouvrir, modifier et sauvegarder un nombre indéfini de fichiers en même temps.
 
-image:resources/TP/Qt16.png[alt="Créez cette fois une QMdiArea, que vous passerez en argument à setCentralWidget. Ajoutez-lui un nombre indéfini de QMdiSubWindow avec QMdiArea.addSubWindow. Récupérez la QMdiSubWindow active avec QMdiArea.activeSubWindow."]
+image:resources/Qt16.png[alt="Créez cette fois une QMdiArea, que vous passerez en argument à setCentralWidget. Ajoutez-lui un nombre indéfini de QMdiSubWindow avec QMdiArea.addSubWindow. Récupérez la QMdiSubWindow active avec QMdiArea.activeSubWindow."]
 
 [[exo17]]
 == Exercice 17 : Affichage web
@@ -364,5 +364,5 @@ Pour utiliser `QWebView`, il vous faut ajouter le module suivant à la target `Q
 QT += webkitwidgets
 ----
 
-image::resources/TP/Qt17-1.png[alt="Une QMainWindow affichant le sujet du présent TP dans une QWebView."]
-image::resources/TP/Qt17-2.png[alt="Une QMainWindow affichant la page d'accueil de l'unistra dans une QWebView."]
+image::resources/Qt17-1.png[alt="Une QMainWindow affichant le sujet du présent TP dans une QWebView."]
+image::resources/Qt17-2.png[alt="Une QMainWindow affichant la page d'accueil de l'unistra dans une QWebView."]
