@@ -5,7 +5,7 @@
 Ce chapitre détaille les principaux styles de communication entre l'homme et la machine.
 En d'autres termes, les principales manières de construire et d'utiliser une IHM.
 
-À noter que le style réel d'une interface peut être difficile à reconnaitre, car celle-ci fait un effort pour « dissimuler », avec plus ou moins de bonheur, ses mécanismes internes sous une couche d'ergonomie.
+À noter que le style réel d'une interface peut être difficile à reconnaître, car celle-ci fait un effort pour « dissimuler », avec plus ou moins de bonheur, ses mécanismes internes sous une couche d'ergonomie.
 Par exemple, les assistants vocaux peuvent sembler bien plus riches et complexes qu'un terminal, alors qu'ils communiquent au fond tous les deux de la même manière.
 De même, les formulaires web sont souvent éclatés en différentes pages, ou pré-remplis avec les informations concernant l'utilisateur que le site a glané au cours de sa navigation.
 
@@ -15,7 +15,7 @@ En conséquence, la plupart des IHM sont hybrides, laissant à l'utilisateur plu
 
 === Style conversationnel
 
-Cette catégorie d'interface graphique regroupe elle même trois sous-catégories : les interactions de type « <<style_console,console>> », celles de type « <<style_form,formulaire>> » et enfin les interfaces de <<style_browser,navigation>>.
+Cette catégorie d'interface graphique regroupe elle-même trois sous-catégories : les interactions de type « <<style_console,console>> », celles de type « <<style_form,formulaire>> » et enfin les interfaces de <<style_browser,navigation>>.
 
 [[style_console]]
 ==== Console
@@ -164,7 +164,7 @@ Cette sémantique est ensuite traduite en opération(s) à effectuer par l'appli
 ==== Exemples
 
 * La plupart des smartphones et des tablettes permettent, au moins dans une certaine mesure, des interactions dans ce style.
-  Les capacités de l'écran tactile (sensibilité ? support du multitouch ?) ainsi que la nature des applications tournant sur ces supports sont cependant très variés, rendant difficile la définition du « vocabulaire tactile » exact supporté par un smartphone donné.
+  Les capacités de l'écran tactile (sensibilité ? support du multitouch ?) ainsi que la nature des applications tournant sur ces supports sont cependant très variées, rendant difficile la définition du « vocabulaire tactile » exact supporté par un smartphone donné.
 * Les capteur (caméras) à reconnaissance de mouvements permettent eux aussi de concevoir de telles interfaces.
 
 [[style_gestures_pros]]
@@ -172,9 +172,9 @@ Cette sémantique est ensuite traduite en opération(s) à effectuer par l'appli
 
 * Ce style d'interface est *intuitif*.
   Cet avantage découle à la fois de ses qualités intrinsèques, mais aussi grâce à la généralisation des smartphones dans la population depuis la fin des années 2000.
-  Cela fait que les utilisateurs maitrisent pour la plupart un minimum de « mots » d'interaction avec un écran tactile.
+  Cela fait que les utilisateurs maîtrisent pour la plupart un minimum de « mots » d'interaction avec un écran tactile.
 * Ce style d'interface est, peut-on dire, « dans l'air du temps », ou à la mode.
-  Cette caractéristique n'est pas à négliger, car elle rend plus facile la possibiliter de susciter l'adhésion des utilisateurs à une IHM.
+  Cette caractéristique n'est pas à négliger, car elle rend plus facile la possibilité de susciter l'adhésion des utilisateurs à une IHM.
 
 [[style_gestures_cons]]
 ==== Inconvénients

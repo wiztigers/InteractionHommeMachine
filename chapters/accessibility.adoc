@@ -23,15 +23,15 @@ L'accessibilité d'un logiciel concerne donc tout le monde.
 
 === Enjeux
 
-Les enjeux de l'accessibilités sont nombreux :
+Les enjeux de l'accessibilité sont nombreux :
 
 * *économiques* : certains handicaps sont plus courants qu’on ne croit.
-  Par exemple le daltonisme, qui concernerait 1 homme sur 7, ou encore le vieillissement actuel de la population des pays développés et tout ce qui l’accompagne (devenir « dur d’oreille », presbite, souffrir de DMLA, de tremblements ou de pertes de mémoires).
+  Par exemple le daltonisme, qui concernerait 1 homme sur 7, ou encore le vieillissement actuel de la population des pays développés et tout ce qui l’accompagne (devenir « dur d’oreille », presbyte, souffrir de DMLA, de tremblements ou de pertes de mémoire).
   Dans ce cadre, il parait difficile pour une entreprise d'ignorer les (parfois nombreuses) part de marché que représentent les personnes en situation de handicap, qui peuvent constituer autant de clients potentiels.
 * *légaux* : en France, le cadre légal est encore relativement peu contraignant pour les entreprises du numérique.
   Cependant, le secteur d'activité (transports, administration, ...) d'une entreprise peut quand même la contraindre à prendre certaines mesures pour améliorer l'accessibilité de ses produits.
 * *techniques* : rendre un logiciel accessible consiste avant tout à respecter certaines bonnes pratiques de conception et d'implémentation.
-  Ces bonnes pratiques ne découlent bien souvent pas directement du sujet de l'accessibilité, et leur bénéfice premier est bien souvent autre (pérénnité, maintenabilité, interopérabilité, ...).
+  Ces bonnes pratiques ne découlent bien souvent pas directement du sujet de l'accessibilité, et leur bénéfice premier est bien souvent autre (pérennité, maintenabilité, interopérabilité, ...).
 * *sociétaux* : l’informatique, en étant accessible, peut devenir un fantastique outil d’autonomie et d'intégration à la société.
   Et, puisque l'accessibilité d'un logiciel ne concerne pas les seules personnes en situation de handicap, il peut bénéficier à tous.
   Par exemple, la télécommande a initialement été conçue pour les personnes handicapées !
@@ -44,7 +44,7 @@ Les situations dans lesquelles les utilisateurs ont besoin d'une interface acces
 De plus, des stratégies, produits ou aides spécifiques existent déjà pour adresser certains problèmes.
 Parmi eux, on peut citer entre autres :
 
-* les agrandissement d'éléments (loupe, ...)
+* les agrandissements d'éléments (loupe, ...)
 * les lecteurs d'écran utilisant la synthèse vocale
 * les plages braille ou périphériques d'entrée spécifique
 * les générateurs de sous-titres
@@ -75,7 +75,7 @@ Toutes ces sources ne sont bien souvent pas centrées sur l'accessibilité, mais
 L'adaptation d'une IHM à des usagers issus d'une ou plusieurs cultures différentes recouvre plusieurs notions :
 
 * La *traduction* des éléments textuels affichés
-* La *localisation* (_localization_ ou _l10n_, parfois aussi appelée régionalisation) est l'adaptation de l'interface à une autre langue, et même au delà, à une autre culture.
+* La *localisation* (_localization_ ou _l10n_, parfois aussi appelée régionalisation) est l'adaptation de l'interface à une autre langue, et même au-delà, à une autre culture.
   Ce processus est bien plus vaste que la simple traduction.
 * L'*internationalisation* (_internationalization_ ou _i18n_, parfois aussi appelée globalisation) est l'ensemble des techniques de conception et d'implémentation rendant possible la localisation.
   L’internationalisation est un prérequis à une bonne localisation.
@@ -87,7 +87,7 @@ L'adaptation d'une IHM à des usagers issus d'une ou plusieurs cultures différe
 * Les règles de *pluriel* et de *grammaire*, par exemple la manière dont une phrase est construite, varient largement d'une langue à l'autre.
 * De manière générale, il vaut mieux éviter de recourir à des expressions imagées, qui peuvent être difficile à traduire en dehors d'un contexte linguistique donné.
 * Davantage que la notion de seule langue, il est important de manier une *locale*, qui est un couple (langue, pays) représentant le fait qu'une langue peut être parlée dans plusieurs pays, et qu'un même pays peut compter des locuteurs de plusieurs langues.
-  Une locale est représentée par un code standardisé, tel que `fr_FR` (le français parlé en France), `en_US` (l'anglais parlé aux États Unis), `fr_CA` (le français parlé au Canada), `en_CA` (l'anglais parlé au Canada), et ainsi de suite.
+  Une locale est représentée par un code standardisé, tel que `fr_FR` (le français parlé en France), `en_US` (l'anglais parlé aux États-Unis), `fr_CA` (le français parlé au Canada), `en_CA` (l'anglais parlé au Canada), et ainsi de suite.
 * Outre les mots et les phrases, il est nécessaire d'actualiser le format des *nombres* entiers ou décimaux, des *dates* et des heures, les *unités* de poids et de mesure, ...
 * Attention à n'oublier aucun endroit dans lequel apparaissent des mots ou des phrases : au sein des images et icônes, ainsi qu'au niveau sonore (au niveau d'une synthèse vocale par exemple).
 * Traduire les libellés en change fatalement la longueur.
@@ -106,8 +106,8 @@ L'adaptation d'une IHM à des usagers issus d'une ou plusieurs cultures différe
 * Les *réglements et lois* spécifiques d'un pays donnés peuvent avoir une influence sur ce que peut faire ou pas un système, et cela concerne aussi les IHM.
   En particulier, il faut s'intéresser à la légalité de demander certaines informations relatives à la vie privée dans un formulaire d'inscription ou d'achat, par exemple.
   Au delà de la stricte légalité, certaines cultures peuvent ne pas être habituées à ce qu'elles considèrent comme des intrusions dans leur vie privée, ou encore n'être pas habituées ou simplement équipées pour des fonctionnalités liées aux réseaux sociaux.
-* Les utilisateurs d'une culture donnée peuvent avoir certaines *attentes* ou habitudes concernant la mise en page et/ou la densité d'informations affichés par certains types d'interface.
-  Par exemple, alors qu'en Europe la tendance est plutôt aux images et à un certaine baisse de la lecture, en Asie, la densité de texte affichée est en général bien plus importante.
+* Les utilisateurs d'une culture donnée peuvent avoir certaines *attentes* ou habitudes concernant la mise en page et/ou la densité d'informations affichées par certains types d'interface.
+  Par exemple, alors qu'en Europe, la tendance est plutôt aux images et à un certaine baisse de la lecture, en Asie, la densité de texte affichée est en général bien plus importante.
 
 
 === Internationalisation
@@ -130,7 +130,7 @@ En particulier, on peut citer comme exemple :
 
 Il existe différentes manières complémentaires pour valider l'accessibilité d'un logiciel :
 
-* Suivre un checklist basée sur les recommandations de la plateforme cible
+* Suivre un check-list basée sur les recommandations de la plateforme cible
 * Utiliser des lecteurs d'écrans et/ou d'autres outils, les mêmes utilisés par les utilisateurs en situation de handicap
 * Les interfaces web peuvent bénéficier de visualisations par un navigateur uniquement textuel, comme lynx
 * Faire appel directement à un panel approprié de testeurs en situation de handicap lors des tests d'utilisabilité.

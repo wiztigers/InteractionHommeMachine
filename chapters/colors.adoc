@@ -13,7 +13,7 @@ Les utilisateurs sont habitués à associer certaines couleurs à un statut part
 Par exemple, le rouge sera associé aux erreurs ou à un danger, tandis que le vert sera perçu comme un succès ou un marqueur de sécurité.
 
 Organiser les relations entre éléments::
-Différents éléments de même nature peuvent être facilement identifiés par la rétuilisation du même code couleur.
+Différents éléments de même nature peuvent être facilement identifiés par la rétutilisation du même code couleur.
 De même, un dégradé de couleurs pourra permettre de hiérarchiser les éléments par leur ordre d'importance, par exemple.
 
 === Palettes
@@ -27,10 +27,10 @@ Multiplier le nombre de couleurs fait courir le risque d'aboutir à une concurre
 
 Le confort visuel doit primer ::
 En effet, même si une palette de couleurs attrayante est évidemment préférable à une autre moins esthétique, cette notion d'esthétique est souvent nébuleuse et subjective.
-Par contre, il est vital de garder en tête qu'une interface graphique _n'est pas_ quelque chose qu'on accroche au mur au dessus d'un canapé, mais une chose qui sera affiché par un écran, et devant laquelle l'utilisateur passera des heures : il est important donc de *minimiser la fatigue visuelle*.
+Par contre, il est vital de garder en tête qu'une interface graphique _n'est pas_ quelque chose qu'on accroche au mur au-dessus d'un canapé, mais une chose qui sera affichée par un écran, et devant laquelle l'utilisateur passera des heures : il est important donc de *minimiser la fatigue visuelle*.
 
 Différences selon l'utilisateur ::
-Une palette de couleurs sera non seulement perçue différement, mais devra souvent être affichée différement selon la personne (daltonisme, ...) et selon le matériel (type & réglage de l'écran) considérés.
+Une palette de couleurs sera non seulement perçue différemment, mais devra souvent être affichée différemment selon la personne (daltonisme, ...) et selon le matériel (type & réglage de l'écran) considéré.
 
 Relations de voisinage ::
 Les couleurs qui « vont le mieux ensemble » sont souvent liées par des relations de voisinage particulières sur le cercle chromatique.
@@ -40,6 +40,6 @@ On peut distinguer plusieurs relations intéressantes :
 * Les *couleurs complémentaires* sont *diamétralement opposées* sur le cercle chromatique.
   Pour davantage de variété, plutôt que prendre la couleur diamétralement opposée à une couleur, on pourra choisir ses voisines.
 * Il est possible de jouer sur les *harmonies triadiques*, en prenant trois couleurs équidistantes, qui dessinent un triangle équilatéral sur le cercle chromatique.
-  Les *harmonies tetradiques*, elles, associent quatre couleurs qui, si on les relient, forment un carré ou un rectangle sur le cercle chromatique.
+  Les *harmonies tetradiques*, elles, associent quatre couleurs qui, si on les relie, forment un carré ou un rectangle sur le cercle chromatique.
 * Les *couleurs analogues* sont voisines sur le cercle chromatique.
 * Enfin, on pourra utiliser des *monochromes* de couleurs situées au même endroit du cercle chromatique, mais offrant des niveaux de saturation ou de luminosité différents.
