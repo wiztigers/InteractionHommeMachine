@@ -13,7 +13,7 @@ Les utilisateurs sont habitués à associer certaines couleurs à un statut part
 Par exemple, le rouge sera associé aux erreurs ou à un danger, tandis que le vert sera perçu comme un succès ou un marqueur de sécurité.
 
 Organiser les relations entre éléments::
-Différents éléments de même nature peuvent être facilement identifiés par la rétutilisation du même code couleur.
+Différents éléments de même nature peuvent être facilement identifiés par la réutilisation du même code couleur.
 De même, un dégradé de couleurs pourra permettre de hiérarchiser les éléments par leur ordre d'importance, par exemple.
 
 === Palettes
@@ -30,7 +30,7 @@ En effet, même si une palette de couleurs attrayante est évidemment préférab
 Par contre, il est vital de garder en tête qu'une interface graphique _n'est pas_ quelque chose qu'on accroche au mur au-dessus d'un canapé, mais une chose qui sera affichée par un écran, et devant laquelle l'utilisateur passera des heures : il est important donc de *minimiser la fatigue visuelle*.
 
 Différences selon l'utilisateur ::
-Une palette de couleurs sera non seulement perçue différemment, mais devra souvent être affichée différemment selon la personne (daltonisme, ...) et selon le matériel (type & réglage de l'écran) considéré.
+Une palette de couleurs sera non seulement perçue différemment, mais devra souvent être affichée différemment selon la personne (daltonisme, ...) et le matériel (type & réglage de l'écran) considérés.
 
 Relations de voisinage ::
 Les couleurs qui « vont le mieux ensemble » sont souvent liées par des relations de voisinage particulières sur le cercle chromatique.
