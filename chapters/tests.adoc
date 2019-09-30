@@ -20,7 +20,7 @@ Les tests ont un rôle double :
 Il existe différentes manières de tester l'ergonomie d'un système :
 
 * Un *test informel* a pour principe de laisser l'utilisateur « seul » avec le système.
-  On le libre de choisir quelles tâches il entreprend et de la manière dont il s'y prend.
+  On le laisse libre de choisir quelles tâches il entreprend et de la manière dont il s'y prend.
   Éventuellement, on peut lui demander d'exécuter les tâches d'une journée de travail habituelle.
 * Un *test formel* guide davantage l'utilisateur.
   Il est possible de lui faire exécuter une même tâche avec différentes interfaces (pour comparer différents designs), de lui imposer d'accomplir des tâches particulières, dans un certain ordre, et ainsi de suite.
