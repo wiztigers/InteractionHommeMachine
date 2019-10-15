@@ -21,7 +21,7 @@ Il y a certaines spécificités des téléphones mobiles à garder en tête lors
 * La navigation sur téléphone mobile se fait souvent « à une main », voire avec le seul pouce.
   La postion des contrôles doit donc être pensée en fonction de cette contrainte.
 * Sur mobile, l'utilisateur a parfois un besoin très spécifique à remplir, et/ou peu de temps à y consacrer.
-  Une IHM approprié à l'usage mobile doit donc offrir uniquement ce dont l'utilisateur a besoin.
+  Une IHM appropriée à l'usage mobile doit donc offrir uniquement ce dont l'utilisateur a besoin.
 
 Recycler à l'identique une IHM déjà existante sur PC afin de se contenter de l'afficher sur un écran plus petit n'est donc pas une solution.
 Pourtant, par exemple, trop de sites web forcent encore leurs utilisateurs à zoomer/dézoomer et à faire défiler sur deux axes une page qui n'a pas été pensée pour la navigation mobile.
@@ -96,7 +96,7 @@ Comme toujours, meilleure est la connaissance de l'utilisateur, meilleure sera l
 
 === Techniques
 
-Voici un aperçu rapide des techniques de bases qui rendent possible un design multi-support.
+Voici un aperçu rapide des techniques de base qui rendent possible un design multi-support.
 
 Unités absolues, Unités relatives::
 Il est important de manier correctement les différentes unités disponibles.
